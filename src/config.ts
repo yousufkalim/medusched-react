@@ -1,30 +1,30 @@
 let baseUrl = 'http://localhost:5000/api/v1';
 let mediaUrl = 'http://localhost:5000';
-const appName = 'reactapp';
+const appName = 'MedUSched';
 let env = 'dev';
 
 // Update the baseUrl and mediaUrl on every environment
 switch (window.location.host) {
-  case 'reactapp-dev.falconweb.app':
-    baseUrl = 'https://reactapp-api-dev.falconweb.app/api/v1';
-    mediaUrl = 'https://reactapp-api-dev.falconweb.app';
+  case 'medusched-dev.falconweb.app':
+    baseUrl = 'https://medusched-api-dev.falconweb.app/api/v1';
+    mediaUrl = 'https://medusched-api-dev.falconweb.app/';
     break;
 
-  case 'reactapp-qa.falconweb.app':
-    baseUrl = 'https://reactapp-api-qa.falconweb.app/api/v1';
-    mediaUrl = 'https://reactapp-api-qa.falconweb.app';
+  case 'medusched-qa.falconweb.app':
+    baseUrl = 'https://medusched-api-qa.falconweb.app/api';
+    mediaUrl = 'https://medusched-api-qa.falconweb.app/';
     env = 'qa';
     break;
 
-  case 'reactapp-staging.falconweb.app':
-    baseUrl = 'https://reactapp-api-staging.falconweb.app/api/v1';
-    mediaUrl = 'https://reactapp-api-staging.falconweb.app';
+  case 'medusched-staging.falconweb.app':
+    baseUrl = 'https://medusched-api-staging.falconweb.app/api';
+    mediaUrl = 'https://medusched-api-staging.falconweb.app/';
     env = 'staging';
     break;
 
-  case 'reactapp-prod.falconweb.app/':
-    baseUrl = 'https://reactapp-api-prod.falconweb.app/api/v1';
-    mediaUrl = 'https://reactapp-api-prod.falconweb.app';
+  case 'medusched-prod.falconweb.app':
+    baseUrl = 'https://medusched-api-prod.falconweb.app/api';
+    mediaUrl = 'https://medusched-api-prod.falconweb.app/';
     env = 'prod';
     break;
 }
