@@ -1,0 +1,172 @@
+.LoginImg {
+  height: 100vh;
+}
+.logincol {
+  display: flex;
+  align-items: center;
+}
+.loginrow1 {
+  width: 50%;
+  position: relative;
+}
+.textDiv {
+  position: absolute;
+  bottom: 20%;
+  width: 80%;
+  padding: 0 12%;
+  color: white;
+}
+.loginLogo {
+  width: 35%;
+  padding: 20px;
+}
+.loginH2 {
+  font-size: 35px;
+  font-weight: 600;
+}
+.lopinP2 {
+  padding: 1% 0%;
+}
+
+.loginrow2 {
+  width: 50%;
+  padding: 0 6% 0 4%;
+  font-family: 'outfit';
+}
+.loginDiv1 {
+  padding: 6% 5%;
+}
+.loginp {
+  padding: 5px;
+}
+.hidePassword {
+  position: relative;
+  right: 50px;
+  cursor: pointer;
+}
+.forgotdiv {
+  width: 80%;
+}
+.forget {
+  padding: 10px 0;
+  font-weight: 600;
+  width: 30%;
+  margin-left: auto;
+  color: #1d8de2;
+}
+.forget:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.loginH1 {
+  font-size: 35px;
+  font-weight: 600;
+}
+.loginP1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: gray;
+}
+.loginInputDiv {
+  padding: 10px 10px 10px 20px;
+}
+.loginInput {
+  width: 80%;
+  height: 55px;
+  border: 1px solid rgb(167, 164, 164);
+  border-radius: 100px;
+  padding-left: 25px;
+}
+.loginbtnDiv {
+}
+.loginbtn {
+  background: #1d8de2;
+  width: 80%;
+  margin: 5px 5px 10px 5px;
+  color: white;
+  border-radius: 100px;
+  padding: 14px 26px;
+  font-weight: 600;
+}
+.loginbtn:hover {
+  background: #2287d4;
+}
+.p2 {
+  font-size: 17px;
+  color: gray;
+}
+.registerSpan {
+  color: #1d8de2;
+  font-weight: 600;
+}
+.p2div {
+  text-align: center;
+  width: 80%;
+}
+.registerSpan:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 680px) {
+  .LoginImg {
+    height: auto;
+  }
+  .logincol {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .loginrow1 {
+    width: 100%;
+  }
+  .textDiv {
+    position: absolute;
+    bottom: 20%;
+    width: 100%;
+    padding: 0 5%;
+    color: white;
+  }
+  .loginLogo {
+    width: 32%;
+    padding: 20px;
+  }
+  .loginH2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .lopinP2 {
+    padding: 1% 0%;
+  }
+
+  .loginrow2 {
+    width: 100%;
+    padding: 0 6% 0 4%;
+    font-family: 'outfit';
+  }
+  .loginDiv1 {
+    padding: 6% 5%;
+  }
+  .loginInputDiv {
+    padding: 0;
+  }
+  .loginInput {
+    width: 100%;
+  }
+  .hidePassword {
+    top: -35%;
+    right: -1100%;
+  }
+  .forgotdiv {
+    width: 100%;
+  }
+  .forget {
+    font-weight: 600;
+    width: 50%;
+    margin-left: auto;
+    color: #1d8de2;
+  }
+  .loginbtnDiv {
+    text-align: center;
+  }
+}

@@ -4,14 +4,12 @@ import User from '../types/user';
 
 // Initializing Create Context Hook
 interface StoreType {
-  loggedIn: boolean;
-  user: User | object;
+  loggedIn?: boolean;
+  user?: User | null;
 }
 const storeContext = createContext<StoreType | null>(null);
 
-interface UpdateStoreType {
-  updateStore: (data: StoreType) => void;
-}
+type UpdateStoreType = (data: StoreType) => void;
 const storeUpdateContext = createContext<UpdateStoreType | null>(null);
 
 // We are also initializing useContexts here
@@ -29,7 +27,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   // Initializing State
   const [store, setStore] = useState<StoreType>({
     loggedIn: false,
-    user: {},
+    user: null,
   });
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -43,7 +41,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   // Render
   return (
     <storeContext.Provider value={store}>
-      <storeUpdateContext.Provider value={{ updateStore }}>{children}</storeUpdateContext.Provider>
+      <storeUpdateContext.Provider value={updateStore}>{children}</storeUpdateContext.Provider>
     </storeContext.Provider>
   );
 };

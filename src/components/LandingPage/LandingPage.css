@@ -1,0 +1,393 @@
+.bodySection {
+  display: flex;
+  width: 85%;
+  margin: auto;
+}
+
+.bodyimg {
+}
+.logo1 {
+  width: 94.44px;
+  height: 100.29px;
+  padding: 8px;
+}
+.bodycol1 {
+  width: 50%;
+  padding: 10% 4%;
+}
+.bodycol2 {
+  width: 50%;
+  padding: 0 8%;
+}
+.col1Heading {
+  font-family: 'Outfit';
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 58px;
+}
+.textdescription {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  color: #919b9b;
+  padding: 12px 0px;
+}
+
+.schedualebtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 26px;
+  gap: 8px;
+  background: #1d8de2;
+  border-radius: 100px;
+  color: #f6fafb;
+  margin: 20px 0px;
+}
+.schedualebtn:hover {
+  background: #2e7bb6;
+}
+.startbtn {
+  position: relative;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 26px;
+  gap: 8px;
+  color: #1d8de2;
+  border-radius: 100px;
+  box-shadow: 0px 4.800000190734863px 32px 0px #0000001a;
+}
+.startbtn:hover {
+  background: #fdfbfb;
+}
+/* parrtner */
+.partnerMaindiv {
+  background-color: #1d8de2;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: auto;
+  padding: 30px 8%;
+}
+.brand1 {
+  display: flex;
+  align-items: center;
+}
+.brandimg {
+  width: 80%;
+  margin: 0px 5px;
+}
+.aboutHeading {
+  text-align: center;
+  padding: 50px 20px 50px 20px;
+  font-size: 35px;
+  font-weight: 700;
+}
+.aboutrow1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.aboutrow2 {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+}
+.aboutcol1 {
+  width: 50%;
+}
+.aboutcol2 {
+  width: 50%;
+  padding: 0px 11% 0px 5%;
+}
+.about2col2 {
+  width: 50%;
+  padding: 1% 8%;
+  padding: 0px 5% 0px 11%;
+  margin-bottom: 3%;
+}
+.aboutimg {
+  margin: auto;
+  padding: 20px;
+}
+.aboutH2 {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 50px;
+}
+.aboutP {
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #919b9b;
+}
+.about2p {
+  font-weight: 600;
+  font-size: 17px;
+  padding: 3% 29% 0 0;
+}
+.contactcol {
+  display: flex;
+  background: #f9fcff;
+}
+.contactrow1 {
+  width: 50%;
+  padding-left: 5%;
+  padding-top: 5%;
+}
+.contactH1 {
+  font-size: 35px;
+  font-weight: 600;
+  width: 70%;
+  margin: auto;
+  padding: 10px 0px;
+}
+.contactP1 {
+  color: #919b9b;
+  line-height: 23px;
+  margin: 20px 0px;
+  width: 70%;
+  margin: auto;
+  padding: 1% 0;
+}
+.contactLogo {
+  width: 70%;
+  margin: auto;
+  padding: 20px 0px;
+}
+.contactrow2 {
+  width: 50%;
+  padding: 5% 7% 5% 7%;
+  margin-right: 5%;
+}
+.contactform {
+  background: #ffffff;
+  box-shadow: 0px 4px 30px rgba(25, 157, 125, 0.1);
+  border-radius: 20px;
+  padding: 15px 15px 15px 10px;
+}
+.contactinputName {
+  font-size: 12px;
+  padding: 5px 5px;
+}
+
+.contactInput {
+  width: 561px;
+  height: 55px;
+  border: 1px solid rgb(167, 164, 164);
+  border-radius: 100px;
+  padding-left: 25px;
+}
+.contactInput:focus {
+  border: 1px solid #1d8de2;
+}
+
+.contactInput::placeholder {
+  /* padding-left: 15px; */
+}
+.contactMessage {
+  border: 1px solid rgb(167, 164, 164);
+  border-radius: 20px;
+  width: 561px;
+  height: 212px;
+  padding-top: 15px;
+  padding-left: 25px;
+}
+
+.contactMessage:focus {
+  border: 1px solid #1d8de2;
+}
+.inputDiv {
+  padding: 10px 10px 10px 20px;
+}
+.contactbtnDiv {
+  text-align: center;
+}
+.contactbtn {
+  background: #1d8de2;
+  width: 90%;
+  margin: 5px 5px 10px 5px;
+  color: white;
+  border-radius: 100px;
+  padding: 14px 26px;
+}
+
+.contactLogo {
+  display: flex;
+  align-items: center;
+}
+.logoP {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 3px;
+}
+.footerDiv {
+  background-color: #1d8de2;
+  text-align: center;
+  padding: 15px 0px;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+}
+
+.breakline {
+  display: inline;
+}
+
+/* For Mobile Media Query */
+
+@media screen and (max-width: 680px) {
+  .breakline {
+    display: none;
+  }
+  .bodySection {
+    width: 95%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .logo1 {
+    width: 74.44px;
+    margin: auto;
+  }
+  .bodycol1 {
+    padding: 3% 3%;
+    width: 100%;
+  }
+  .bodycol2 {
+    width: 100%;
+  }
+  .col1Heading {
+    font-size: 27px;
+    line-height: 30px;
+
+    margin-bottom: 10px;
+  }
+  .textdescription {
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .schedualebtn {
+    margin: 20px auto;
+  }
+  .startbtn {
+    position: relative;
+    top: 20px;
+    left: 0px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  .aboutrow1 {
+    flex-direction: column-reverse;
+  }
+  .aboutrow2 {
+    flex-direction: column-reverse;
+  }
+  .aboutcol1 {
+    width: 100%;
+  }
+  .aboutcol2 {
+    width: 100%;
+    padding: 0px;
+  }
+  .aboutH2 {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 50px;
+    text-align: center;
+  }
+  .aboutP {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 12px;
+    color: #919b9b;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .about2p {
+    font-weight: 600;
+    font-size: 12px;
+    padding: 3% 9% 0 0;
+    text-align: center;
+  }
+  .about2col2 {
+    width: 100%;
+    padding: 1% 3%;
+    padding: 0px 3% 0px 3%;
+    margin-bottom: 3%;
+  }
+
+  .contactcol {
+    flex-direction: column;
+  }
+  .contactrow1 {
+    width: 100%;
+    padding-left: 1%;
+    padding-top: 1%;
+  }
+  .contactH1 {
+    font-size: 25px;
+    width: 90%;
+    margin: auto;
+    padding: 10px 0px;
+    text-align: center;
+  }
+  .contactP1 {
+    margin: 20px 0px;
+    width: 90%;
+    margin: auto;
+    padding: 1% 0;
+    text-align: center;
+    font-size: 13px;
+    line-height: 17px;
+  }
+  .contactLogo {
+    width: 90%;
+    margin: auto;
+    padding: 20px 0px;
+    justify-content: center;
+  }
+  .contactrow2 {
+    width: 100%;
+    padding: 4% 5% 4% 5%;
+    margin-right: 2%;
+  }
+  .contactform {
+    padding: 15px 15px 15px 10px;
+  }
+  .contactinputName {
+    font-size: 12px;
+    padding: 5px 5px;
+  }
+
+  .contactInput {
+    width: 320px;
+    height: 40px;
+  }
+  .contactMessage {
+    width: 320px;
+    height: 40px;
+    padding-top: 5px;
+  }
+  .inputDiv {
+    padding: 0;
+  }
+  .contactbtn {
+    width: 100%;
+    margin: 5px 5px 10px 5px;
+    padding: 9px 26px;
+  }
+  .footerDiv {
+    font-size: 10px;
+  }
+}

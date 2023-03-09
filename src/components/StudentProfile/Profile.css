@@ -1,0 +1,51 @@
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  background: linear-gradient(270deg, #1d8de2 0%, rgba(255, 255, 255, 0) 88.43%), #ffffff;
+}
+.name1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #1d8de2;
+}
+.email1 {
+  font-weight: 600;
+}
+.applied1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+.applieddiv {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: auto;
+}
+.divline1 {
+  width: 1px;
+  height: 25px;
+  padding: 1px 0px 1px 0px;
+  background-color: rgb(184, 177, 177);
+}
+.filter1 {
+  font-weight: 600;
+  display: flex;
+  width: 25%;
+}
+.SortArrow1 {
+  width: 5%;
+  margin: 0px 7px 16px 5px;
+}
+.SortArrow2 {
+  width: 5%;
+  margin: 0px 7px 16px 5px;
+}
+.n1 {
+  padding: 0px 6px 0px 15px;
+}
+.filterSection1 {
+  background: rgba(201, 199, 199, 0.5);
+  padding: 20px;
+}

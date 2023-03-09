@@ -1,5 +1,6 @@
 import axios, { Method, AxiosResponse, AxiosError } from 'axios';
 import { baseUrl } from '../config';
+import { toast } from 'react-toastify';
 
 const request = async <T>(method: Method, url: string, body: T): Promise<T> => {
   const token = localStorage.getItem('token');
@@ -13,7 +14,7 @@ const request = async <T>(method: Method, url: string, body: T): Promise<T> => {
     withCredentials: token !== null,
   });
 
-  return await new Promise((resolve, reject) => {
+  return await new Promise<T>((resolve, reject) => {
     api
       .request({
         method,
@@ -24,13 +25,15 @@ const request = async <T>(method: Method, url: string, body: T): Promise<T> => {
         resolve(response.data);
       })
       .catch((err: AxiosError<T>) => {
-        // If user is not authenticated, then redirect to login page
         if (err?.response?.status === 403) {
           localStorage.removeItem('token');
           location.pathname = '/login';
         } else {
-          // eslint-disable-next-line no-console
           console.log('API Error --------> ', err?.response);
+          // type assertion to tell TypeScript that the err.response.data object has a message property of type string or undefined.
+          const errorMessage =
+            (err?.response?.data as { message?: string })?.message ?? err?.message;
+          toast.error(errorMessage);
           reject(err);
         }
       });

@@ -1,13 +1,8 @@
 import React, { FC } from 'react';
-import Hero from '../../components/hero/Hero';
+import LandingPage from '../../components/LandingPage/LandingPage';
 
 const Home: FC = () => {
-  return (
-    <Hero
-      title="Welcome to React TypeScript Boilerplate"
-      text="Edit src/components/Hero.tsx and save to reload."
-    />
-  );
+  return <LandingPage />;
 };
 
 export default Home;
