@@ -28,7 +28,9 @@ const Header1: FC = () => {
   };
   const routesArray = [
     // { name: 'Home', path: '/' },
+    { name: 'Profile', path: '/profile' },
     { name: 'Electives', path: '/electives' },
+
     { name: 'Electives Details', path: `/electives/${params?.id ?? ''}` },
   ];
 
@@ -54,16 +56,17 @@ const Header1: FC = () => {
   return (
     <>
       <div className="headerContainer" ref={headerRef}>
-        <div className="logoDiv">
-          <div className="">
-            <img src={Logo} alt="logo" />
-          </div>
-          <NavLink to="/">
-            <h3 className="titlename">
+        <NavLink to="/">
+          <div className="logoDiv">
+            <div className="">
+              <img src={Logo} alt="logo" />
+            </div>
+
+            <h3 className="titlename logoname">
               Med<span style={{ color: '#1D8DE2' }}>U</span>Sched
             </h3>
-          </NavLink>
-        </div>
+          </div>
+        </NavLink>
         <div className="logoDiv">
           <h3 className="titlename">
             <span style={{ color: '#1D8DE2' }}>{headerName?.name ? headerName?.name : ''}</span>
@@ -72,13 +75,13 @@ const Header1: FC = () => {
         {isLogin ? (
           <div className="loginNameDiv">
             <div className="line"></div>
-            <div className="loginame">{store?.user?.name}</div>
             <button
               onClick={() => {
                 setloginFlag(!loginFlag);
               }}
+              className="nbtn"
             >
-              {' '}
+              <div className="loginame">{store?.user?.name}</div>{' '}
               <img className="loginarrow" src={SortArrow1} alt="menuicon" />
             </button>
           </div>
@@ -104,9 +107,12 @@ const Header1: FC = () => {
         <>
           <div className="logoutMainDiv">
             <div className="logoutElectives">
+              <NavLink to="/profile">Profile</NavLink>
+            </div>
+            <div className="logoutElectives">
               <NavLink to="/electives">Electives</NavLink>
             </div>
-            <div className="logoutBox">
+            <div className="logoutElectives">
               <button className="logoutbtn" onClick={handleLogout} style={{ fontWeight: '600' }}>
                 <img className="loginarrow" src={LogoutPic} alt="menuicon" /> Logout
               </button>

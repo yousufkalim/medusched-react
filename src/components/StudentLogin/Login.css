@@ -44,6 +44,16 @@
   right: 50px;
   cursor: pointer;
 }
+.hidePassword1 {
+  position: relative;
+  right: 50px;
+  cursor: pointer;
+}
+.hidePassword2 {
+  position: relative;
+  right: 50px;
+  cursor: pointer;
+}
 .forgotdiv {
   width: 80%;
 }
@@ -154,8 +164,16 @@
     width: 100%;
   }
   .hidePassword {
-    top: -35%;
-    right: -1100%;
+    position: absolute;
+    bottom: 110px;
+  }
+  .hidePassword1 {
+    position: absolute;
+    bottom: -34px;
+  }
+  .hidePassword2 {
+    position: absolute;
+    bottom: -120px;
   }
   .forgotdiv {
     width: 100%;
