@@ -16,6 +16,7 @@ const Login: FC = () => {
   }
   const [user, setUSer] = useState<IUserObject>({ email: '', password: '' });
   const [flag, setFlag] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setUSer({ ...user, [e.target.name]: e.target.value });
   };
@@ -29,18 +30,20 @@ const Login: FC = () => {
       toast.error('Password is Required');
     } else {
       console.log('formData', user);
-
-      void api('post', '/students/login', user).then((res) => {
-        console.log(res);
-        if (res?.token) {
-          console.log('settoken');
-          localStorage.setItem('token', res.token);
-          navigate('/electives');
-        }
-
-        // setFormData({ name: '', email: '', password: '', confirmpassword:''})
-        // navigate('/login');
-      });
+      setLoading(true);
+      void api('post', '/students/login', user)
+        .then((res) => {
+          console.log(res);
+          if (res?.token) {
+            console.log('settoken');
+            localStorage.setItem('token', res.token);
+            navigate('/electives');
+            setLoading(false);
+          }
+        })
+        .catch(() => {
+          setLoading(false);
+        });
     }
   };
   return (
@@ -97,9 +100,13 @@ const Login: FC = () => {
             </div>
           </div>
           <div className="loginbtnDiv">
-            <button className="loginbtn" onClick={handleSubmit}>
-              Login
-            </button>
+            {loading ? (
+              <button className="loginbtn">Loading...</button>
+            ) : (
+              <button className="loginbtn" onClick={handleSubmit}>
+                Login
+              </button>
+            )}
           </div>
           <div className="p2div">
             <p className="p2">

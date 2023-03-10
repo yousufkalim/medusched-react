@@ -21,13 +21,16 @@ const Resgister: FC = () => {
     password: '',
     confirmpassword: '',
   });
-  const [flag, setFlag] = useState<boolean>(false);
+  const [password1, setPassword1] = useState<boolean>(false);
+  const [password2, setPassword2] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
+
     if (formData?.name === '') {
       toast.error('Name is Required');
     } else if (formData?.email === '') {
@@ -39,16 +42,18 @@ const Resgister: FC = () => {
     } else if (formData?.confirmpassword !== formData?.password) {
       toast.error('Password Does not match');
     } else {
-      try {
-        void api('post', '/students', formData).then((res) => {
+      setLoading(true);
+      void api('post', '/students', formData)
+        .then((res) => {
           toast('Student Created Successfully');
           console.log(res);
           setFormData({ name: '', email: '', password: '', confirmpassword: '' });
           navigate('/login');
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
         });
-      } catch (err) {
-        console.log(err);
-      }
     }
   };
   return (
@@ -96,7 +101,7 @@ const Resgister: FC = () => {
             <p className="loginp">Password</p>
             <input
               className="loginInput"
-              type={flag ? 'text' : 'password'}
+              type={password1 ? 'text' : 'password'}
               placeholder="*********"
               name="password"
               value={formData?.password}
@@ -104,18 +109,18 @@ const Resgister: FC = () => {
             />
             <button
               onClick={() => {
-                setFlag(!flag);
+                setPassword1(!password1);
               }}
             >
               {' '}
-              <img className="hidePassword" src={HidePassword} alt="hidepass" />
+              <img className="hidePassword1" src={HidePassword} alt="hidepass" />
             </button>
           </div>
           <div className="loginInputDiv">
             <p className="loginp">Confirm Password</p>
             <input
               className="loginInput"
-              type={flag ? 'text' : 'password'}
+              type={password2 ? 'text' : 'password'}
               placeholder="*********"
               name="confirmpassword"
               value={formData?.confirmpassword}
@@ -123,17 +128,21 @@ const Resgister: FC = () => {
             />
             <button
               onClick={() => {
-                setFlag(!flag);
+                setPassword2(!password2);
               }}
             >
               {' '}
-              <img className="hidePassword" src={HidePassword} alt="hidepass" />
+              <img className="hidePassword2" src={HidePassword} alt="hidepass" />
             </button>
           </div>
           <div className="loginbtnDiv">
-            <button className="loginbtn" onClick={handleSubmit}>
-              Register
-            </button>
+            {loading ? (
+              <button className="loginbtn">Loading...</button>
+            ) : (
+              <button className="loginbtn" onClick={handleSubmit}>
+                Register
+              </button>
+            )}
           </div>
           <div className="p2div">
             <p className="p2">

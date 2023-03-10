@@ -70,18 +70,28 @@
 }
 .logoutElectives:hover {
   background: #edeff0;
-  border-radius: 5px;
-}
-.logoutbtn {
-  display: flex;
+  border-radius: 15px;
 }
 .logoutBox {
   display: flex;
 }
 .logoutBox:hover {
   background: #edeff0;
-  border-radius: 5px;
+  border-radius: 15px;
 }
+.nbtn {
+  display: flex;
+  align-items: center;
+}
+.nbtn:hover {
+  background: rgb(247, 245, 245);
+  box-shadow: 0px 4px 20px rgba(8, 8, 8, 0.05);
+  border-radius: 15px;
+}
+.logoutbtn {
+  display: flex;
+}
+
 @media screen and (max-width: 680px) {
   .headerContainer {
     width: 96%;
@@ -96,5 +106,12 @@
   }
   .menuIcon {
     display: inline;
+  }
+  .logoutMainDiv {
+    left: 50%;
+    width: 45%;
+  }
+  .logoname {
+    display: none;
   }
 }

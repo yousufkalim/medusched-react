@@ -49,3 +49,21 @@
   background: rgba(201, 199, 199, 0.5);
   padding: 20px;
 }
+
+@media screen and (max-width: 680px) {
+  .applied1 {
+    font-size: 15px;
+  }
+  .filter1 {
+    width: 60%;
+    justify-content: right;
+  }
+  .SortArrow1 {
+    width: 5%;
+    margin: 0px 7px 1px 5px;
+  }
+  .SortArrow2 {
+    width: 5%;
+    margin: 0px 7px 1px 5px;
+  }
+}
