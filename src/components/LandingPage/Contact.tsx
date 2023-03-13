@@ -9,6 +9,7 @@ const Contact: FC = () => {
     message: string;
   }
   const [formData, setFormData] = useState<IUserObject>({ name: '', email: '', message: '' });
+  const [flagfocus, setFlagfocus] = useState<number>(0);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,6 +26,7 @@ const Contact: FC = () => {
       console.log('formData', formData);
     }
   };
+  console.log('flagfocus', flagfocus);
 
   return (
     <>
@@ -58,7 +60,7 @@ const Contact: FC = () => {
         <div className="contactrow2">
           <div className="contactform">
             <div className="inputDiv">
-              <p className="contactinputName">Name</p>
+              <p className={` ${flagfocus === 1 ? 'activeName' : 'contactinputName'}`}>Name</p>
               <input
                 className="contactInput"
                 type="text"
@@ -66,10 +68,16 @@ const Contact: FC = () => {
                 name="name"
                 value={formData?.name}
                 onChange={handleChange}
+                onFocus={() => {
+                  setFlagfocus(1);
+                }}
+                onBlur={() => {
+                  setFlagfocus(0);
+                }}
               />
             </div>
             <div className="inputDiv">
-              <p className="contactinputName">Email</p>
+              <p className={` ${flagfocus === 2 ? 'activeName' : 'contactinputName'}`}>Email</p>
               <input
                 className="contactInput"
                 type="text"
@@ -77,16 +85,28 @@ const Contact: FC = () => {
                 name="email"
                 value={formData?.email}
                 onChange={handleChange}
+                onFocus={() => {
+                  setFlagfocus(2);
+                }}
+                onBlur={() => {
+                  setFlagfocus(0);
+                }}
               />
             </div>
             <div className="inputDiv">
-              <p className="contactinputName">Message</p>
+              <p className={` ${flagfocus === 3 ? 'activeName' : 'contactinputName'}`}>Message</p>
               <textarea
                 className="contactMessage"
                 placeholder="Type Something"
                 name="message"
                 value={formData?.message}
                 onChange={handleChange}
+                onFocus={() => {
+                  setFlagfocus(3);
+                }}
+                onBlur={() => {
+                  setFlagfocus(0);
+                }}
               />
             </div>
             <div className="contactbtnDiv">
