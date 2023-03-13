@@ -97,6 +97,13 @@ const Contact: FC = () => {
           </div>
         </div>
       </div>
+      <div className="contactLogoDown">
+        <img src={Logo} alt="logo" />
+        <p className="logoP">
+          {' '}
+          Med<span style={{ color: '#1d8de2' }}>U</span>Sched
+        </p>
+      </div>
       <div className="footerDiv">
         © 2023<span style={{ fontWeight: '900' }}> MedUSched</span> All Rights Reserved.
       </div>

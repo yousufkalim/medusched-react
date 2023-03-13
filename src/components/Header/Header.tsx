@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import Logo from '../../assets/logo.svg';
 import Person from '../../assets/Person.svg';
-import menuIcon from '../../assets/menuIcon.svg';
 import SortArrow1 from '../../assets/sortarrow1.svg';
 import LogoutPic from '../../assets/logout.svg';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
@@ -18,7 +17,6 @@ const Header1: FC = () => {
   const updateStore = UpdateStore();
   console.log('e', store?.user);
   const isLogin = localStorage.getItem('token');
-  const [flag, setflag] = useState<boolean>(false);
   const [loginFlag, setloginFlag] = useState<boolean>(false);
   const handleLogout = (): void => {
     setloginFlag(false);
@@ -30,7 +28,7 @@ const Header1: FC = () => {
     // { name: 'Home', path: '/' },
     { name: 'Profile', path: '/profile' },
     { name: 'Electives', path: '/electives' },
-
+    { name: 'Dashboard', path: '/dashboard' },
     { name: 'Electives Details', path: `/electives/${params?.id ?? ''}` },
   ];
 
@@ -56,18 +54,18 @@ const Header1: FC = () => {
   return (
     <>
       <div className="headerContainer" ref={headerRef}>
-        <NavLink to="/">
-          <div className="logoDiv">
-            <div className="">
-              <img src={Logo} alt="logo" />
-            </div>
-
-            <h3 className="titlename logoname">
-              Med<span style={{ color: '#1D8DE2' }}>U</span>Sched
-            </h3>
+        {/* <NavLink to="/"> */}
+        <div className="logoDivHeader">
+          <div className="">
+            <img src={Logo} alt="logo" />
           </div>
-        </NavLink>
-        <div className="logoDiv">
+
+          <h3 className="titlename logoname">
+            Med<span style={{ color: '#1D8DE2' }}>U</span>Sched
+          </h3>
+        </div>
+        {/* </NavLink> */}
+        <div className="logoDivHeader">
           <h3 className="titlename">
             <span style={{ color: '#1D8DE2' }}>{headerName?.name ? headerName?.name : ''}</span>
           </h3>
@@ -86,21 +84,15 @@ const Header1: FC = () => {
             </button>
           </div>
         ) : (
-          <div className="loginDiv">
-            <NavLink to={'/login'}>
-              {' '}
-              <button className="loginSignupButton">
-                Login/Signup <img src={Person} alt="a" />
-              </button>
-            </NavLink>
-            <button
-              onClick={() => {
-                setflag(!flag);
-              }}
-            >
-              <img className="menuIcon" src={menuIcon} alt="menuicon" />
+          // <div className="loginDiv">
+          <NavLink to={'/login'}>
+            {' '}
+            <button className="loginSignupButton">
+              Login/Signup <img src={Person} alt="a" />
             </button>
-          </div>
+          </NavLink>
+
+          // </div>
         )}
       </div>
       {loginFlag && (

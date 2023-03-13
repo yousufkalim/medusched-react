@@ -1,10 +1,10 @@
-import React from 'react';
-import Login from '../components/StudentLogin/Login';
+import React, { FC } from 'react';
+import StudentLogin from '../components/Login/Login';
 
-const LoginPage = () => {
+const LoginPage: FC = () => {
   return (
     <div>
-      <Login />
+      <StudentLogin />
     </div>
   );
 };

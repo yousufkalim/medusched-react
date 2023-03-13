@@ -1,8 +1,9 @@
 import React, { ReactElement } from 'react';
-import Dashboard from '../components/StudentDashboard/Dashboard';
 import SingleElective from '../components/StudentDashboard/SingleElective';
-import Login from '../components/StudentLogin/Login';
 import Home from '../pages/home/Home';
+import Dashboard from '../pages/Dashboard';
+import Login from '../pages/Login';
+import HospitalLogin from '../pages/HospitalLogin';
 import RegisterPage from '../pages/Register';
 import StudentProfile from '../pages/StudentProfile';
 import PrivateRoute from './PrivateRoute';
@@ -33,13 +34,25 @@ type Route = Element | Navigate;
 const routes: Route[] = [
   {
     path: '/',
-    element: <Home />,
+    element: (
+      <PublicRoute>
+        <Home />
+      </PublicRoute>
+    ),
   },
   {
     path: '/login',
     element: (
       <PublicRoute>
         <Login />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: '/Hospitallogin',
+    element: (
+      <PublicRoute>
+        <HospitalLogin />
       </PublicRoute>
     ),
   },
@@ -53,6 +66,14 @@ const routes: Route[] = [
   },
   {
     path: '/electives',
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: '/dashboard',
     element: (
       <PrivateRoute>
         <Dashboard />
