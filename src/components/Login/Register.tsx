@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import Loginlogo from '../../assets/LoginLogo.svg';
 import LoginImg from '../../assets/login.png';
+import LoginImgMobile from '../../assets/login.svg';
 import HidePassword from '../../assets/hidepass.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -61,6 +62,7 @@ const Resgister: FC = () => {
       <div className="logincol">
         <div className="loginrow1">
           <img className="LoginImg" src={LoginImg} alt="login" />
+          <img className="LoginImgMobile" src={LoginImgMobile} alt="login" />
           <div className="textDiv">
             <img className="loginLogo" src={Loginlogo} alt="Logo" />
             <h2 className="loginH2">Join MedUSched today</h2>

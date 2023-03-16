@@ -1,0 +1,59 @@
+.MuiInput-underline:before {
+  border-bottom: none !important;
+}
+.MuiInput-underline:after {
+  border-bottom: none !important;
+}
+.addelectivesh1 {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 10% 30px 0px 30px;
+}
+.addelectivesh2 {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.5;
+  padding: 0px 20px 10px 30px;
+}
+.addelectivep {
+  padding: 5px;
+}
+.electiveInputDiv {
+  padding: 10px 10px 10px 20px;
+}
+.addelectiveInput {
+  width: 95%;
+  height: 55px;
+  border: 1px solid rgb(167, 164, 164);
+  border-radius: 100px;
+  padding-left: 25px;
+}
+.createelectivebtnDiv {
+  text-align: center;
+  margin: 20px 0px 10% 0px;
+}
+.createelectivebtn {
+  background: #1d8de2;
+  width: 90%;
+  margin: 5px 5px 10px 5px;
+  color: white;
+  border-radius: 100px;
+  padding: 14px 26px;
+  font-weight: 600;
+}
+.checkboxtext {
+  margin-top: 5px;
+}
+@media screen and (max-width: 680px) {
+  .addelectivep {
+    padding: 10px;
+  }
+  .addelectiveInput {
+    width: 100%;
+  }
+  .electiveInputDiv {
+    width: 90%;
+    margin: auto;
+    padding: 5px 5px 5px 5px;
+  }
+}

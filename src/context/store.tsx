@@ -1,11 +1,13 @@
 // Init
 import React, { useContext, useState, createContext, ReactNode } from 'react';
 import User from '../types/user';
+import Elective from '../types/elective';
 
 // Initializing Create Context Hook
 interface StoreType {
   loggedIn?: boolean;
   user?: User | null;
+  electives?: Elective[] | [];
 }
 const storeContext = createContext<StoreType | null>(null);
 
@@ -28,6 +30,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [store, setStore] = useState<StoreType>({
     loggedIn: false,
     user: null,
+    electives: [],
   });
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
