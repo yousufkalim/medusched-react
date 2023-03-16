@@ -38,6 +38,9 @@
   padding: 15px 5px;
   font-weight: 500;
 }
+.electivedesDiv {
+  height: 173px;
+}
 .cardP1 {
   color: gray;
   font-size: 13px;
@@ -202,6 +205,22 @@
   border-radius: 100px;
   padding: 14px 26px;
   font-weight: 600;
+}
+.headingdiv1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 2%;
+}
+.modifiedDiv {
+  display: flex;
+}
+.editiconimg {
+  margin: 0px 5px;
+}
+.editiconimg:hover {
+  background-color: #e9eaec;
+  border-radius: 50%;
 }
 @media screen and (max-width: 680px) {
   .electiveSection {

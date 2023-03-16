@@ -38,6 +38,9 @@ const Electives: FC = () => {
     setOpen(true);
   };
   console.log('store in electives', store?.electives);
+  const filterDeletedElectives = (electives: Elective[]): Elective[] => {
+    return electives.filter((elective: Elective) => elective.active);
+  };
 
   return (
     <>
@@ -59,9 +62,9 @@ const Electives: FC = () => {
                 </div>
               </div>
               <div className="electiveSection">
-                {store?.electives.map((item, i) => (
+                {filterDeletedElectives(store?.electives).map((item, i) => (
                   <div key={i} className="electiveCard">
-                    <NavLink key={i} to={`/electives/${item.title}`}>
+                    <NavLink key={i} to={`/electives/${item._id}`}>
                       <div className="logoDiv">
                         <img src={Pic1} alt="Pic1" />
                         {/* {item?.applied && <button className="appliedBtn">Applied</button>} */}
@@ -70,7 +73,9 @@ const Electives: FC = () => {
                         <h1 className="heading1">{item?.title}</h1>
                         <button className="Ebtn">30/30 reserved</button>
                       </div>
-                      <p className="cardP1">{item?.description}</p>
+                      <div className="electivedesDiv">
+                        <p className="cardP1">{item?.description}</p>
+                      </div>
                       <div className="btnDiv">
                         <button className="dateBtn">
                           {moment(item?.start_date).format('DD-MM-YYYY')}

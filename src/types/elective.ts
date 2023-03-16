@@ -1,8 +1,8 @@
 export default interface Elective {
   _id: string;
   hospital: string;
-  //   schools: School[] | string[];
-  //   students: Student[] | string[];
+  schools: any[];
+  students: any[];
   title: string;
   description: string;
   start_date: Date;
@@ -10,3 +10,24 @@ export default interface Elective {
   limit: boolean;
   active: boolean;
 }
+
+// export interface Elective {
+//   _id: string;
+//   hospital: string;
+//   schools: any[];
+//   students: any[];
+//   title: string;
+//   description: string;
+//   start_date: string;
+//   duration: string;
+//   limit: boolean;
+//   active: boolean;
+//   createdAt: string;
+//   updatedAt: string;
+//   __v: number;
+// }
+// export interface ElectiveResponse {
+//   success: boolean;
+//   elective?: Elective;
+//   electives?: Elective[];
+// }

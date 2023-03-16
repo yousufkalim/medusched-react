@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import SingleElective from '../components/StudentDashboard/SingleElective';
+import SingleElective from '../components/HospitalDashboard/SingleElective';
 import Home from '../pages/home/Home';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';

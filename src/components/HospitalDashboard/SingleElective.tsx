@@ -1,19 +1,86 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import Pic1 from '../../assets/P1.png';
 import Loc from '../../assets/loc.svg';
+import api from '../../api/request';
+import Elective from '../../types/elective';
+import { useNavigate, useParams } from 'react-router-dom';
+import DeletIcon from '../../assets/delete.svg';
+import EditIcon from '../../assets/edit.svg';
+import DeleteElectives from '../Modals/DeleteElective';
+import EditElectives from '../Modals/EditElectives';
+import moment from 'moment';
 
+interface IElectiveResponse {
+  elective: Elective;
+  success: boolean;
+}
 const SingleElective: FC = () => {
+  const params = useParams();
+  const navigate = useNavigate();
+  const id = params?.id ?? '';
+  const [loading, setLoading] = useState<boolean>(false);
+  const [elective, setElective] = useState<Elective | null>(null);
+  const [deleteopen, setDeleteOpen] = useState<boolean>(false);
+  const [editopen, setEditOpen] = useState<boolean>(false);
+
+  const getSingleElectives = (): void => {
+    setLoading(true);
+    api<IElectiveResponse>('get', `/electives/${id}`)
+      .then((res) => {
+        console.log('single res', res);
+        setElective(res.elective);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
+  useEffect((): void => {
+    getSingleElectives();
+  }, []);
+  console.log(loading, elective);
+
+  const handleDelete = (): void => {
+    console.log('handle');
+    api<IElectiveResponse>('put', `/electives/delete/${id}`)
+      .then((res) => {
+        setLoading(false);
+        navigate('/electives');
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
   return (
     <>
       <Header />
       <div className="singleElectiveContainer">
         <div className="singleElectiveHeading">
           <img src={Pic1} alt="Pic1" />
-          <p className="electivetitle">Jersey City Medical Center</p>
+          <p className="electivetitle">{}</p>
         </div>
         <div className="singleElectiveBody">
-          <h1 className="heding1">HIV Clinic</h1>
+          <div className="headingdiv1">
+            <h1 className="heding1">{elective?.title}</h1>
+            <div className="modifiedDiv">
+              <button
+                onClick={() => {
+                  setEditOpen(true);
+                }}
+              >
+                <img src={EditIcon} alt="EditIcon" className="editiconimg" />
+              </button>
+
+              <button
+                onClick={() => {
+                  setDeleteOpen(true);
+                }}
+              >
+                <img src={DeletIcon} alt="DeletIcon" className="editiconimg" />
+              </button>
+            </div>
+          </div>
           <div className="singleloc">
             <div className="loc1">
               {' '}
@@ -32,18 +99,17 @@ const SingleElective: FC = () => {
               {' '}
               Description <br className="singlebr"></br>-{' '}
             </span>
-            Get hands-on experience in treating and managing HIV patients with the HIV Clinic
-            elective at Jersey City Medical Center. Learn from experienced professionals and gain
-            the knowledge and skills necessary to provide comprehensive care to those affected by
-            HIV.
+            {elective?.description}
           </p>
           <div className="singlebtnDiv">
             <button>
-              <span style={{ color: 'gray', margin: '0px 5px' }}>Start Date</span>12 - 05 - 2023
+              <span style={{ color: 'gray', margin: '0px 5px' }}>Start Date</span>
+              {moment(elective?.start_date).format('DD-MM-YYYY')}
             </button>
             <div className="btndiv2"></div>
             <button>
-              <span style={{ color: 'gray', margin: '0px 5px' }}>Duration</span>2 Weeks
+              <span style={{ color: 'gray', margin: '0px 5px' }}>Duration</span>
+              {elective?.duration}
             </button>
           </div>
         </div>
@@ -51,6 +117,8 @@ const SingleElective: FC = () => {
       <div className="singlereservebtnDiv">
         <button className="singleReservebtn">Reserve</button>
       </div>
+      <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
+      <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
     </>
   );
 };
