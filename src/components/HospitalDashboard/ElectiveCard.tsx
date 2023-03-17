@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import DeleteElectives from '../Modals/DeleteElective';
 import EditElectives from '../Modals/EditElectives';
 import api from '../../api/request';
+import { Store } from '../../context/store';
 
 interface IElectiveCard {
   item: Elective;
@@ -22,6 +23,7 @@ interface IElectiveResponse {
 }
 
 const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
+  const store = Store();
   const [deleteopen, setDeleteOpen] = useState<boolean>(false);
   const [editopen, setEditOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -46,12 +48,19 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
       <div key={item._id} className={`  electiveCard`}>
         <div className="logoDiv">
           <img src={Pic1} alt="Pic1" />
+          {store?.user?.role === 'Hospital' ? (
+            <>
+              <button className="electiveMenuBtn" onClick={handleClick}>
+                <img src={MenuI} alt="MenuI" />
+              </button>
+            </>
+          ) : (
+            <></>
+          )}
 
-          <button className="electiveMenuBtn" onClick={handleClick}>
-            <img src={MenuI} alt="MenuI" />
-          </button>
           {/* {item?.applied && <button className="appliedBtn">Applied</button>} */}
         </div>
+
         <Menu
           id="basic-menu"
           anchorEl={anchorEl}

@@ -9,6 +9,7 @@ import DeletIcon from '../../assets/delete.svg';
 import EditIcon from '../../assets/edit.svg';
 import DeleteElectives from '../Modals/DeleteElective';
 import EditElectives from '../Modals/EditElectives';
+import { Store } from '../../context/store';
 import moment from 'moment';
 
 interface IElectiveResponse {
@@ -16,6 +17,7 @@ interface IElectiveResponse {
   success: boolean;
 }
 const SingleElective: FC = () => {
+  const store = Store();
   const params = useParams();
   const navigate = useNavigate();
   const id = params?.id ?? '';
@@ -61,23 +63,27 @@ const SingleElective: FC = () => {
         <div className="singleElectiveBody">
           <div className="headingdiv1">
             <h1 className="heding1">{elective?.title}</h1>
-            <div className="modifiedDiv">
-              <button
-                onClick={() => {
-                  setEditOpen(true);
-                }}
-              >
-                <img src={EditIcon} alt="EditIcon" className="editiconimg" />
-              </button>
+            {store?.user?.role === 'Hospital' ? (
+              <div className="modifiedDiv">
+                <button
+                  onClick={() => {
+                    setEditOpen(true);
+                  }}
+                >
+                  <img src={EditIcon} alt="EditIcon" className="editiconimg" />
+                </button>
 
-              <button
-                onClick={() => {
-                  setDeleteOpen(true);
-                }}
-              >
-                <img src={DeletIcon} alt="DeletIcon" className="editiconimg" />
-              </button>
-            </div>
+                <button
+                  onClick={() => {
+                    setDeleteOpen(true);
+                  }}
+                >
+                  <img src={DeletIcon} alt="DeletIcon" className="editiconimg" />
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="singleloc">
             <div className="loc1">

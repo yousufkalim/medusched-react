@@ -2,18 +2,30 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 
 import Noelectives from '../../assets/noElectives.svg';
 import SortArrow1 from '../../assets/sortarrow1.svg';
-
+import Menu from '@mui/material/Menu';
 import SortArrow2 from '../../assets/sortarrow2.svg';
-
+import { Checkbox } from '@material-ui/core';
 import Addbtn from '../../assets/addbtn.svg';
 import AddElectives from '../Modals/AddElectives';
-// import AddElectivesD from '../Modals/AddElectiveD';
 import { Store, UpdateStore } from '../../context/store';
 import api from '../../api/request';
 import Elective from '../../types/elective';
 import ElectiveCard from './ElectiveCard';
-// import DeleteElectives from '../Modals/DeleteElective';
-// import EditElectives from '../Modals/EditElectives';
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'Augest',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 interface IElectives {
   electives: Elective[] | [];
@@ -64,19 +76,15 @@ const Electives: FC = () => {
   const filterDeletedElectives = (electives: Elective[]): Elective[] => {
     return electives.filter((elective: Elective) => elective.active);
   };
-  // const handleMenuIcon = (item: Elective): void => {
-  //   setSelectedElective(item);
-  //   setMenuFlag(!menuFlag);
-  // };
-  // const handleEdit = (): void => {
-  //   // setEditOpen(true);
-  //   console.log('handleedit');
-  // };
-  // const handleDelete = (): void => {
-  //   // setDeleteOpen(true);
-  //   console.log('handleedit');
-  // };
-  // console.log('selectedEl/ective', selectedElective, menuFlag);
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openFiltr = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (): void => {
+    setAnchorEl(null);
+  };
   return (
     <>
       {loading ? (
@@ -93,8 +101,44 @@ const Electives: FC = () => {
                   <span className="n1"> Newest</span>
                   <img className="SortArrow1D" src={SortArrow1} alt="SortArrow1" />
                   <div className="divline1"></div>
-                  <img className="SortArrow2D" src={SortArrow2} alt="SortArrow1" />
+                  <button onClick={handleClick}>
+                    <img className="SortArrow2D" src={SortArrow2} alt="SortArrow1" />
+                  </button>
                 </div>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={openFiltr}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                >
+                  <div className="Menumaind1">
+                    <div>Filter</div>
+                    <button>Clear All</button>
+                  </div>
+
+                  <div className="Menumaind2">Month</div>
+                  {months.map((m) => (
+                    <>
+                      <div className="Menumaind3">
+                        <Checkbox
+                          inputProps={{ 'aria-label': 'secondary checkbox' }}
+                          name="checkbox"
+                          style={{ color: 'gray' }}
+                          // value={checkbox}
+                          // onChange={handleCheckboxChange}
+                        />
+                        <span className="filtercheckboxtext">{m}</span>
+                      </div>
+                    </>
+                  ))}
+                  <div className="filterbtndiv">
+                    <button className="filterClose">Close</button>
+                    <button className="filterApply">Apply</button>
+                  </div>
+                </Menu>
               </div>
               <div className="electiveSection" ref={headerRef}>
                 {filterDeletedElectives(store?.electives).map((item, i) => (
@@ -103,23 +147,45 @@ const Electives: FC = () => {
                   </>
                 ))}
               </div>
-              <div className="addbtnDiv">
-                <button className="addbtn" onClick={handleAddBtn}>
-                  <img src={Addbtn} alt="Addbtn" className="addbtnimg" />
-                </button>
-              </div>
+              {store?.user?.role === 'Hospital' ? (
+                <>
+                  {' '}
+                  <div className="addbtnDiv">
+                    <button className="addbtn" onClick={handleAddBtn}>
+                      <img src={Addbtn} alt="Addbtn" className="addbtnimg" />
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
           ) : (
             <div className="noElectivesMainDiv">
-              <div>
-                <img src={Noelectives} alt="Noelectives" />
-              </div>
-              <div className="addelectivediv2">
-                <div className="createElectivediv"> Create New Electives</div>
-                <button className="addnewElectivebtn" onClick={handleAddBtn}>
-                  Add New Electives
-                </button>
-              </div>
+              {store?.user?.role === 'Hospital' ? (
+                <>
+                  {' '}
+                  <div>
+                    <img src={Noelectives} alt="Noelectives" />
+                  </div>
+                  <div className="addelectivediv2">
+                    <div className="createElectivediv"> Create New Electives</div>
+                    <button className="addnewElectivebtn" onClick={handleAddBtn}>
+                      Add New Electives
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {' '}
+                  <div>
+                    <img src={Noelectives} alt="Noelectives" />
+                  </div>
+                  <div className="addelectivediv2">
+                    <div className="createElectivediv"> Currently No Electives Available</div>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </>
