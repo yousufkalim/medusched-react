@@ -1,10 +1,10 @@
+// import * as React from 'react';
+import Box from '@mui/material/Box';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import React, { FC, useState, ChangeEvent, FormEvent } from 'react';
-import { CSSObject } from '@emotion/react';
 
 import DatePicker from 'react-datepicker';
-import Box from '@mui/material/Box';
 import { Checkbox } from '@material-ui/core';
-import Modal from '@mui/material/Modal';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -14,21 +14,8 @@ import './AddElectives.css';
 import { Store, UpdateStore } from '../../context/store';
 import Elective from '../../types/elective';
 
-const style: CSSObject = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  background: 'white',
-  width: 600,
-  borderRadius: '5px',
-  fontFamily: 'outfit',
+type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-  '@media only screen and (max-width: 600px)': {
-    width: '95%',
-    maxWidth: '600px',
-  },
-};
 const durationData = ['2 Week', '3 Week', '4 Week', '5 Week', '6 Week'];
 
 interface IUserObject {
@@ -46,8 +33,7 @@ interface IBasicModal {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
-
-const BasicModal: FC<IBasicModal> = ({ open, setOpen }) => {
+const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
   const updateStore = UpdateStore();
   const store = Store();
   const [electiveData, setElectiveData] = useState<IUserObject>({
@@ -58,6 +44,7 @@ const BasicModal: FC<IBasicModal> = ({ open, setOpen }) => {
   const [selectedDuration, setSelectedDuration] = useState<string>('Duration');
   const [checkbox, setCheckbox] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  console.log('loading ', loading);
 
   //   Onchange funtions
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -73,9 +60,7 @@ const BasicModal: FC<IBasicModal> = ({ open, setOpen }) => {
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setCheckbox(event.target.checked);
   };
-  const handleClose = (): void => {
-    setOpen(false);
-  };
+
   //   End
 
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
@@ -117,111 +102,116 @@ const BasicModal: FC<IBasicModal> = ({ open, setOpen }) => {
         });
     }
   };
-  console.log('loading', loading);
-
+  const list = (anchor: Anchor): JSX.Element => (
+    <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600 }} role="presentation">
+      <h1 className="addelectivesh1">Add New Elective</h1>
+      <h2 className="addelectivesh2">Add your details about Elective</h2>
+      <div className="electiveInputDiv">
+        <p className="addelectivep">Title</p>
+        <input
+          className="addelectiveInput"
+          type="text"
+          placeholder="HIV Clinic"
+          name="title"
+          value={electiveData?.title}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="electiveInputDiv">
+        <p className="addelectivep">Description</p>
+        <input
+          className="addelectiveInput"
+          type="text"
+          placeholder="Add Your Description"
+          name="description"
+          value={electiveData?.description}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="electiveInputDiv">
+        <p className="addelectivep">Start Date</p>
+        <DatePicker
+          selected={selectedDate && new Date(selectedDate)}
+          onChange={handleDateChange}
+          // locale={selectedDateLang}
+          // locale={locale}
+          locale={'en-gb'}
+          dateFormat="dd/MM/yyyy"
+          className="addelectiveInput"
+          //   value={date_of_birth}
+          autoComplete="off"
+          placeholderText="12-05-2023"
+          dropdownMode="scroll"
+          // dropdownMode="select"
+          scrollableYearDropdown
+          showYearDropdown
+          yearDropdownItemNumber={18}
+          // scrollableYearDropdown
+          showMonthDropdown
+          adjustDateOnChange
+        />
+      </div>
+      <div className="electiveInputDiv">
+        <p className="addelectivep"> Duration</p>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          defaultValue={selectedDuration}
+          name="duration"
+          value={selectedDuration}
+          onChange={handleDurationChange}
+          className="addelectiveInput"
+          // onFocus={handleBlurSchools}
+        >
+          <MenuItem
+            value="Duration"
+            disabled
+            // className={classes.menuitem}
+          >
+            <em>{'Duration'}</em>
+          </MenuItem>
+          {durationData.map((item, i) => {
+            return (
+              <MenuItem key={i} value={item}>
+                {item}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </div>
+      <div className="electiveInputDiv">
+        <Checkbox
+          inputProps={{ 'aria-label': 'secondary checkbox' }}
+          style={{ color: '#1D8DE2' }}
+          name="checkbox"
+          value={checkbox}
+          onChange={handleCheckboxChange}
+        />
+        <span className="checkboxtext">{'Limit Enrolments'}</span>
+      </div>
+      <div className="createelectivebtnDiv">
+        <button className="createelectivebtn" onClick={handleSubmit}>
+          Create
+        </button>
+      </div>
+    </Box>
+  );
   return (
     <div>
-      <Modal
+      <SwipeableDrawer
+        anchor={'right'}
         open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        // style={{ backdropFilter: 'blur(1px)' }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onOpen={() => {
+          setOpen(true);
+        }}
       >
-        <Box sx={style}>
-          <h1 className="addelectivesh1">Add New Elective</h1>
-          <h2 className="addelectivesh2">Add your details about Elective</h2>
-          <div className="electiveInputDiv">
-            <p className="addelectivep">Title</p>
-            <input
-              className="addelectiveInput"
-              type="text"
-              placeholder="HIV Clinic"
-              name="title"
-              value={electiveData?.title}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="electiveInputDiv">
-            <p className="addelectivep">Description</p>
-            <input
-              className="addelectiveInput"
-              type="text"
-              placeholder="Add Your Description"
-              name="description"
-              value={electiveData?.description}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="electiveInputDiv">
-            <p className="addelectivep">Start Date</p>
-            <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              // locale={selectedDateLang}
-              // locale={locale}
-              locale={'en-gb'}
-              dateFormat="dd/MM/yyyy"
-              className="addelectiveInput"
-              //   value={date_of_birth}
-              autoComplete="off"
-              placeholderText="12-05-2023"
-              dropdownMode="scroll"
-              // dropdownMode="select"
-              scrollableYearDropdown
-              showYearDropdown
-              yearDropdownItemNumber={18}
-              // scrollableYearDropdown
-              showMonthDropdown
-              adjustDateOnChange
-            />
-          </div>
-          <div className="electiveInputDiv">
-            <p className="addelectivep"> Duration</p>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              defaultValue={selectedDuration}
-              name="duration"
-              value={selectedDuration}
-              onChange={handleDurationChange}
-              className="addelectiveInput"
-              // onFocus={handleBlurSchools}
-            >
-              <MenuItem
-                value="Duration"
-                disabled
-                // className={classes.menuitem}
-              >
-                <em>{'Duration'}</em>
-              </MenuItem>
-              {durationData.map((item, i) => {
-                return (
-                  <MenuItem key={i} value={item}>
-                    {item}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </div>
-          <div className="electiveInputDiv">
-            <Checkbox
-              inputProps={{ 'aria-label': 'secondary checkbox' }}
-              style={{ color: '#1D8DE2' }}
-              name="checkbox"
-              value={checkbox}
-              onChange={handleCheckboxChange}
-            />
-            <span className="checkboxtext">{'Limit Enrolments'}</span>
-          </div>
-          <div className="createelectivebtnDiv">
-            <button className="createelectivebtn" onClick={handleSubmit}>
-              Create
-            </button>
-          </div>
-        </Box>
-      </Modal>
+        {list('right')}
+      </SwipeableDrawer>
     </div>
   );
 };
-export default BasicModal;
+
+export default AddelectivesDrawer;

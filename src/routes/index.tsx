@@ -5,7 +5,7 @@ import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import HospitalLogin from '../pages/HospitalLogin';
 import RegisterPage from '../pages/Register';
-import StudentProfile from '../pages/StudentProfile';
+import Profile from '../pages/Profile';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -92,7 +92,7 @@ const routes: Route[] = [
     path: '/profile',
     element: (
       <PrivateRoute>
-        <StudentProfile />
+        <Profile />
       </PrivateRoute>
     ),
   },

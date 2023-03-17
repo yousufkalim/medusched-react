@@ -51,40 +51,50 @@
   font-size: 25px;
   font-weight: 700;
   padding: 7% 30px 0px 30px;
+  text-align: center;
 }
 .deleteelectivesh2 {
   font-size: 20px;
   font-weight: 500;
   opacity: 0.5;
   padding: 0px 20px 10px 30px;
+  text-align: center;
 }
 .deleteelectivebtnDiv {
   text-align: center;
-  margin: 20px 0px 1% 0px;
-  text-align: right;
+  margin: 20px auto;
+  text-align: center;
   width: 95%;
 }
+.logodiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 0%;
+}
 .deletecencelbtn {
-  background: #aeb1b3;
+  background: white;
   margin: 5px 5px 10px 5px;
   color: white;
   border-radius: 100px;
-  padding: 12px 28px;
+  padding: 13px 40px;
   font-weight: 600;
+  color: black;
+  border: 2px solid black;
 }
 .deletecencelbtn:hover {
-  background: #a6a9ab;
+  background: #f4f7f9;
 }
 .deleteelectivebtn {
-  background: #1d8de2;
+  background: #ff5151;
   margin: 5px 5px 10px 5px;
   color: white;
   border-radius: 100px;
-  padding: 12px 28px;
+  padding: 16px 40px;
   font-weight: 600;
 }
 .deleteelectivebtn:hover {
-  background: #1879c3;
+  background: #d94646;
 }
 @media screen and (max-width: 680px) {
   .addelectivep {

@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { CSSObject } from '@emotion/react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Deletelogo from '../../assets/deletelogo.svg';
 import './AddElectives.css';
 
 const style: CSSObject = {
@@ -10,8 +11,8 @@ const style: CSSObject = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   background: 'white',
-  width: 600,
-  borderRadius: '5px',
+  width: 450,
+  borderRadius: '20px',
   fontFamily: 'outfit',
 
   '@media only screen and (max-width: 600px)': {
@@ -40,18 +41,13 @@ const DeleteElectiveModal: FC<IBasicModal> = ({ open, setOpen, handleDelete }) =
         // style={{ backdropFilter: 'blur(1px)' }}
       >
         <Box sx={style}>
-          <h1 className="deleteelectivesh1">Delete Elective</h1>
+          <div className="logodiv">
+            <img src={Deletelogo} alt="Deletelogo" />
+          </div>
+          <h1 className="deleteelectivesh1">Are you sure want to delete</h1>
           <h2 className="deleteelectivesh2">Are you sure you want to delete elective?</h2>
 
           <div className="deleteelectivebtnDiv">
-            <button
-              className="deletecencelbtn"
-              onClick={() => {
-                handleClose();
-              }}
-            >
-              Cancel
-            </button>
             <button
               className="deleteelectivebtn"
               onClick={() => {
@@ -59,6 +55,14 @@ const DeleteElectiveModal: FC<IBasicModal> = ({ open, setOpen, handleDelete }) =
               }}
             >
               Delete
+            </button>
+            <button
+              className="deletecencelbtn"
+              onClick={() => {
+                handleClose();
+              }}
+            >
+              Close
             </button>
           </div>
         </Box>

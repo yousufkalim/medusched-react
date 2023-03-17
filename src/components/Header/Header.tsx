@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import Logo from '../../assets/logo.svg';
+import Pic1 from '../../assets/P1.png';
 import Person from '../../assets/Person.svg';
 import SortArrow1 from '../../assets/sortarrow1.svg';
 import LogoutPic from '../../assets/logout.svg';
@@ -12,10 +13,8 @@ const Header1: FC = () => {
   const location = useLocation();
   const params = useParams();
   const path = location.pathname;
-  console.log('path', params, path);
   const store = Store();
   const updateStore = UpdateStore();
-  console.log('e', store?.user);
   const isLogin = localStorage.getItem('token');
   const [loginFlag, setloginFlag] = useState<boolean>(false);
   const handleLogout = (): void => {
@@ -50,7 +49,6 @@ const Header1: FC = () => {
   }, [loginFlag]);
 
   const headerName = routesArray.find((route) => route.path === path);
-  console.log('headerName', headerName);
   return (
     <>
       <div className="headerContainer" ref={headerRef}>
@@ -72,7 +70,12 @@ const Header1: FC = () => {
         </div>
         {isLogin ? (
           <div className="loginNameDiv">
-            <div className="line"></div>
+            {store?.user?.role === 'Hospital' ? (
+              <img className="hospitalheaderlogo" src={Pic1} alt="menuicon" />
+            ) : (
+              <div className="line"></div>
+            )}
+
             <button
               onClick={() => {
                 setloginFlag(!loginFlag);

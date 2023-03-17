@@ -28,7 +28,6 @@ const SingleElective: FC = () => {
     setLoading(true);
     api<IElectiveResponse>('get', `/electives/${id}`)
       .then((res) => {
-        console.log('single res', res);
         setElective(res.elective);
         setLoading(false);
       })
@@ -38,11 +37,10 @@ const SingleElective: FC = () => {
   };
   useEffect((): void => {
     getSingleElectives();
-  }, []);
-  console.log(loading, elective);
+  }, [editopen]);
+  console.log('loading ', loading);
 
   const handleDelete = (): void => {
-    console.log('handle');
     api<IElectiveResponse>('put', `/electives/delete/${id}`)
       .then((res) => {
         setLoading(false);

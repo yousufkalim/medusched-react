@@ -6,6 +6,7 @@
   align-items: center;
   padding: 10px 0px;
 }
+
 .logoDivHeader {
   display: flex;
   align-items: center;
@@ -36,7 +37,11 @@
 .loginNameDiv {
   display: flex;
   align-items: center;
-  padding: 1% 0%;
+}
+.hospitalheaderlogo {
+  border-radius: 50%;
+  width: 25%;
+  margin: 5px 5px;
 }
 .line {
   width: 1px;
