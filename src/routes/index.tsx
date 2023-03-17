@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react';
-import Dashboard from '../components/StudentDashboard/Dashboard';
-import SingleElective from '../components/StudentDashboard/SingleElective';
-import Login from '../components/StudentLogin/Login';
+import SingleElective from '../components/HospitalDashboard/SingleElective';
 import Home from '../pages/home/Home';
+import Dashboard from '../pages/Dashboard';
+import Login from '../pages/Login';
+import HospitalLogin from '../pages/HospitalLogin';
 import RegisterPage from '../pages/Register';
-import StudentProfile from '../pages/StudentProfile';
+import Profile from '../pages/Profile';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -33,13 +34,25 @@ type Route = Element | Navigate;
 const routes: Route[] = [
   {
     path: '/',
-    element: <Home />,
+    element: (
+      <PublicRoute>
+        <Home />
+      </PublicRoute>
+    ),
   },
   {
     path: '/login',
     element: (
       <PublicRoute>
         <Login />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: '/Hospitallogin',
+    element: (
+      <PublicRoute>
+        <HospitalLogin />
       </PublicRoute>
     ),
   },
@@ -60,6 +73,14 @@ const routes: Route[] = [
     ),
   },
   {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+  },
+  {
     path: '/electives/:id',
     element: (
       <PrivateRoute>
@@ -71,7 +92,7 @@ const routes: Route[] = [
     path: '/profile',
     element: (
       <PrivateRoute>
-        <StudentProfile />
+        <Profile />
       </PrivateRoute>
     ),
   },

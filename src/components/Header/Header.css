@@ -6,7 +6,8 @@
   align-items: center;
   padding: 10px 0px;
 }
-.logoDiv {
+
+.logoDivHeader {
   display: flex;
   align-items: center;
 }
@@ -36,7 +37,11 @@
 .loginNameDiv {
   display: flex;
   align-items: center;
-  padding: 1% 0%;
+}
+.hospitalheaderlogo {
+  border-radius: 50%;
+  width: 25%;
+  margin: 5px 5px;
 }
 .line {
   width: 1px;
@@ -94,15 +99,15 @@
 
 @media screen and (max-width: 680px) {
   .headerContainer {
-    width: 96%;
+    width: 100%;
     margin: 10px auto;
-    padding: 15px;
+    padding: 10px;
   }
   .titlename {
-    font-size: 20px;
+    font-size: 17px;
   }
   .loginSignupButton {
-    display: none;
+    margin: 15px 0px;
   }
   .menuIcon {
     display: inline;
@@ -110,8 +115,5 @@
   .logoutMainDiv {
     left: 50%;
     width: 45%;
-  }
-  .logoname {
-    display: none;
   }
 }

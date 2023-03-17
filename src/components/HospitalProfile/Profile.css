@@ -1,0 +1,82 @@
+.HospitalprofileHeader {
+  width: 100%;
+  margin: auto;
+  background: rgba(201, 199, 199, 0.5);
+}
+.HospitalprofileHeaderRow1 {
+  width: 87%;
+  margin: auto;
+  padding: 2% 0%;
+}
+
+.name1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #1d8de2;
+}
+.hospitalProfileName {
+  font-weight: 600;
+  font-size: 30px;
+}
+.applied1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+.Hosapplieddiv {
+  display: flex;
+  justify-content: space-between;
+  width: 92%;
+  margin: auto;
+}
+.divline1 {
+  width: 1px;
+  height: 25px;
+  padding: 1px 0px 1px 0px;
+  /* background-color: rgb(184, 177, 177); */
+}
+.filter1 {
+  font-weight: 600;
+  display: flex;
+  width: 25%;
+}
+.SortArrow1 {
+  width: 5%;
+  margin: 0px 7px 16px 5px;
+}
+.SortArrow2 {
+  width: 5%;
+  margin: 0px 7px 16px 5px;
+}
+.n1 {
+  padding: 0px 6px 0px 15px;
+}
+.filterSection1 {
+  min-height: 100vh;
+  padding: 20px;
+}
+.hospitalprofilepic {
+  border-radius: 50%;
+  width: 8%;
+}
+.hospitalcol2 {
+  width: 95%;
+  margin: auto;
+}
+
+@media screen and (max-width: 680px) {
+  .applied1 {
+    font-size: 15px;
+  }
+  .filter1 {
+    width: 60%;
+    justify-content: right;
+  }
+  .SortArrow1 {
+    width: 5%;
+    margin: 0px 7px 1px 5px;
+  }
+  .SortArrow2 {
+    width: 5%;
+    margin: 0px 7px 1px 5px;
+  }
+}

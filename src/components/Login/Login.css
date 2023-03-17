@@ -1,9 +1,13 @@
 .LoginImg {
   height: 100vh;
 }
+.LoginImgMobile {
+  display: none;
+}
 .logincol {
   display: flex;
   align-items: center;
+  font-family: 'outfit';
 }
 .loginrow1 {
   width: 50%;
@@ -21,8 +25,8 @@
   padding: 20px;
 }
 .loginH2 {
-  font-size: 35px;
-  font-weight: 600;
+  font-size: 33px;
+  font-weight: 700;
 }
 .lopinP2 {
   padding: 1% 0%;
@@ -76,6 +80,7 @@
   font-size: 20px;
   font-weight: 600;
   color: gray;
+  opacity: 0.7;
 }
 .loginInputDiv {
   padding: 10px 10px 10px 20px;
@@ -88,6 +93,8 @@
   padding-left: 25px;
 }
 .loginbtnDiv {
+  width: 95%;
+  margin: auto;
 }
 .loginbtn {
   background: #1d8de2;
@@ -121,6 +128,10 @@
 @media screen and (max-width: 680px) {
   .LoginImg {
     height: auto;
+    display: none;
+  }
+  .LoginImgMobile {
+    display: inline;
   }
   .logincol {
     display: flex;
@@ -132,7 +143,7 @@
   }
   .textDiv {
     position: absolute;
-    bottom: 20%;
+    bottom: 6%;
     width: 100%;
     padding: 0 5%;
     color: white;
@@ -145,46 +156,61 @@
     font-size: 20px;
     font-weight: 600;
   }
+  .loginH1 {
+    font-size: 25px;
+  }
+  .loginP1 {
+    font-size: 15px;
+  }
   .lopinP2 {
     padding: 1% 0%;
   }
 
   .loginrow2 {
     width: 100%;
-    padding: 0 6% 0 4%;
+    padding: 0 6% 40px 4%;
     font-family: 'outfit';
   }
   .loginDiv1 {
-    padding: 6% 5%;
+    padding: 6% 2%;
   }
   .loginInputDiv {
-    padding: 0;
+    padding: 4px 0;
   }
   .loginInput {
     width: 100%;
   }
   .hidePassword {
     position: absolute;
-    bottom: 110px;
+    margin: -13px 0px;
   }
   .hidePassword1 {
     position: absolute;
-    bottom: -34px;
+    margin: -12px 0px;
   }
   .hidePassword2 {
     position: absolute;
-    bottom: -120px;
+    margin: -15px 0px;
   }
   .forgotdiv {
     width: 100%;
   }
   .forget {
+    font-size: 14px;
     font-weight: 600;
-    width: 50%;
+    width: 35%;
     margin-left: auto;
     color: #1d8de2;
   }
   .loginbtnDiv {
     text-align: center;
+  }
+  .loginbtn {
+    width: 100%;
+    margin: 20px 0px;
+  }
+  .p2div {
+    margin: auto;
+    opacity: 0.7;
   }
 }

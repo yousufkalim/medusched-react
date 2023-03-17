@@ -1,0 +1,354 @@
+.filterSection {
+  background: rgba(201, 199, 199, 0.5);
+  padding: 20px;
+  margin: 10px 0px;
+  font-family: 'Outfit';
+  min-height: 100vh;
+}
+
+.electivlistDivMain {
+  display: flex;
+  width: 92%;
+  margin: auto;
+}
+.electivlistDiv {
+  width: 30%;
+  font-weight: 600;
+  font-size: 33px;
+}
+.electiveSection {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: auto;
+}
+.electiveCard {
+  background: #ffffff;
+  width: 30%;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  border: 2px solid white;
+}
+.electiveCard:hover {
+  /* background: #f7f5f5; */
+  border: 2px solid #1d8de2;
+}
+.menuActive2 {
+  opacity: 0.5;
+}
+.headingDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.heading1 {
+  padding: 15px 5px;
+  font-weight: 500;
+}
+.electivedesDiv {
+  height: 173px;
+}
+.cardP1 {
+  color: gray;
+  font-size: 13px;
+  padding: 5px 5px 15px 5px;
+  font-weight: 500;
+}
+.btnDiv {
+  display: flex;
+  justify-content: space-around;
+}
+.logoDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.appliedBtn {
+  background: #1d8de2;
+  border-radius: 10000px;
+  color: white;
+  font-weight: 500;
+  padding: 4px 18px;
+}
+.electiveMenuBtn {
+  border-radius: 10000px;
+  color: white;
+  font-weight: 500;
+  padding: 4px 18px;
+}
+.Ebtn {
+  background: rgba(217, 217, 217, 0.5);
+  color: gray;
+  border-radius: 10000px;
+  padding: 2px 13px;
+  font-weight: 500;
+}
+.Ebtn:hover {
+  background: rgba(201, 199, 199, 0.5);
+}
+.dateBtn {
+  padding: 5px;
+  color: #1d8de2;
+  background: rgba(29, 141, 226, 0.05);
+  border-radius: 10000px;
+  padding: 5px 45px;
+  font-weight: 500;
+}
+.dateBtn:hover {
+  background: rgb(0 0 0 / 5%);
+}
+
+.singleElectiveContainer {
+  width: 85%;
+  margin: auto;
+  padding: 2% 3%;
+}
+
+.singleElectiveHeading {
+  display: flex;
+  align-items: center;
+}
+.electivetitle {
+  font-size: 27px;
+  font-weight: 600;
+  margin: 5px 10px;
+}
+.heding1 {
+  color: #1d8de2;
+  font-size: 23px;
+  font-weight: 700;
+  margin: 24px 5px 10px 5px;
+}
+.singleloc {
+  display: flex;
+  justify-content: space-between;
+}
+.loc1 {
+  display: flex;
+  font-weight: 600;
+}
+.datediv {
+  font-weight: 600;
+}
+.singleP1 {
+  font-size: 15px;
+  font-weight: 500;
+  color: gray;
+  margin: 35px 0px;
+}
+.singlebtnDiv {
+  border: 1px solid rgb(201, 191, 191);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 3%;
+  border-radius: 10px;
+}
+.singlereservebtnDiv {
+  display: flex;
+  justify-content: right;
+  padding: 19% 10% 1% 1%;
+}
+.singleReservebtn {
+  background: #1d8de2;
+  border-radius: 10000px;
+  color: white;
+  font-weight: 500;
+  padding: 8px 9%;
+}
+.singlebr {
+  display: none;
+}
+.btndiv2 {
+  display: none;
+}
+.filter1dashboard {
+  font-weight: 600;
+  display: flex;
+  width: 25%;
+  margin-left: auto;
+  align-items: center;
+}
+.SortArrow1D {
+  width: 4%;
+  margin: 0px 11px 5px 11px;
+}
+.SortArrow2D {
+  width: 5%;
+  margin: 0px 11px 5px 21px;
+}
+.addbtnDiv {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  text-align: right;
+  padding: 0px 20px;
+}
+.addbtn {
+}
+.addbtnimg {
+}
+.addelectivediv2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noElectivesMainDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Outfit';
+  margin-top: 8%;
+}
+.createElectivediv {
+  font-size: 30px;
+  font-weight: 700;
+  color: gray;
+  opacity: 0.7;
+  padding: 5px 0px;
+}
+.addnewElectivebtn {
+  background: #1d8de2;
+
+  margin: 5px 5px;
+  color: white;
+  border-radius: 100px;
+  padding: 14px 26px;
+  font-weight: 600;
+}
+.headingdiv1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 2%;
+}
+.modifiedDiv {
+  display: flex;
+}
+.editiconimg {
+  margin: 0px 5px;
+}
+.editiconimg:hover {
+  background-color: #e9eaec;
+  border-radius: 50%;
+}
+.menuElectives {
+  text-align: center;
+  font-weight: 600;
+  padding: 7px 5px;
+}
+.menuElectives:hover {
+  background: #edeff0;
+  border-radius: 15px;
+}
+.menutbtn {
+  display: flex;
+  align-items: center;
+}
+.menuicon {
+  cursor: pointer;
+  margin: 0px 12px;
+}
+.menuMainDiv {
+  background: #f7f9fa;
+  width: 9%;
+  box-shadow: 0px 4px 20px rgba(8, 8, 8, 0.05);
+  border-radius: 10px;
+  padding: 0px 20px 5px 20px;
+}
+.maind1 {
+  padding: 5px 10px;
+}
+.D1icon {
+  margin: 0px 5px;
+}
+
+@media screen and (max-width: 680px) {
+  .menuMainDiv {
+    left: 50%;
+    width: 45%;
+  }
+
+  .electiveSection {
+    flex-direction: column;
+  }
+  .singleElectiveContainer {
+    width: 95%;
+    margin: auto;
+    padding: 3% 3%;
+  }
+  .electiveCard {
+    background: #ffffff;
+    width: 95%;
+    margin: 20px auto;
+    padding: 25px 20px;
+  }
+  .menuActive2 {
+    opacity: 0.7;
+  }
+  .cardP1 {
+    font-size: 11px;
+  }
+  .dateBtn {
+    padding: 5px 25px;
+  }
+
+  .singleElectiveHeading {
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .electivetitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 10px 0px 0px;
+  }
+  .heding1 {
+    margin: 20px 5px 20px 5px;
+  }
+  .datediv {
+    margin: 12px 0px 0px 0px;
+  }
+
+  .singleloc {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .singleP1 {
+    font-size: 15px;
+    font-weight: 500;
+    color: gray;
+    margin: 25px 0px 20px 0px;
+  }
+  .singlebr {
+    display: inline;
+  }
+  .singlebtnDiv {
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .btndiv2 {
+    display: inline;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(214, 207, 207);
+    margin: 5px;
+  }
+  .singlereservebtnDiv {
+    justify-content: center;
+    padding: 19% 0% 0% 0%;
+  }
+  .singleReservebtn {
+    width: 93%;
+    padding: 11px 9%;
+  }
+  .filter1dashboard {
+    width: 100%;
+    justify-content: center;
+  }
+}

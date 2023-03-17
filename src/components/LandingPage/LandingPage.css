@@ -2,6 +2,7 @@
   display: flex;
   width: 85%;
   margin: auto;
+  font-family: 'Outfit';
 }
 
 .bodyimg {
@@ -13,25 +14,26 @@
 }
 .bodycol1 {
   width: 50%;
-  padding: 10% 4%;
+  padding: 10% 10% 10% 1%;
 }
 .bodycol2 {
   width: 50%;
-  padding: 0 8%;
+  padding: 0 7% 0% 7%;
 }
 .col1Heading {
   font-family: 'Outfit';
 
   font-style: normal;
   font-weight: 600;
-  font-size: 48px;
-  line-height: 58px;
+  font-size: 37px;
+  /* line-height: 58px; */
+  padding-right: 20%;
 }
 .textdescription {
   font-family: 'Outfit';
   font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 20px;
   line-height: 28px;
   color: #919b9b;
   padding: 12px 0px;
@@ -128,7 +130,7 @@
 }
 .aboutP {
   margin-top: 20px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 18px;
   color: #919b9b;
 }
@@ -142,13 +144,13 @@
   background: #f9fcff;
 }
 .contactrow1 {
-  width: 50%;
+  width: 45%;
   padding-left: 5%;
   padding-top: 5%;
 }
 .contactH1 {
   font-size: 35px;
-  font-weight: 600;
+  font-weight: 700;
   width: 70%;
   margin: auto;
   padding: 10px 0px;
@@ -160,32 +162,46 @@
   width: 70%;
   margin: auto;
   padding: 1% 0;
+  font-weight: 600;
 }
 .contactLogo {
+  display: flex;
+  align-items: center;
   width: 70%;
   margin: auto;
   padding: 20px 0px;
 }
+.contactLogoDown {
+  display: none;
+}
 .contactrow2 {
-  width: 50%;
-  padding: 5% 7% 5% 7%;
-  margin-right: 5%;
+  width: 45%;
+  /* padding: 5% 0% 5% 0%;
+  margin-right: 5%; */
 }
 .contactform {
+  width: 90%;
+  margin: 5% auto;
   background: #ffffff;
   box-shadow: 0px 4px 30px rgba(25, 157, 125, 0.1);
   border-radius: 20px;
   padding: 15px 15px 15px 10px;
 }
 .contactinputName {
+  opacity: 0.6;
+  font-size: 12px;
+  padding: 5px 5px;
+}
+.activeName {
+  font-weight: 600;
   font-size: 12px;
   padding: 5px 5px;
 }
 
 .contactInput {
-  width: 561px;
+  width: 100%;
   height: 55px;
-  border: 1px solid rgb(167, 164, 164);
+  border: 1px solid rgb(213, 208, 208);
   border-radius: 100px;
   padding-left: 25px;
 }
@@ -197,35 +213,35 @@
   /* padding-left: 15px; */
 }
 .contactMessage {
-  border: 1px solid rgb(167, 164, 164);
+  border: 1px solid rgb(213, 208, 208);
   border-radius: 20px;
-  width: 561px;
+  width: 100%;
   height: 212px;
   padding-top: 15px;
   padding-left: 25px;
+  resize: none;
 }
 
 .contactMessage:focus {
   border: 1px solid #1d8de2;
 }
 .inputDiv {
+  width: 90%;
+  margin: auto;
   padding: 10px 10px 10px 20px;
 }
 .contactbtnDiv {
   text-align: center;
+  width: 100%;
+  margin: auto;
 }
 .contactbtn {
   background: #1d8de2;
-  width: 90%;
+  width: 85%;
   margin: 5px 5px 10px 5px;
   color: white;
   border-radius: 100px;
   padding: 14px 26px;
-}
-
-.contactLogo {
-  display: flex;
-  align-items: center;
 }
 .logoP {
   font-size: 20px;
@@ -270,8 +286,8 @@
   .col1Heading {
     font-size: 27px;
     line-height: 30px;
-
     margin-bottom: 10px;
+    padding-right: 0%;
   }
   .textdescription {
     font-size: 15px;
@@ -308,7 +324,7 @@
   }
   .aboutP {
     margin-top: 10px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 12px;
     color: #919b9b;
     padding: 0 20px;
@@ -334,9 +350,11 @@
     width: 100%;
     padding-left: 1%;
     padding-top: 1%;
+    padding-bottom: 3%;
   }
   .contactH1 {
     font-size: 25px;
+    font-weight: 700;
     width: 90%;
     margin: auto;
     padding: 10px 0px;
@@ -352,17 +370,21 @@
     line-height: 17px;
   }
   .contactLogo {
-    width: 90%;
-    margin: auto;
-    padding: 20px 0px;
+    display: none;
+  }
+  .contactLogoDown {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
   }
   .contactrow2 {
-    width: 100%;
-    padding: 4% 5% 4% 5%;
-    margin-right: 2%;
+    width: 95%;
+    margin: auto;
   }
   .contactform {
+    width: 100%;
+    margin: auto;
     padding: 15px 15px 15px 10px;
   }
   .contactinputName {
@@ -380,7 +402,10 @@
     padding-top: 5px;
   }
   .inputDiv {
-    padding: 0;
+    padding: 7px 0;
+  }
+  .contactbtnDiv {
+    width: 95%;
   }
   .contactbtn {
     width: 100%;
