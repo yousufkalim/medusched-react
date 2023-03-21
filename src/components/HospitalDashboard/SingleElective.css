@@ -1,0 +1,62 @@
+.applicant1 {
+  font-size: 35px;
+  font-weight: 600;
+  padding: 10px 10px;
+  width: 86%;
+  margin: auto;
+}
+.applicantMaindiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 85%;
+  margin: auto;
+}
+.applicantDiv {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 15px 30px;
+  width: 18%;
+  margin: 10px;
+  text-align: center;
+}
+.applicantName1 {
+  font-weight: 600;
+  font-size: 20px;
+}
+.applicantemail1 {
+  color: gray;
+}
+.singleReservebtn {
+  background: #1d8de2;
+  border-radius: 10000px;
+  color: white;
+  font-weight: 500;
+  padding: 8px 9%;
+}
+.AllreadyReservebtn {
+  background: #848585;
+  border-radius: 10000px;
+  color: white;
+  font-weight: 500;
+  padding: 8px 9%;
+}
+.NoApplied {
+  color: gray;
+  width: 100%;
+  text-align: center;
+  padding: 10% 0%;
+  font-size: 29px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 680px) {
+  .singleReservebtn {
+    width: 93%;
+    padding: 11px 9%;
+  }
+  .AllreadyReservebtn {
+    width: 93%;
+    padding: 11px 9%;
+  }
+}

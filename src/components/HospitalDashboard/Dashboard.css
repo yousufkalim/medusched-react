@@ -148,7 +148,7 @@
 }
 
 .singleElectiveContainer {
-  width: 85%;
+  width: 90%;
   margin: auto;
   padding: 2% 3%;
 }
@@ -199,13 +199,7 @@
   justify-content: right;
   padding: 19% 10% 1% 1%;
 }
-.singleReservebtn {
-  background: #1d8de2;
-  border-radius: 10000px;
-  color: white;
-  font-weight: 500;
-  padding: 8px 9%;
-}
+
 .singlebr {
   display: none;
 }
@@ -313,6 +307,9 @@
 .D1icon {
   margin: 0px 5px;
 }
+.linerloading1 {
+  padding: 5% 0;
+}
 
 @media screen and (max-width: 680px) {
   .menuMainDiv {
@@ -389,10 +386,7 @@
     justify-content: center;
     padding: 19% 0% 0% 0%;
   }
-  .singleReservebtn {
-    width: 93%;
-    padding: 11px 9%;
-  }
+
   .filter1dashboard {
     width: 100%;
     justify-content: center;

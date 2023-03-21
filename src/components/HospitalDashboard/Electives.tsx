@@ -11,6 +11,7 @@ import { Store, UpdateStore } from '../../context/store';
 import api from '../../api/request';
 import Elective from '../../types/elective';
 import ElectiveCard from './ElectiveCard';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const months = [
   'January',
@@ -88,7 +89,9 @@ const Electives: FC = () => {
   return (
     <>
       {loading ? (
-        <>Loading</>
+        <div className="linerloading1">
+          <LinearProgress />
+        </div>
       ) : (
         <>
           {' '}

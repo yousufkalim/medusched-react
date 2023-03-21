@@ -87,15 +87,21 @@ const Header1: FC = () => {
             </button>
           </div>
         ) : (
-          // <div className="loginDiv">
-          <NavLink to={'/login'}>
-            {' '}
-            <button className="loginSignupButton">
-              Login/Signup <img src={Person} alt="a" />
-            </button>
-          </NavLink>
-
-          // </div>
+          <div className="loginBtnDiv1">
+            <NavLink to={'/hospitallogin'}>
+              {' '}
+              <button className="loginSignupButtonH">
+                <span className="hideresponsiv">Go to </span> Hospital
+                <span className="hideresponsiv"> Sign In</span>
+              </button>
+            </NavLink>
+            <NavLink to={'/login'}>
+              {' '}
+              <button className="loginSignupButton">
+                Login/Signup <img src={Person} alt="a" />
+              </button>
+            </NavLink>
+          </div>
         )}
       </div>
       {loginFlag && (
