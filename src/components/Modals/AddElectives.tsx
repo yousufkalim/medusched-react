@@ -21,11 +21,12 @@ const durationData = ['2 Week', '3 Week', '4 Week', '5 Week', '6 Week'];
 interface IUserObject {
   title?: string;
   description?: string;
+  limit?: number;
 }
 interface IElectivesBody extends IUserObject {
   start_date?: Date;
   duration: string;
-  limit: boolean;
+  limitenrollment: boolean;
   elective?: Elective;
 }
 
@@ -39,6 +40,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
   const [electiveData, setElectiveData] = useState<IUserObject>({
     title: '',
     description: '',
+    limit: 0,
   });
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedDuration, setSelectedDuration] = useState<string>('Duration');
@@ -74,16 +76,17 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
       toast.error('Date is Required');
     } else if (selectedDuration === 'Duration') {
       toast.error('Duration is Required');
-    } else if (!checkbox) {
-      toast.error('Please Accept Limit');
+    } else if (checkbox && !electiveData.limit && electiveData.limit === 0) {
+      toast.error('Please Select Limit');
     } else {
       setLoading(true);
       void api<IElectivesBody>('post', '/electives/', {
         title: electiveData?.title,
         description: electiveData.description,
+        limit: checkbox ? electiveData.limit : 1000,
         start_date: selectedDate,
         duration: selectedDuration,
-        limit: checkbox,
+        limitenrollment: checkbox,
       })
         .then((res) => {
           if (updateStore && store && res.elective) {
@@ -189,6 +192,18 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
         />
         <span className="checkboxtext">{'Limit Enrolments'}</span>
       </div>
+      {checkbox && (
+        <div className="electiveLimitInputDiv">
+          <input
+            className="addelectiveInput"
+            type="text"
+            placeholder="Add Your Limit of Electives"
+            name="limit"
+            value={electiveData?.limit}
+            onChange={handleChange}
+          />
+        </div>
+      )}
       <div className="createelectivebtnDiv">
         <button className="createelectivebtn" onClick={handleSubmit}>
           Create

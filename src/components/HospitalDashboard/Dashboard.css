@@ -125,6 +125,13 @@
   font-weight: 500;
   padding: 4px 18px;
 }
+.EbtnLimit {
+  background: rgb(255 0 0 / 50%);
+  color: white;
+  border-radius: 10000px;
+  padding: 2px 13px;
+  font-weight: 500;
+}
 .Ebtn {
   background: rgba(217, 217, 217, 0.5);
   color: gray;

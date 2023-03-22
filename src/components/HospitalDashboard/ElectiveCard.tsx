@@ -43,6 +43,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
         // setLoading(false);
       });
   };
+  console.log('item', item);
   return (
     <>
       <div key={item._id} className={`  electiveCard`}>
@@ -57,8 +58,6 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
           ) : (
             <></>
           )}
-
-          {/* {item?.applied && <button className="appliedBtn">Applied</button>} */}
         </div>
 
         <Menu
@@ -95,7 +94,13 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
         <NavLink to={`/electives/${item._id}`}>
           <div className="headingDiv">
             <h1 className="heading1">{item?.title}</h1>
-            <button className="Ebtn">30/30 reserved</button>
+            {item?.limitenrollment ? (
+              <button className={`${item.students.length === item?.limit ? 'EbtnLimit' : 'Ebtn'}`}>
+                {item.students.length}/{item?.limit} reserved
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="electivedesDiv">
             <p className="cardP1">{item?.description}</p>

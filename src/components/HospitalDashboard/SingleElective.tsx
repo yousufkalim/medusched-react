@@ -11,7 +11,7 @@ import DeleteElectives from '../Modals/DeleteElective';
 import EditElectives from '../Modals/EditElectives';
 
 import AddReserveElective from '../Modals/AddReserveElective';
-import { Store, UpdateStore } from '../../context/store';
+import { Store } from '../../context/store';
 import moment from 'moment';
 import './SingleElective.css';
 
@@ -19,12 +19,8 @@ interface IElectiveResponse {
   elective: Elective;
   success: boolean;
 }
-interface IElectives {
-  electives: Elective[] | [];
-}
 const SingleElective: FC = () => {
   const store = Store();
-  const updateStore = UpdateStore();
   const params = useParams();
   const navigate = useNavigate();
   const id = params?.id ?? '';
@@ -65,17 +61,6 @@ const SingleElective: FC = () => {
   const studentApplied = elective?.students.find((student) => student?._id === store?.user?._id);
   console.log('headerName', studentApplied);
 
-  const getElectives = (): void => {
-    setLoading(true);
-    api<IElectives>('get', '/electives/')
-      .then((res) => {
-        if (updateStore) updateStore({ electives: res.electives });
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
   return (
     <>
       <Header />
@@ -86,7 +71,7 @@ const SingleElective: FC = () => {
         </div>
         <div className="singleElectiveBody">
           <div className="headingdiv1">
-            <h1 className="heding1">{elective?.title}</h1>
+            <h1 className="heding1">{store?.user?.name}</h1>
             {store?.user?.role === 'Hospital' ? (
               <div className="modifiedDiv">
                 <button
@@ -120,12 +105,17 @@ const SingleElective: FC = () => {
               <span style={{ color: 'gray' }}>
                 Posted {elective?.createdAt && moment(new Date(elective?.createdAt)).fromNow()}{' '}
               </span>
-              {elective?.students?.length && elective?.students?.length > 0 ? (
-                <span style={{ color: '#1d8de2', margin: '0px 3px' }}>
-                  {elective?.students?.length} Applicant
-                </span>
-              ) : (
-                ''
+              {store?.user?.role === 'Hospital' && (
+                <>
+                  {' '}
+                  {elective?.students?.length && elective?.students?.length > 0 ? (
+                    <span style={{ color: '#1d8de2', margin: '0px 3px' }}>
+                      {elective?.students?.length} Applicant
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                </>
               )}
             </div>
           </div>
@@ -151,7 +141,12 @@ const SingleElective: FC = () => {
       </div>
       {store?.user?.role === 'Hospital' ? (
         <div>
-          <div className="applicant1">Applicants</div>
+          <div className="applicant1">
+            <div>Applicants</div>
+            {elective?.limitenrollment && (
+              <div className="singleelectivelimit">{elective?.limit} Applicant Limit</div>
+            )}
+          </div>
           <div className="applicantMaindiv">
             {elective?.students?.length && elective?.students?.length > 0 ? (
               <>
@@ -204,7 +199,7 @@ const SingleElective: FC = () => {
         setOpen={setOpenAddReserve}
         electiveId={id}
         user={store?.user ? store?.user : undefined}
-        getElectives={getElectives}
+        getSingleElectives={getSingleElectives}
       />
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
       <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
