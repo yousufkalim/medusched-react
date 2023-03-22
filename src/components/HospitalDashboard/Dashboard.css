@@ -1,7 +1,54 @@
+.PrivateSwitchBase-root-1 {
+  padding: 5px !important;
+}
+.Menumaind1 {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 15px;
+  font-weight: 600;
+  font-family: 'Outfit';
+}
+.Menumaind2 {
+  font-weight: 600;
+  margin: 10px 15px;
+  font-family: 'Outfit';
+}
+.Menumaind3 {
+  margin-left: 20px;
+  font-size: 14px;
+}
+.filterbtndiv {
+  text-align: center;
+  margin: 0px 40px;
+}
+.filterClose {
+  color: gray;
+  border: 2px solid gray;
+  font-weight: 600;
+  padding: 8px 13px;
+  margin: 10px 5px;
+  border-radius: 20px;
+}
+.filterApply {
+  background: #1d8de2;
+  color: white;
+  font-weight: 600;
+  padding: 8px 13px;
+  margin: 10px 5px;
+  border: 2px solid #1d8de2;
+  border-radius: 20px;
+}
+.filtercheckbox1 {
+  padding: 0px;
+}
+.filtercheckboxtext {
+  margin: 3px;
+}
+
 .filterSection {
   background: rgba(201, 199, 199, 0.5);
   padding: 20px;
-  margin: 10px 0px;
+  /* margin: 10px 0px; */
   font-family: 'Outfit';
   min-height: 100vh;
 }
@@ -101,7 +148,7 @@
 }
 
 .singleElectiveContainer {
-  width: 85%;
+  width: 90%;
   margin: auto;
   padding: 2% 3%;
 }
@@ -152,13 +199,7 @@
   justify-content: right;
   padding: 19% 10% 1% 1%;
 }
-.singleReservebtn {
-  background: #1d8de2;
-  border-radius: 10000px;
-  color: white;
-  font-weight: 500;
-  padding: 8px 9%;
-}
+
 .singlebr {
   display: none;
 }
@@ -177,7 +218,6 @@
   margin: 0px 11px 5px 11px;
 }
 .SortArrow2D {
-  width: 5%;
   margin: 0px 11px 5px 21px;
 }
 .addbtnDiv {
@@ -267,6 +307,9 @@
 .D1icon {
   margin: 0px 5px;
 }
+.linerloading1 {
+  padding: 5% 0;
+}
 
 @media screen and (max-width: 680px) {
   .menuMainDiv {
@@ -343,12 +386,14 @@
     justify-content: center;
     padding: 19% 0% 0% 0%;
   }
-  .singleReservebtn {
-    width: 93%;
-    padding: 11px 9%;
-  }
+
   .filter1dashboard {
     width: 100%;
     justify-content: center;
+  }
+  .filtercheckbox1 {
+    width: 90%;
+    margin: auto;
+    padding: 5px 5px 5px 5px;
   }
 }

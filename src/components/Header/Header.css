@@ -20,7 +20,7 @@
 }
 .loginSignupButton {
   background-color: #1d8de2;
-  padding: 10px 20px;
+  padding: 12px 30px;
   margin: 15px;
   border-radius: 100px;
   font-weight: 600;
@@ -30,6 +30,16 @@
 }
 .loginSignupButton:hover {
   background: #2e7bb6;
+}
+.loginSignupButtonH {
+  border: 2px solid #1d8de2;
+  padding: 10px 20px;
+  margin: 15px;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #1d8de2;
+  display: flex;
+  align-items: center;
 }
 .menuIcon {
   display: none;
@@ -96,18 +106,32 @@
 .logoutbtn {
   display: flex;
 }
+.loginBtnDiv1 {
+  display: flex;
+}
+.hideresponsiv {
+  display: inline;
+  margin: 0px 2px;
+}
 
 @media screen and (max-width: 680px) {
+  .hideresponsiv {
+    display: none;
+  }
+
   .headerContainer {
     width: 100%;
     margin: 10px auto;
-    padding: 10px;
   }
   .titlename {
     font-size: 17px;
   }
   .loginSignupButton {
     margin: 15px 0px;
+    padding: 12px 10px;
+  }
+  .loginSignupButtonH {
+    padding: 10px 10px;
   }
   .menuIcon {
     display: inline;

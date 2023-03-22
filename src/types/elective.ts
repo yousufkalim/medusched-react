@@ -9,6 +9,7 @@ export default interface Elective {
   duration: string;
   limit: boolean;
   active: boolean;
+  createdAt: string;
 }
 
 // export interface Elective {

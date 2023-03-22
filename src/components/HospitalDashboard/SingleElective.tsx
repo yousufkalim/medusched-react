@@ -9,13 +9,22 @@ import DeletIcon from '../../assets/delete.svg';
 import EditIcon from '../../assets/edit.svg';
 import DeleteElectives from '../Modals/DeleteElective';
 import EditElectives from '../Modals/EditElectives';
+
+import AddReserveElective from '../Modals/AddReserveElective';
+import { Store, UpdateStore } from '../../context/store';
 import moment from 'moment';
+import './SingleElective.css';
 
 interface IElectiveResponse {
   elective: Elective;
   success: boolean;
 }
+interface IElectives {
+  electives: Elective[] | [];
+}
 const SingleElective: FC = () => {
+  const store = Store();
+  const updateStore = UpdateStore();
   const params = useParams();
   const navigate = useNavigate();
   const id = params?.id ?? '';
@@ -23,6 +32,7 @@ const SingleElective: FC = () => {
   const [elective, setElective] = useState<Elective | null>(null);
   const [deleteopen, setDeleteOpen] = useState<boolean>(false);
   const [editopen, setEditOpen] = useState<boolean>(false);
+  const [openAddReserve, setOpenAddReserve] = useState<boolean>(false);
 
   const getSingleElectives = (): void => {
     setLoading(true);
@@ -38,13 +48,29 @@ const SingleElective: FC = () => {
   useEffect((): void => {
     getSingleElectives();
   }, [editopen]);
-  console.log('loading ', loading);
+  console.log('loading ', loading, elective);
 
   const handleDelete = (): void => {
     api<IElectiveResponse>('put', `/electives/delete/${id}`)
       .then((res) => {
         setLoading(false);
         navigate('/electives');
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
+  console.log('store', store?.user);
+  console.log(elective?.students);
+  const studentApplied = elective?.students.find((student) => student?._id === store?.user?._id);
+  console.log('headerName', studentApplied);
+
+  const getElectives = (): void => {
+    setLoading(true);
+    api<IElectives>('get', '/electives/')
+      .then((res) => {
+        if (updateStore) updateStore({ electives: res.electives });
+        setLoading(false);
       })
       .catch(() => {
         setLoading(false);
@@ -61,23 +87,27 @@ const SingleElective: FC = () => {
         <div className="singleElectiveBody">
           <div className="headingdiv1">
             <h1 className="heding1">{elective?.title}</h1>
-            <div className="modifiedDiv">
-              <button
-                onClick={() => {
-                  setEditOpen(true);
-                }}
-              >
-                <img src={EditIcon} alt="EditIcon" className="editiconimg" />
-              </button>
+            {store?.user?.role === 'Hospital' ? (
+              <div className="modifiedDiv">
+                <button
+                  onClick={() => {
+                    setEditOpen(true);
+                  }}
+                >
+                  <img src={EditIcon} alt="EditIcon" className="editiconimg" />
+                </button>
 
-              <button
-                onClick={() => {
-                  setDeleteOpen(true);
-                }}
-              >
-                <img src={DeletIcon} alt="DeletIcon" className="editiconimg" />
-              </button>
-            </div>
+                <button
+                  onClick={() => {
+                    setDeleteOpen(true);
+                  }}
+                >
+                  <img src={DeletIcon} alt="DeletIcon" className="editiconimg" />
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="singleloc">
             <div className="loc1">
@@ -87,9 +117,16 @@ const SingleElective: FC = () => {
               <span style={{ color: 'gray' }}> London town, MD </span>
             </div>
             <div className="datediv">
-              {' '}
-              <span style={{ color: 'gray' }}>Posted 8 Days ago </span>
-              <span style={{ color: '#1d8de2', margin: '0px 3px' }}>86 Applicant</span>
+              <span style={{ color: 'gray' }}>
+                Posted {elective?.createdAt && moment(new Date(elective?.createdAt)).fromNow()}{' '}
+              </span>
+              {elective?.students?.length && elective?.students?.length > 0 ? (
+                <span style={{ color: '#1d8de2', margin: '0px 3px' }}>
+                  {elective?.students?.length} Applicant
+                </span>
+              ) : (
+                ''
+              )}
             </div>
           </div>
           <p className="singleP1">
@@ -112,9 +149,63 @@ const SingleElective: FC = () => {
           </div>
         </div>
       </div>
-      <div className="singlereservebtnDiv">
-        <button className="singleReservebtn">Reserve</button>
-      </div>
+      {store?.user?.role === 'Hospital' ? (
+        <div>
+          <div className="applicant1">Applicants</div>
+          <div className="applicantMaindiv">
+            {elective?.students?.length && elective?.students?.length > 0 ? (
+              <>
+                {elective?.students.map((student) => (
+                  <>
+                    <div className="applicantDiv">
+                      <p className="applicantName1">{student?.name}</p>
+                      <p className="applicantemail1">{student?.email}</p>
+                    </div>
+                  </>
+                ))}
+              </>
+            ) : (
+              <div className="NoApplied">
+                <h1>No Applicant</h1>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
+      {store?.user && (
+        <>
+          {store?.user?.role === 'Hospital' ? (
+            ''
+          ) : (
+            <div className="singlereservebtnDiv">
+              {studentApplied ? (
+                <button className="AllreadyReservebtn" disabled>
+                  Already Reserved
+                </button>
+              ) : (
+                <button
+                  className="singleReservebtn"
+                  onClick={() => {
+                    setOpenAddReserve(true);
+                  }}
+                >
+                  Reserve
+                </button>
+              )}
+            </div>
+          )}
+        </>
+      )}
+
+      <AddReserveElective
+        open={openAddReserve}
+        setOpen={setOpenAddReserve}
+        electiveId={id}
+        user={store?.user ? store?.user : undefined}
+        getElectives={getElectives}
+      />
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
       <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
     </>
