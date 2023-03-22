@@ -15,7 +15,7 @@ import { Store } from '../../context/store';
 
 interface IElectiveCard {
   item: Elective;
-  getElectives: () => void;
+  getElectives?: () => void;
 }
 interface IElectiveResponse {
   elective: Elective;
@@ -37,7 +37,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
   const handleDelete = (): void => {
     api<IElectiveResponse>('put', `/electives/delete/${item?._id}`)
       .then((res) => {
-        getElectives();
+        if (getElectives) getElectives();
       })
       .catch(() => {
         // setLoading(false);

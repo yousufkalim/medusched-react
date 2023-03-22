@@ -31,7 +31,10 @@ const months = [
 interface IElectives {
   electives: Elective[] | [];
 }
-const Electives: FC = () => {
+interface IElectiveProps {
+  title: string;
+}
+const Electives: FC<IElectiveProps> = ({ title }) => {
   const store = Store();
   const updateStore = UpdateStore();
   const [open, setOpen] = useState<boolean>(false);
@@ -98,7 +101,7 @@ const Electives: FC = () => {
           {store?.electives && filterDeletedElectives(store?.electives).length > 0 ? (
             <div className={` ${menuFlag ? ' filterSection' : 'filterSection'}`}>
               <div className="electivlistDivMain">
-                <div className="electivlistDiv">List of Electives</div>
+                <div className="electivlistDiv">{title}</div>
                 <div className="filter1dashboard">
                   <span style={{ color: 'gray', opacity: '0.6' }}>Sort by </span>
                   <span className="n1"> Newest</span>

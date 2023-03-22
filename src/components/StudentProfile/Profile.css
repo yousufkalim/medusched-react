@@ -5,13 +5,14 @@
   margin: auto;
   background: linear-gradient(270deg, #1d8de2 0%, rgba(255, 255, 255, 0) 88.43%), #ffffff;
 }
-.name1 {
-  font-size: 30px;
+.Stdname1 {
+  font-size: 45px;
   font-weight: 600;
   color: #1d8de2;
 }
 .email1 {
   font-weight: 600;
+  font-size: 25px;
 }
 .applied1 {
   font-size: 30px;
@@ -48,6 +49,10 @@
 .filterSection1 {
   background: rgba(201, 199, 199, 0.5);
   padding: 20px;
+}
+.profileHeaderRow1 {
+  width: 75%;
+  margin: auto;
 }
 
 @media screen and (max-width: 680px) {

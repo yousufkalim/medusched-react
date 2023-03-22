@@ -48,7 +48,7 @@
 .filterSection {
   background: rgba(201, 199, 199, 0.5);
   padding: 20px;
-  margin: 10px 0px;
+  /* margin: 10px 0px; */
   font-family: 'Outfit';
   min-height: 100vh;
 }
