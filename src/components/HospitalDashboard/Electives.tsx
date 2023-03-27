@@ -118,6 +118,24 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     });
     return filterElectives;
   };
+  const handleClearAll = (): void => {
+    setApplyfilterarray([]);
+    setSelectedMonths([]);
+    setMonths([
+      { name: 'January', checked: false },
+      { name: 'February', checked: false },
+      { name: 'March', checked: false },
+      { name: 'April', checked: false },
+      { name: 'May', checked: false },
+      { name: 'June', checked: false },
+      { name: 'July', checked: false },
+      { name: 'Augest', checked: false },
+      { name: 'September', checked: false },
+      { name: 'October', checked: false },
+      { name: 'November', checked: false },
+      { name: 'December', checked: false },
+    ]);
+  };
   console.log('applyfilterarray', months);
   return (
     <>
@@ -152,7 +170,9 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                 >
                   <div className="Menumaind1">
                     <div>Filter</div>
-                    <button>Clear All</button>
+                    <button className="clearallFilterbtn" onClick={handleClearAll}>
+                      Clear All
+                    </button>
                   </div>
 
                   <div className="Menumaind2">Month</div>
@@ -189,11 +209,15 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                 </Menu>
               </div>
               <div className="electiveSection" ref={headerRef}>
-                {handleApplyFilter(filterDeletedElectives(store?.electives)).map((item, i) => (
-                  <>
-                    <ElectiveCard getElectives={getElectives} item={item} />
-                  </>
-                ))}
+                {handleApplyFilter(filterDeletedElectives(store?.electives))?.length > 0 ? (
+                  handleApplyFilter(filterDeletedElectives(store?.electives)).map((item, i) => (
+                    <>
+                      <ElectiveCard getElectives={getElectives} item={item} />
+                    </>
+                  ))
+                ) : (
+                  <div className="noElectivefound">No Electives Found</div>
+                )}
               </div>
               {store?.user?.role === 'Hospital' ? (
                 <>

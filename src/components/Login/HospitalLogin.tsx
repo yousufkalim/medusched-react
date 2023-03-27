@@ -3,13 +3,17 @@ import Loginlogo from '../../assets/LoginLogo.svg';
 import LoginImg from '../../assets/login.png';
 import LoginImgMobile from '../../assets/login.svg';
 import HidePassword from '../../assets/hidepass.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './Login.css';
 import api from '../../api/request';
+import ForgotPassword from '../Modals/ForgotPassword';
 
 const Login: FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
+
   interface IUserObject {
     email: string;
     password: string;
@@ -17,6 +21,7 @@ const Login: FC = () => {
   }
   const [user, setUSer] = useState<IUserObject>({ email: '', password: '' });
   const [flag, setFlag] = useState<boolean>(false);
+  const [openForgotPassword, setOpenForgotPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setUSer({ ...user, [e.target.name]: e.target.value });
@@ -46,6 +51,7 @@ const Login: FC = () => {
         });
     }
   };
+  console.log('hospital login path', path);
   return (
     <>
       <div className="logincol">
@@ -98,7 +104,15 @@ const Login: FC = () => {
             </button>
             <div className="forgotdiv">
               {' '}
-              <p className="forget">Forgot Password?</p>
+              <button
+                className="forget"
+                onClick={() => {
+                  setOpenForgotPassword(true);
+                }}
+              >
+                {' '}
+                Forgot Password?{' '}
+              </button>
             </div>
           </div>
           <div className="loginbtnDiv">
@@ -112,6 +126,7 @@ const Login: FC = () => {
           </div>
         </div>
       </div>
+      <ForgotPassword open={openForgotPassword} setOpen={setOpenForgotPassword} role="Hospital" />
     </>
   );
 };

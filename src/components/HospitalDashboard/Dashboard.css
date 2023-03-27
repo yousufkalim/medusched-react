@@ -8,6 +8,9 @@
   font-weight: 600;
   font-family: 'Outfit';
 }
+.clearallFilterbtn:hover {
+  text-decoration: underline;
+}
 .Menumaind2 {
   font-weight: 600;
   margin: 10px 15px;
@@ -251,6 +254,14 @@
   flex-direction: column;
   font-family: 'Outfit';
   margin-top: 8%;
+}
+.noElectivefound {
+  width: 100%;
+  text-align: center;
+  padding: 15% 0;
+  font-size: 30px;
+  font-weight: 600;
+  color: gray;
 }
 .createElectivediv {
   font-size: 30px;
