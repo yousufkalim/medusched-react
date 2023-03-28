@@ -115,7 +115,12 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
   };
   const list = (anchor: Anchor): JSX.Element => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600 }}
+      sx={{
+        width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600,
+        '@media (max-width: 680px)': {
+          width: 300,
+        },
+      }}
       role="presentation"
       // onClick={() => {
       //   setOpen(false);

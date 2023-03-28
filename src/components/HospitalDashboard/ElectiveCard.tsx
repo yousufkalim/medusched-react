@@ -43,7 +43,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
         // setLoading(false);
       });
   };
-  console.log('item', item);
+  console.log('item', item.students.includes(store?.user?._id), store?.user?._id);
   return (
     <>
       <div key={item._id} className={`  electiveCard`}>
@@ -56,7 +56,13 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
               </button>
             </>
           ) : (
-            <></>
+            <>
+              {item.students.includes(store?.user?._id) ? (
+                <button className="appliedBtn">Applied</button>
+              ) : (
+                ''
+              )}
+            </>
           )}
         </div>
 

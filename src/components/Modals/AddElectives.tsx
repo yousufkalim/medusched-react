@@ -106,7 +106,15 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
     }
   };
   const list = (anchor: Anchor): JSX.Element => (
-    <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600 }} role="presentation">
+    <Box
+      sx={{
+        width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600,
+        '@media (max-width: 680px)': {
+          width: 300,
+        },
+      }}
+      role="presentation"
+    >
       <h1 className="addelectivesh1">Add New Elective</h1>
       <h2 className="addelectivesh2">Add your details about Elective</h2>
       <div className="electiveInputDiv">
