@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
+import React, { FC, useState, useEffect, useRef, ChangeEvent } from 'react';
 
 import Noelectives from '../../assets/noElectives.svg';
 import SortArrow1 from '../../assets/sortarrow1.svg';
@@ -13,36 +13,39 @@ import Elective from '../../types/elective';
 import ElectiveCard from './ElectiveCard';
 import LinearProgress from '@mui/material/LinearProgress';
 
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'Augest',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
 interface IElectives {
   electives: Elective[] | [];
 }
 interface IElectiveProps {
   title: string;
 }
+
+interface IMonths {
+  name: string;
+  checked: boolean;
+}
 const Electives: FC<IElectiveProps> = ({ title }) => {
   const store = Store();
   const updateStore = UpdateStore();
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  // const [selectedElective, setSelectedElective] = useState<Elective | null>(null);
   const [menuFlag, setMenuFlag] = useState<boolean>(false);
-  // const [deleteopen, setDeleteOpen] = useState<boolean>(false);
-  // const [editopen, setEditOpen] = useState<boolean>(false);
+  const [months, setMonths] = useState<IMonths[]>([
+    { name: 'January', checked: false },
+    { name: 'February', checked: false },
+    { name: 'March', checked: false },
+    { name: 'April', checked: false },
+    { name: 'May', checked: false },
+    { name: 'June', checked: false },
+    { name: 'July', checked: false },
+    { name: 'Augest', checked: false },
+    { name: 'September', checked: false },
+    { name: 'October', checked: false },
+    { name: 'November', checked: false },
+    { name: 'December', checked: false },
+  ]);
+  const [selectedMonths, setSelectedMonths] = useState<string[]>([]);
+  const [applyfilterarray, setApplyfilterarray] = useState<string[]>([]);
 
   const getElectives = (): void => {
     setLoading(true);
@@ -77,9 +80,6 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   const handleAddBtn = (): void => {
     setOpen(true);
   };
-  const filterDeletedElectives = (electives: Elective[]): Elective[] => {
-    return electives.filter((elective: Elective) => elective.active);
-  };
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openFiltr = Boolean(anchorEl);
@@ -89,6 +89,54 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   const handleClose = (): void => {
     setAnchorEl(null);
   };
+
+  const handleFilterCheckbox = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, checked } = e.target;
+    setMonths(months.map((item) => (item.name === name ? { ...item, checked } : item)));
+
+    if (checked) {
+      setSelectedMonths((prevSelectedMonths) => [...prevSelectedMonths, name]);
+    } else {
+      setSelectedMonths((prevSelectedMonths) =>
+        prevSelectedMonths.filter((month) => month !== name),
+      );
+    }
+  };
+  const filterDeletedElectives = (electives: Elective[]): Elective[] => {
+    return electives.filter((elective: Elective) => elective.active);
+  };
+
+  const handleApplyFilter = (electives: Elective[]): Elective[] => {
+    if (applyfilterarray.length === 0) {
+      return electives;
+    }
+    const filterElectives = electives.filter((elective: Elective) => {
+      const electiveMonth = new Date(elective.createdAt).toLocaleString('default', {
+        month: 'long',
+      });
+      return applyfilterarray.includes(electiveMonth);
+    });
+    return filterElectives;
+  };
+  const handleClearAll = (): void => {
+    setApplyfilterarray([]);
+    setSelectedMonths([]);
+    setMonths([
+      { name: 'January', checked: false },
+      { name: 'February', checked: false },
+      { name: 'March', checked: false },
+      { name: 'April', checked: false },
+      { name: 'May', checked: false },
+      { name: 'June', checked: false },
+      { name: 'July', checked: false },
+      { name: 'Augest', checked: false },
+      { name: 'September', checked: false },
+      { name: 'October', checked: false },
+      { name: 'November', checked: false },
+      { name: 'December', checked: false },
+    ]);
+  };
+  console.log('applyfilterarray', months);
   return (
     <>
       {loading ? (
@@ -122,36 +170,54 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                 >
                   <div className="Menumaind1">
                     <div>Filter</div>
-                    <button>Clear All</button>
+                    <button className="clearallFilterbtn" onClick={handleClearAll}>
+                      Clear All
+                    </button>
                   </div>
 
                   <div className="Menumaind2">Month</div>
-                  {months.map((m) => (
+                  {months.map(({ name, checked }) => (
                     <>
                       <div className="Menumaind3">
                         <Checkbox
                           inputProps={{ 'aria-label': 'secondary checkbox' }}
-                          name="checkbox"
+                          name={name}
                           style={{ color: 'gray' }}
-                          // value={checkbox}
-                          // onChange={handleCheckboxChange}
+                          checked={checked}
+                          onChange={(e) => {
+                            handleFilterCheckbox(e);
+                          }}
                         />
-                        <span className="filtercheckboxtext">{m}</span>
+                        <span className="filtercheckboxtext">{name}</span>
                       </div>
                     </>
                   ))}
                   <div className="filterbtndiv">
-                    <button className="filterClose">Close</button>
-                    <button className="filterApply">Apply</button>
+                    <button className="filterClose" onClick={handleClose}>
+                      Close
+                    </button>
+                    <button
+                      className="filterApply"
+                      onClick={() => {
+                        setApplyfilterarray(selectedMonths);
+                        handleClose();
+                      }}
+                    >
+                      Apply
+                    </button>
                   </div>
                 </Menu>
               </div>
               <div className="electiveSection" ref={headerRef}>
-                {filterDeletedElectives(store?.electives).map((item, i) => (
-                  <>
-                    <ElectiveCard getElectives={getElectives} item={item} />
-                  </>
-                ))}
+                {handleApplyFilter(filterDeletedElectives(store?.electives))?.length > 0 ? (
+                  handleApplyFilter(filterDeletedElectives(store?.electives)).map((item, i) => (
+                    <>
+                      <ElectiveCard getElectives={getElectives} item={item} />
+                    </>
+                  ))
+                ) : (
+                  <div className="noElectivefound">No Electives Found</div>
+                )}
               </div>
               {store?.user?.role === 'Hospital' ? (
                 <>
@@ -198,10 +264,6 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
       )}
 
       <AddElectives open={open} setOpen={setOpen} />
-      {/* <AddElectivesD /> */}
-
-      {/* <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
-      <EditElectives open={editopen} setOpen={setEditOpen} elective={selectedElective} /> */}
     </>
   );
 };

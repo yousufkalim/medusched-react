@@ -50,7 +50,7 @@
 }
 .hospitalheaderlogo {
   border-radius: 50%;
-  width: 25%;
+  width: 17%;
   margin: 5px 5px;
 }
 .line {
@@ -124,11 +124,14 @@
     margin: 10px auto;
   }
   .titlename {
-    font-size: 17px;
+    font-size: 15px;
+  }
+  .loginame {
+    font-size: 12px;
   }
   .loginSignupButton {
-    margin: 15px 0px;
-    padding: 12px 10px;
+    margin: 15px 4px;
+    padding: 12px 20px;
   }
   .loginSignupButtonH {
     padding: 10px 10px;

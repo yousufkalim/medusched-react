@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './Login.css';
 import api from '../../api/request';
+import ForgotPassword from '../Modals/ForgotPassword';
 
 const Login: FC = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Login: FC = () => {
   }
   const [user, setUSer] = useState<IUserObject>({ email: '', password: '' });
   const [flag, setFlag] = useState<boolean>(false);
+  const [openForgotPassword, setOpenForgotPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setUSer({ ...user, [e.target.name]: e.target.value });
@@ -26,8 +28,7 @@ const Login: FC = () => {
 
     if (user?.email === '') {
       toast.error('Email is Required');
-    }
-    if (user?.password === '') {
+    } else if (user?.password === '') {
       toast.error('Password is Required');
     } else {
       console.log('formData', user);
@@ -98,7 +99,14 @@ const Login: FC = () => {
             </button>
             <div className="forgotdiv">
               {' '}
-              <p className="forget">Forgot Password?</p>
+              <button
+                className="forget"
+                onClick={() => {
+                  setOpenForgotPassword(true);
+                }}
+              >
+                Forgot Password?
+              </button>
             </div>
           </div>
           <div className="loginbtnDiv">
@@ -121,6 +129,7 @@ const Login: FC = () => {
           </div>
         </div>
       </div>
+      <ForgotPassword open={openForgotPassword} setOpen={setOpenForgotPassword} role="student" />
     </>
   );
 };

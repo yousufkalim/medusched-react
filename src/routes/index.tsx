@@ -8,6 +8,7 @@ import RegisterPage from '../pages/Register';
 import Profile from '../pages/Profile';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import ResetPassword from '../components/Login/ResetPassword';
 
 // Types
 interface BaseRoute {
@@ -37,6 +38,14 @@ const routes: Route[] = [
     element: (
       <PublicRoute>
         <Home />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: '/reset/:token',
+    element: (
+      <PublicRoute>
+        <ResetPassword />
       </PublicRoute>
     ),
   },

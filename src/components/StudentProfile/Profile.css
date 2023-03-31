@@ -35,11 +35,11 @@
   display: flex;
   width: 25%;
 }
-.SortArrow1 {
+.SortArrow1std {
   width: 5%;
   margin: 0px 7px 16px 5px;
 }
-.SortArrow2 {
+.SortArrow2std {
   width: 5%;
   margin: 0px 7px 16px 5px;
 }
@@ -56,6 +56,12 @@
 }
 
 @media screen and (max-width: 680px) {
+  .Stdname1 {
+    font-size: 25px;
+  }
+  .email1 {
+    font-size: 15px;
+  }
   .applied1 {
     font-size: 15px;
   }
@@ -63,12 +69,15 @@
     width: 60%;
     justify-content: right;
   }
-  .SortArrow1 {
-    width: 5%;
+  .SortArrow1std {
+    width: auto;
     margin: 0px 7px 1px 5px;
   }
-  .SortArrow2 {
-    width: 5%;
+  .SortArrow2std {
+    width: auto;
     margin: 0px 7px 1px 5px;
+  }
+  .profileHeaderRow1 {
+    margin: auto 13px;
   }
 }

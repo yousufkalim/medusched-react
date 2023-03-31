@@ -4,6 +4,11 @@
   padding: 10px 10px;
   width: 86%;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.singleelectivelimit {
+  font-size: 15px;
 }
 .applicantMaindiv {
   display: flex;
@@ -51,6 +56,9 @@
 }
 
 @media screen and (max-width: 680px) {
+  .applicant1 {
+    width: 100%;
+  }
   .singleReservebtn {
     width: 93%;
     padding: 11px 9%;
@@ -58,5 +66,8 @@
   .AllreadyReservebtn {
     width: 93%;
     padding: 11px 9%;
+  }
+  .applicantDiv {
+    width: auto;
   }
 }

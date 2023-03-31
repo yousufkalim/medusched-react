@@ -29,9 +29,15 @@ interface IBasicModal {
   setOpen: (open: boolean) => void;
   electiveId: string;
   user?: User;
-  getElectives?: () => void;
+  getSingleElectives?: () => void;
 }
-const AddReserveElective: FC<IBasicModal> = ({ open, setOpen, electiveId, user, getElectives }) => {
+const AddReserveElective: FC<IBasicModal> = ({
+  open,
+  setOpen,
+  electiveId,
+  user,
+  getSingleElectives,
+}) => {
   // const updateStore = UpdateStore();
   // const store = Store();
   const [userData, setUserData] = useState<IUserObject>({
@@ -93,8 +99,8 @@ const AddReserveElective: FC<IBasicModal> = ({ open, setOpen, electiveId, user, 
       })
         .then((res) => {
           console.log('res for applied', res);
-          if (getElectives) {
-            getElectives();
+          if (getSingleElectives) {
+            getSingleElectives();
           }
           setOpen(false);
           setLoading(false);

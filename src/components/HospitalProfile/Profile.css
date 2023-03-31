@@ -79,4 +79,10 @@
     width: 5%;
     margin: 0px 7px 1px 5px;
   }
+  .hospitalprofilepic {
+    width: auto;
+  }
+  .hospitalProfileName {
+    font-size: 15px;
+  }
 }
