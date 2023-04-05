@@ -12,6 +12,7 @@ import api from '../../api/request';
 import Elective from '../../types/elective';
 import ElectiveCard from './ElectiveCard';
 import LinearProgress from '@mui/material/LinearProgress';
+import ExportElectives from '../../utils/ExportElectives';
 
 interface IElectives {
   electives: Elective[] | [];
@@ -19,6 +20,7 @@ interface IElectives {
 interface IElectiveProps {
   title: string;
 }
+const myHeader = ['Title', 'Description', 'Duration'];
 
 interface IMonths {
   name: string;
@@ -58,6 +60,17 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
         setLoading(false);
       });
   };
+  const getAllElectives = (): void => {
+    setLoading(true);
+    api<IElectives>('get', '/electives/all')
+      .then((res) => {
+        if (updateStore) updateStore({ electives: res.electives });
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
   const headerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent): void => {
@@ -75,7 +88,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     };
   }, [menuFlag]);
   useEffect((): void => {
-    getElectives();
+    store?.user?.role === 'student' ? getAllElectives() : getElectives();
   }, [open]);
   const handleAddBtn = (): void => {
     setOpen(true);
@@ -136,7 +149,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
       { name: 'December', checked: false },
     ]);
   };
-  console.log('applyfilterarray', months);
+
   return (
     <>
       {loading ? (
@@ -151,6 +164,13 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
               <div className="electivlistDivMain">
                 <div className="electivlistDiv">{title}</div>
                 <div className="filter1dashboard">
+                  {store?.user?.role === 'Hospital' && (
+                    <ExportElectives
+                      electives={filterDeletedElectives(store?.electives)}
+                      myHeader={myHeader}
+                    />
+                  )}
+
                   <span style={{ color: 'gray', opacity: '0.6' }}>Sort by </span>
                   <span className="n1"> Newest</span>
                   <img className="SortArrow1D" src={SortArrow1} alt="SortArrow1" />

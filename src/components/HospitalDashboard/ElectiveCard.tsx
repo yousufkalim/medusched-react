@@ -109,7 +109,11 @@ const ElectiveCard: FC<IElectiveCard> = ({ item, getElectives }) => {
             )}
           </div>
           <div className="electivedesDiv">
-            <p className="cardP1">{item?.description}</p>
+            <p className="cardP1">
+              {item?.description.length > 300
+                ? item?.description.slice(0, 300) + '...'
+                : item?.description}
+            </p>
           </div>
           <div className="btnDiv">
             <button className="dateBtn">{moment(item?.start_date).format('DD-MM-YYYY')}</button>

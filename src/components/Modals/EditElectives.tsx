@@ -15,7 +15,7 @@ import Elective from '../../types/elective';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-const durationData = ['2 Week', '3 Week', '4 Week', '5 Week', '6 Week'];
+const durationData = ['2 Weeks', '3 Weeks', '4 Weeks', '5 Weeks', '6 Weeks'];
 
 interface IUserObject {
   title?: string;

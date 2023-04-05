@@ -84,7 +84,7 @@ const AddReserveElective: FC<IBasicModal> = ({
     } else if (userData?.studentId === '') {
       toast.error('Student id is Required');
     } else if (!checkbox) {
-      toast.error('Please Accept Limit');
+      toast.error('Please accept cancellation policy');
     } else {
       console.log('userData', userData);
 
