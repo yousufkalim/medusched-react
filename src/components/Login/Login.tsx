@@ -25,9 +25,12 @@ const Login: FC = () => {
   };
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
+    const eduEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[Ee][Dd][Uu]$/;
 
     if (user?.email === '') {
       toast.error('Email is Required');
+    } else if (!eduEmailRegex.test(user.email)) {
+      toast.error('Please enter a valid .edu email address');
     } else if (user?.password === '') {
       toast.error('Password is Required');
     } else {

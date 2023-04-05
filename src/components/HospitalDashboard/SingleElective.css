@@ -54,6 +54,17 @@
   font-size: 29px;
   font-weight: 600;
 }
+.csvbtn1 {
+  background: #1d8de2;
+  border-radius: 10000px;
+  color: white;
+  font-weight: 500;
+  padding: 10px 20px;
+  margin-right: 20px;
+}
+.csvbtn1:hover {
+  background: #217ec6;
+}
 
 @media screen and (max-width: 680px) {
   .applicant1 {
