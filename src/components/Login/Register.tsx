@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useState, useEffect } from 'react';
 import Loginlogo from '../../assets/LoginLogo.svg';
 import LoginImg from '../../assets/login.png';
 import LoginImgMobile from '../../assets/login.svg';
@@ -6,6 +6,7 @@ import HidePassword from '../../assets/hidepass.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import api from '../../api/request';
+import School from '../../types/school';
 import './Login.css';
 
 const Resgister: FC = () => {
@@ -13,20 +14,43 @@ const Resgister: FC = () => {
   interface IUserObject {
     name: string;
     email: string;
+    school: string;
     password: string;
     confirmpassword: string;
   }
+  interface IUserSchool {
+    schools: School[] | null;
+    success: boolean;
+  }
+
   const [formData, setFormData] = useState<IUserObject>({
     name: '',
     email: '',
+    school: '',
     password: '',
     confirmpassword: '',
   });
   const [password1, setPassword1] = useState<boolean>(false);
   const [password2, setPassword2] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [schools, setSchools] = useState<School[] | null>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  const getSchools = (): void => {
+    api<IUserSchool>('get', `/schools/forusers`)
+      .then((res) => {
+        setSchools(res.schools);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect((): void => {
+    getSchools();
+  }, []);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
+  ): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
@@ -36,6 +60,8 @@ const Resgister: FC = () => {
       toast.error('Name is Required');
     } else if (formData?.email === '') {
       toast.error('Email is Required');
+    } else if (formData?.school === '') {
+      toast.error('Please Select School');
     } else if (formData?.password === '') {
       toast.error('Password is Required');
     } else if (formData?.confirmpassword === '') {
@@ -47,8 +73,7 @@ const Resgister: FC = () => {
       void api('post', '/students', formData)
         .then((res) => {
           toast('Student Created Successfully');
-          console.log(res);
-          setFormData({ name: '', email: '', password: '', confirmpassword: '' });
+          setFormData({ name: '', email: '', school: '', password: '', confirmpassword: '' });
           navigate('/login');
           setLoading(false);
         })
@@ -57,6 +82,8 @@ const Resgister: FC = () => {
         });
     }
   };
+  // console.log(formData);
+  // console.log('schools', schools);
   return (
     <>
       <div className="logincol">
@@ -98,6 +125,22 @@ const Resgister: FC = () => {
               value={formData?.email}
               onChange={handleChange}
             />
+          </div>
+          <div className="loginInputDiv">
+            <p className="loginp">School</p>
+            <select
+              className="loginInput"
+              name="school"
+              value={formData?.school}
+              onChange={handleChange}
+            >
+              <option value="">Select School</option>
+              {schools?.map((school, index) => (
+                <option key={index} value={school?._id}>
+                  {school?.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="loginInputDiv">
             <p className="loginp">Password</p>

@@ -16,21 +16,22 @@ const Login: FC = () => {
     password: string;
     token?: string;
   }
+
   const [user, setUSer] = useState<IUserObject>({ email: '', password: '' });
   const [flag, setFlag] = useState<boolean>(false);
   const [openForgotPassword, setOpenForgotPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setUSer({ ...user, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    const eduEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[Ee][Dd][Uu]$/;
+    // const eduEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[Ee][Dd][Uu]$/;
 
     if (user?.email === '') {
       toast.error('Email is Required');
-    } else if (!eduEmailRegex.test(user.email)) {
-      toast.error('Please enter a valid .edu email address');
     } else if (user?.password === '') {
       toast.error('Password is Required');
     } else {
