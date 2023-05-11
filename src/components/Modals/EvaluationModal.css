@@ -1,0 +1,66 @@
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  width: 28% !important;
+  border-radius: 30px !important;
+}
+.crossIconDiv {
+  text-align: right;
+  padding: 2px 0px;
+}
+.evaluationDiv1 {
+  padding: 0px 40px;
+  font-family: 'Outfit';
+}
+.evaluationH1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 30px;
+}
+.evaluationP1 {
+  text-align: center;
+  color: #919b9b;
+  font-weight: 500;
+  font-size: 18px;
+}
+.evalutionelectiveInputDiv {
+  padding: 10px 10px 10px 20px;
+}
+.evalutionaddelectivep {
+  padding: 5px;
+  color: gray;
+}
+.evalutionaddelectiveInput {
+  width: 95%;
+  height: 50px;
+  border: 1px solid rgb(167, 164, 164);
+  border-radius: 100px;
+  padding-left: 25px;
+}
+.evaluationcreateelectivebtnDiv {
+  text-align: center;
+  margin: 10px 0px 10% 0px;
+}
+.evaluationcreateelectivebtn {
+  background: #1d8de2;
+  width: 90%;
+  margin: 5px 5px 10px 5px;
+  color: white;
+  border-radius: 100px;
+  padding: 13px 26px;
+  font-weight: 600;
+}
+.evaluationcreateelectivebtn:hover {
+  background: #1879c3;
+}
+@media screen and (max-width: 680px) {
+  .evalutionaddelectivep {
+    padding: 10px;
+  }
+  .evalutionaddelectiveInput {
+    width: 100%;
+  }
+  .electiveInputDiv {
+    width: 90%;
+    margin: auto;
+    padding: 5px 5px 5px 5px;
+  }
+}

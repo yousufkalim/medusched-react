@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import Pic1 from '../../assets/P1.png';
 import Loc from '../../assets/loc.svg';
+import Note from '../../assets/Note.svg';
 import api from '../../api/request';
 import Elective from '../../types/elective';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -11,6 +12,7 @@ import DeleteElectives from '../Modals/DeleteElective';
 import EditElectives from '../Modals/EditElectives';
 
 import AddReserveElective from '../Modals/AddReserveElective';
+import EvaluationModal from '../Modals/EvaluationModal';
 import { Store } from '../../context/store';
 import moment from 'moment';
 import './SingleElective.css';
@@ -29,6 +31,7 @@ const SingleElective: FC = () => {
   const [deleteopen, setDeleteOpen] = useState<boolean>(false);
   const [editopen, setEditOpen] = useState<boolean>(false);
   const [openAddReserve, setOpenAddReserve] = useState<boolean>(false);
+  const [openEvaluation, setOpenEvaluation] = useState<boolean>(false);
 
   const getSingleElectives = (): void => {
     setLoading(true);
@@ -60,6 +63,8 @@ const SingleElective: FC = () => {
   console.log(elective?.students);
   const studentApplied = elective?.students.find((student) => student?._id === store?.user?._id);
   console.log('headerName', studentApplied);
+
+  const currentDate = new Date();
 
   return (
     <>
@@ -138,6 +143,14 @@ const SingleElective: FC = () => {
             </button>
           </div>
         </div>
+        {currentDate > new Date(moment(elective?.start_date).format('DD-MM-YYYY')) && (
+          <div className="noteDiv">
+            <img src={Note} alt="Pic1" className="NoteImg" />
+            <div className="noteMsg">
+              If you need to cancel your elective, please contact your administrator.
+            </div>
+          </div>
+        )}
       </div>
       {store?.user?.role === 'Hospital' ? (
         <div>
@@ -176,9 +189,18 @@ const SingleElective: FC = () => {
           ) : (
             <div className="singlereservebtnDiv">
               {studentApplied ? (
-                <button className="AllreadyReservebtn" disabled>
-                  Already Reserved
-                </button>
+                <>
+                  {currentDate < new Date(moment(elective?.start_date).format('DD-MM-YYYY')) && (
+                    <button
+                      className="singleReservebtn"
+                      onClick={() => {
+                        setOpenEvaluation(true);
+                      }}
+                    >
+                      Request Evaluation
+                    </button>
+                  )}
+                </>
               ) : (
                 <button
                   className="singleReservebtn"
@@ -193,7 +215,6 @@ const SingleElective: FC = () => {
           )}
         </>
       )}
-
       <AddReserveElective
         open={openAddReserve}
         setOpen={setOpenAddReserve}
@@ -203,6 +224,7 @@ const SingleElective: FC = () => {
       />
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
       <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
+      <EvaluationModal open={openEvaluation} setOpen={setOpenEvaluation} />
     </>
   );
 };

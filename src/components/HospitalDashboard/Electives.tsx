@@ -51,7 +51,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
 
   const getElectives = (): void => {
     setLoading(true);
-    api<IElectives>('get', '/electives/')
+    api<IElectives>('get', `/electives/`)
       .then((res) => {
         if (updateStore) updateStore({ electives: res.electives });
         setLoading(false);
@@ -60,9 +60,9 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
         setLoading(false);
       });
   };
-  const getAllElectives = (): void => {
+  const getAllAffiliatedElectives = (): void => {
     setLoading(true);
-    api<IElectives>('get', '/electives/all')
+    api<IElectives>('get', `/electives/all`)
       .then((res) => {
         if (updateStore) updateStore({ electives: res.electives });
         setLoading(false);
@@ -88,7 +88,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     };
   }, [menuFlag]);
   useEffect((): void => {
-    store?.user?.role === 'student' ? getAllElectives() : getElectives();
+    store?.user?.role === 'student' ? getAllAffiliatedElectives() : getElectives();
   }, [open]);
   const handleAddBtn = (): void => {
     setOpen(true);
@@ -116,7 +116,14 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     }
   };
   const filterDeletedElectives = (electives: Elective[]): Elective[] => {
-    return electives.filter((elective: Elective) => elective.active);
+    const filterElectives = electives.filter((elective: Elective) => elective.active);
+    console.log('filterElectives', filterElectives);
+    const currentDate = new Date();
+    console.log('currentDate', currentDate);
+    // filterElectives = filterElectives.filter(
+    //   (elective: Elective) => new Date(elective.start_date) > currentDate,
+    // );
+    return filterElectives;
   };
 
   const handleApplyFilter = (electives: Elective[]): Elective[] => {
@@ -232,7 +239,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                 {handleApplyFilter(filterDeletedElectives(store?.electives))?.length > 0 ? (
                   handleApplyFilter(filterDeletedElectives(store?.electives)).map((item, i) => (
                     <>
-                      <ElectiveCard getElectives={getElectives} item={item} />
+                      <ElectiveCard getElectives={getElectives} item={item} title={title} />
                     </>
                   ))
                 ) : (
