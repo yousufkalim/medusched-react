@@ -51,7 +51,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
 
   const getElectives = (): void => {
     setLoading(true);
-    api<IElectives>('get', '/electives/')
+    api<IElectives>('get', `/electives/`)
       .then((res) => {
         if (updateStore) updateStore({ electives: res.electives });
         setLoading(false);
@@ -60,11 +60,20 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
         setLoading(false);
       });
   };
-  const getAllElectives = (): void => {
+  const getAllAffiliatedElectives = (): void => {
     setLoading(true);
-    api<IElectives>('get', '/electives/all')
+    api<IElectives>('get', `/electives/all/affiliated`)
       .then((res) => {
-        if (updateStore) updateStore({ electives: res.electives });
+        // for student side filter electives that will be availble for apply within date
+        const currentDate = new Date();
+
+        const filteredElectiveswithDate = res.electives.filter(
+          (elective) =>
+            new Date(elective.start_date) > currentDate ||
+            elective.students.includes(store?.user?._id),
+        );
+
+        if (updateStore) updateStore({ electives: filteredElectiveswithDate });
         setLoading(false);
       })
       .catch(() => {
@@ -88,7 +97,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     };
   }, [menuFlag]);
   useEffect((): void => {
-    store?.user?.role === 'student' ? getAllElectives() : getElectives();
+    store?.user?.role === 'student' ? getAllAffiliatedElectives() : getElectives();
   }, [open]);
   const handleAddBtn = (): void => {
     setOpen(true);
@@ -116,7 +125,8 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     }
   };
   const filterDeletedElectives = (electives: Elective[]): Elective[] => {
-    return electives.filter((elective: Elective) => elective.active);
+    const filterElectives = electives.filter((elective: Elective) => elective.active);
+    return filterElectives;
   };
 
   const handleApplyFilter = (electives: Elective[]): Elective[] => {
@@ -149,6 +159,11 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
       { name: 'December', checked: false },
     ]);
   };
+
+  console.log(
+    'handleApplyFilter(filterDeletedElectives(store?.electives))?.length ',
+    store?.electives && handleApplyFilter(filterDeletedElectives(store?.electives)),
+  );
 
   return (
     <>
@@ -197,20 +212,18 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
 
                   <div className="Menumaind2">Month</div>
                   {months.map(({ name, checked }) => (
-                    <>
-                      <div className="Menumaind3">
-                        <Checkbox
-                          inputProps={{ 'aria-label': 'secondary checkbox' }}
-                          name={name}
-                          style={{ color: 'gray' }}
-                          checked={checked}
-                          onChange={(e) => {
-                            handleFilterCheckbox(e);
-                          }}
-                        />
-                        <span className="filtercheckboxtext">{name}</span>
-                      </div>
-                    </>
+                    <div className="Menumaind3" key={name}>
+                      <Checkbox
+                        inputProps={{ 'aria-label': 'secondary checkbox' }}
+                        name={name}
+                        style={{ color: 'gray' }}
+                        checked={checked}
+                        onChange={(e) => {
+                          handleFilterCheckbox(e);
+                        }}
+                      />
+                      <span className="filtercheckboxtext">{name}</span>
+                    </div>
                   ))}
                   <div className="filterbtndiv">
                     <button className="filterClose" onClick={handleClose}>
@@ -231,9 +244,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
               <div className="electiveSection" ref={headerRef}>
                 {handleApplyFilter(filterDeletedElectives(store?.electives))?.length > 0 ? (
                   handleApplyFilter(filterDeletedElectives(store?.electives)).map((item, i) => (
-                    <>
-                      <ElectiveCard getElectives={getElectives} item={item} />
-                    </>
+                    <ElectiveCard getElectives={getElectives} item={item} title={title} key={i} />
                   ))
                 ) : (
                   <div className="noElectivefound">No Electives Found</div>

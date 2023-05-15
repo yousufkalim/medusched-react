@@ -15,6 +15,7 @@ const Resgister: FC = () => {
     name: string;
     email: string;
     school: string;
+    domain: string;
     password: string;
     confirmpassword: string;
   }
@@ -27,6 +28,7 @@ const Resgister: FC = () => {
     name: '',
     email: '',
     school: '',
+    domain: '',
     password: '',
     confirmpassword: '',
   });
@@ -51,17 +53,30 @@ const Resgister: FC = () => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
   ): void => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === 'school') {
+      const selectedSchool = schools?.find((school) => school?._id === value);
+      const domain = selectedSchool ? selectedSchool.domain_name : '';
+      setFormData({ ...formData, [name]: value, domain });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex for email validation
+    const domain = formData?.domain?.toLowerCase(); // convert domain to uppercase for case-insensitive comparison
+    const email = formData?.email?.toLowerCase(); // convert email to lowercase for case-insensitive comparison
     if (formData?.name === '') {
       toast.error('Name is Required');
-    } else if (formData?.email === '') {
-      toast.error('Email is Required');
     } else if (formData?.school === '') {
       toast.error('Please Select School');
+    } else if (formData?.email === '') {
+      toast.error('Email is Required');
+    } else if (!emailRegex.test(email)) {
+      toast.error('Invalid Email Format');
+    } else if (!email.endsWith(`@${domain}.com`)) {
+      toast.error(`Email domain must be ${domain}.com`);
     } else if (formData?.password === '') {
       toast.error('Password is Required');
     } else if (formData?.confirmpassword === '') {
@@ -73,7 +88,14 @@ const Resgister: FC = () => {
       void api('post', '/students', formData)
         .then((res) => {
           toast('Student Created Successfully');
-          setFormData({ name: '', email: '', school: '', password: '', confirmpassword: '' });
+          setFormData({
+            name: '',
+            email: '',
+            school: '',
+            domain: '',
+            password: '',
+            confirmpassword: '',
+          });
           navigate('/login');
           setLoading(false);
         })
@@ -82,8 +104,7 @@ const Resgister: FC = () => {
         });
     }
   };
-  // console.log(formData);
-  // console.log('schools', schools);
+
   return (
     <>
       <div className="logincol">
@@ -116,17 +137,6 @@ const Resgister: FC = () => {
             />
           </div>
           <div className="loginInputDiv">
-            <p className="loginp">Email</p>
-            <input
-              className="loginInput"
-              type="text"
-              placeholder="e.g JohnDoe@gmail.com"
-              name="email"
-              value={formData?.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="loginInputDiv">
             <p className="loginp">School</p>
             <select
               className="loginInput"
@@ -142,6 +152,18 @@ const Resgister: FC = () => {
               ))}
             </select>
           </div>
+          <div className="loginInputDiv">
+            <p className="loginp">Email</p>
+            <input
+              className="loginInput"
+              type="text"
+              placeholder="e.g JohnDoe@gmail.com"
+              name="email"
+              value={formData?.email}
+              onChange={handleChange}
+            />
+          </div>
+
           <div className="loginInputDiv">
             <p className="loginp">Password</p>
             <input

@@ -3,7 +3,7 @@ import Loginlogo from '../../assets/LoginLogo.svg';
 import LoginImg from '../../assets/login.png';
 import LoginImgMobile from '../../assets/login.svg';
 import HidePassword from '../../assets/hidepass.svg';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './Login.css';
 import api from '../../api/request';
@@ -11,8 +11,6 @@ import ForgotPassword from '../Modals/ForgotPassword';
 
 const Login: FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname;
 
   interface IUserObject {
     email: string;
@@ -34,13 +32,11 @@ const Login: FC = () => {
     } else if (user?.password === '') {
       toast.error('Password is Required');
     } else {
-      console.log('formData', user);
       setLoading(true);
       void api('post', '/hospitals/login', user)
         .then((res) => {
           console.log(res);
           if (res?.token) {
-            console.log('settoken');
             localStorage.setItem('token', res.token);
             navigate('/dashboard');
             setLoading(false);
@@ -51,7 +47,6 @@ const Login: FC = () => {
         });
     }
   };
-  console.log('hospital login path', path);
   return (
     <>
       <div className="logincol">

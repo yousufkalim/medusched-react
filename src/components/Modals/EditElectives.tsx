@@ -58,7 +58,6 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
       setCheckbox(elective?.limitenrollment);
     }
   }, [elective, open]);
-  console.log('enrolment', elective);
 
   //   Onchange funtions
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {

@@ -328,6 +328,18 @@
 .linerloading1 {
   padding: 5% 0;
 }
+.noteDiv {
+  background: #f9e9e4 5%;
+  padding: 15px 20px;
+  margin: 25px 5px;
+  width: 46%;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+}
+.NoteImg {
+  margin: 0px 10px;
+}
 
 @media screen and (max-width: 680px) {
   .menuMainDiv {

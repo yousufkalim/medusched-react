@@ -35,13 +35,11 @@ const Login: FC = () => {
     } else if (user?.password === '') {
       toast.error('Password is Required');
     } else {
-      console.log('formData', user);
       setLoading(true);
       void api('post', '/students/login', user)
         .then((res) => {
           console.log(res);
           if (res?.token) {
-            console.log('settoken');
             localStorage.setItem('token', res.token);
             navigate('/electives');
             setLoading(false);

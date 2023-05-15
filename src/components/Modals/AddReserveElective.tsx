@@ -86,8 +86,6 @@ const AddReserveElective: FC<IBasicModal> = ({
     } else if (!checkbox) {
       toast.error('Please accept cancellation policy');
     } else {
-      console.log('userData', userData);
-
       setLoading(true);
       void api<IUserObject>('put', `/electives/applyelective`, {
         name: userData?.name,
@@ -98,7 +96,6 @@ const AddReserveElective: FC<IBasicModal> = ({
         studentId: user?._id,
       })
         .then((res) => {
-          console.log('res for applied', res);
           if (getSingleElectives) {
             getSingleElectives();
           }
