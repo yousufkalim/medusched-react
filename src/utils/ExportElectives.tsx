@@ -52,7 +52,6 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
   const handleSubmitExcel = (electives: Elective[]): void => {
     setLoading(true);
     if (electives?.length > 0) {
-      console.log('electives for csv', electives);
       const updatedelectives = electives.map((elective) => {
         return {
           Title: elective.title,
@@ -61,7 +60,6 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
         };
       });
       setLoading(false);
-      console.log('Electives for export ', updatedelectives);
       exportToCSV(updatedelectives, 'Electives CSV');
     }
   };

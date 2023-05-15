@@ -44,7 +44,6 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
         // setLoading(false);
       });
   };
-  console.log('title', title);
   return (
     <>
       {item.students.includes(store?.user?._id) && title === 'Applied Jobs' && (

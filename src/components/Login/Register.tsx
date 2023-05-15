@@ -49,7 +49,6 @@ const Resgister: FC = () => {
   useEffect((): void => {
     getSchools();
   }, []);
-  console.log('schools', schools);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
@@ -65,7 +64,6 @@ const Resgister: FC = () => {
   };
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    console.log('formData', formData);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex for email validation
     const domain = formData?.domain?.toLowerCase(); // convert domain to uppercase for case-insensitive comparison
     const email = formData?.email?.toLowerCase(); // convert email to lowercase for case-insensitive comparison
@@ -106,8 +104,7 @@ const Resgister: FC = () => {
         });
     }
   };
-  // console.log(formData);
-  // console.log('schools', schools);
+
   return (
     <>
       <div className="logincol">

@@ -26,7 +26,6 @@ const Contact: FC = () => {
       console.log('formData', formData);
     }
   };
-  console.log('flagfocus', flagfocus);
 
   return (
     <>

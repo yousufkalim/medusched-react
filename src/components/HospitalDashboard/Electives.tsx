@@ -62,7 +62,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   };
   const getAllAffiliatedElectives = (): void => {
     setLoading(true);
-    api<IElectives>('get', `/electives/all`)
+    api<IElectives>('get', `/electives/all/affiliated`)
       .then((res) => {
         if (updateStore) updateStore({ electives: res.electives });
         setLoading(false);
@@ -117,12 +117,6 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   };
   const filterDeletedElectives = (electives: Elective[]): Elective[] => {
     const filterElectives = electives.filter((elective: Elective) => elective.active);
-    console.log('filterElectives', filterElectives);
-    const currentDate = new Date();
-    console.log('currentDate', currentDate);
-    // filterElectives = filterElectives.filter(
-    //   (elective: Elective) => new Date(elective.start_date) > currentDate,
-    // );
     return filterElectives;
   };
 
@@ -204,20 +198,18 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
 
                   <div className="Menumaind2">Month</div>
                   {months.map(({ name, checked }) => (
-                    <>
-                      <div className="Menumaind3">
-                        <Checkbox
-                          inputProps={{ 'aria-label': 'secondary checkbox' }}
-                          name={name}
-                          style={{ color: 'gray' }}
-                          checked={checked}
-                          onChange={(e) => {
-                            handleFilterCheckbox(e);
-                          }}
-                        />
-                        <span className="filtercheckboxtext">{name}</span>
-                      </div>
-                    </>
+                    <div className="Menumaind3" key={name}>
+                      <Checkbox
+                        inputProps={{ 'aria-label': 'secondary checkbox' }}
+                        name={name}
+                        style={{ color: 'gray' }}
+                        checked={checked}
+                        onChange={(e) => {
+                          handleFilterCheckbox(e);
+                        }}
+                      />
+                      <span className="filtercheckboxtext">{name}</span>
+                    </div>
                   ))}
                   <div className="filterbtndiv">
                     <button className="filterClose" onClick={handleClose}>
@@ -238,9 +230,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
               <div className="electiveSection" ref={headerRef}>
                 {handleApplyFilter(filterDeletedElectives(store?.electives))?.length > 0 ? (
                   handleApplyFilter(filterDeletedElectives(store?.electives)).map((item, i) => (
-                    <>
-                      <ElectiveCard getElectives={getElectives} item={item} title={title} />
-                    </>
+                    <ElectiveCard getElectives={getElectives} item={item} title={title} key={i} />
                   ))
                 ) : (
                   <div className="noElectivefound">No Electives Found</div>

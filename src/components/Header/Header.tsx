@@ -107,12 +107,12 @@ const Header1: FC = () => {
       {loginFlag && (
         <>
           <div className="logoutMainDiv">
-            <div className="logoutElectives">
-              <NavLink to="/profile">Profile</NavLink>
-            </div>
-            <div className="logoutElectives">
-              <NavLink to="/electives">Electives</NavLink>
-            </div>
+            <NavLink to="/profile">
+              <div className="logoutElectives">Profile</div>
+            </NavLink>
+            <NavLink to="/electives">
+              <div className="logoutElectives">Electives</div>
+            </NavLink>
             <div className="logoutElectives">
               <button className="logoutbtn" onClick={handleLogout} style={{ fontWeight: '600' }}>
                 <img className="loginarrow" src={LogoutPic} alt="menuicon" /> Logout
