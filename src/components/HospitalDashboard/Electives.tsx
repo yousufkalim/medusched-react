@@ -160,6 +160,11 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     ]);
   };
 
+  console.log(
+    'handleApplyFilter(filterDeletedElectives(store?.electives))?.length ',
+    store?.electives && handleApplyFilter(filterDeletedElectives(store?.electives)),
+  );
+
   return (
     <>
       {loading ? (

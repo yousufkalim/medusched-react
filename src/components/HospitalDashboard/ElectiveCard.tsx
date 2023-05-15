@@ -87,6 +87,9 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
           </NavLink>
         </div>
       )}
+      {!item.students.includes(store?.user?._id) && title === 'Applied Jobs' && (
+        <div className="noElectivefound">Currently not applied electives found.</div>
+      )}
       {!item.students.includes(store?.user?._id) && title !== 'Applied Jobs' && (
         <div key={item._id} className={`  electiveCard`}>
           <div className="logoDiv">

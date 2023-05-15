@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import Pic1 from '../../assets/P1.png';
-import Loc from '../../assets/loc.svg';
+// import Loc from '../../assets/loc.svg';
 import Note from '../../assets/Note.svg';
 import api from '../../api/request';
 import Elective from '../../types/elective';
@@ -106,9 +106,9 @@ const SingleElective: FC = () => {
               <div className="singleloc">
                 <div className="loc1">
                   {' '}
-                  <img src={Loc} alt="Pic1" />
+                  {/* <img src={Loc} alt="Pic1" />
                   <span style={{ color: '#1d8de2', margin: '0px 3px' }}>Patreon </span>
-                  <span style={{ color: 'gray' }}> London town, MD </span>
+                  <span style={{ color: 'gray' }}> London town, MD </span> */}
                 </div>
                 <div className="datediv">
                   <span style={{ color: 'gray' }}>
