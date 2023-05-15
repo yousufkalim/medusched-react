@@ -147,13 +147,20 @@ const SingleElective: FC = () => {
                 </button>
               </div>
             </div>
-            {currentDate > new Date(moment(elective?.start_date).format('DD-MM-YYYY')) && (
-              <div className="noteDiv">
-                <img src={Note} alt="Pic1" className="NoteImg" />
-                <div className="noteMsg">
-                  If you need to cancel your elective, please contact your administrator.
-                </div>
-              </div>
+            {studentApplied ? (
+              <>
+                {' '}
+                {elective && currentDate < new Date(elective?.start_date) && (
+                  <div className="noteDiv">
+                    <img src={Note} alt="Pic1" className="NoteImg" />
+                    <div className="noteMsg">
+                      If you need to cancel your elective, please contact your administrator.
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              ''
             )}
           </div>
           {store?.user?.role === 'Hospital' ? (
@@ -194,8 +201,7 @@ const SingleElective: FC = () => {
                 <div className="singlereservebtnDiv">
                   {studentApplied ? (
                     <>
-                      {currentDate <
-                        new Date(moment(elective?.start_date).format('DD-MM-YYYY')) && (
+                      {elective && currentDate > new Date(elective?.start_date) && (
                         <button
                           className="singleReservebtn"
                           onClick={() => {

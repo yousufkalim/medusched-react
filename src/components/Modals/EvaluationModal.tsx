@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useState, ChangeEvent, FormEvent } from 'react';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import api from '../../api/request';
+import { toast } from 'react-toastify';
 import './EvaluationModal.css';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -27,9 +29,38 @@ interface IBasicModal {
 }
 
 const EvaluationModal: FC<IBasicModal> = ({ open, setOpen }) => {
+  const [email, setEmail] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const handleClose = (): void => {
     setOpen(false);
   };
+
+  //   Onchange funtions
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      // Email address is invalid
+      toast.error('Invalid email address');
+    } else {
+      // setLoading(true);
+      console.log('email', email);
+      void api('post', `/evaluationemail`, { email })
+        .then((res) => {
+          setOpen(false);
+          setLoading(false);
+          setEmail('');
+          toast.success('Email sent successfully');
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    }
+  };
+  console.log(loading);
 
   return (
     <div>
@@ -62,13 +93,15 @@ const EvaluationModal: FC<IBasicModal> = ({ open, setOpen }) => {
               className="evalutionaddelectiveInput"
               type="text"
               placeholder="abc@xyz.com"
-              name="description"
-              //   value={electiveData?.description}
-              //   onChange={handleChange}
+              name="email"
+              value={email}
+              onChange={handleChange}
             />
           </div>
           <div className="evaluationcreateelectivebtnDiv">
-            <button className="evaluationcreateelectivebtn">Send</button>
+            <button className="evaluationcreateelectivebtn" onClick={handleSubmit}>
+              Send
+            </button>
           </div>
         </div>
       </BootstrapDialog>

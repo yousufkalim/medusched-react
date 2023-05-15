@@ -44,6 +44,10 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
         // setLoading(false);
       });
   };
+
+  // const currentDate = new Date();
+  // item && currentDate < new Date(item?.start_date) &&
+
   return (
     <>
       {item.students.includes(store?.user?._id) && title === 'Applied Jobs' && (

@@ -64,7 +64,16 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     setLoading(true);
     api<IElectives>('get', `/electives/all/affiliated`)
       .then((res) => {
-        if (updateStore) updateStore({ electives: res.electives });
+        // for student side filter electives that will be availble for apply within date
+        const currentDate = new Date();
+
+        const filteredElectiveswithDate = res.electives.filter(
+          (elective) =>
+            new Date(elective.start_date) > currentDate ||
+            elective.students.includes(store?.user?._id),
+        );
+
+        if (updateStore) updateStore({ electives: filteredElectiveswithDate });
         setLoading(false);
       })
       .catch(() => {
