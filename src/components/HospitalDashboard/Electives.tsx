@@ -13,6 +13,8 @@ import Elective from '../../types/elective';
 import ElectiveCard from './ElectiveCard';
 import LinearProgress from '@mui/material/LinearProgress';
 import ExportElectives from '../../utils/ExportElectives';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 interface IElectives {
   electives: Elective[] | [];
@@ -48,6 +50,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   ]);
   const [selectedMonths, setSelectedMonths] = useState<string[]>([]);
   const [applyfilterarray, setApplyfilterarray] = useState<string[]>([]);
+  const [hospitalName, setHospitalName] = useState<string>('');
 
   const getElectives = (): void => {
     setLoading(true);
@@ -111,6 +114,13 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   const handleClose = (): void => {
     setAnchorEl(null);
   };
+  // const handlehospitalNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  //   console.log('target11', e.target.value);
+  //   setHospitalName(e.target.value);
+  // };
+  const handlehospitalNameChangeOuter = (e: any, v: any): void => {
+    setHospitalName(v.label);
+  };
 
   const handleFilterCheckbox = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, checked } = e.target;
@@ -126,10 +136,19 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   };
   const filterDeletedElectives = (electives: Elective[]): Elective[] => {
     const filterElectives = electives.filter((elective: Elective) => elective.active);
-    return filterElectives;
+    const seprateApplied =
+      title === 'Applied Jobs'
+        ? filterElectives.filter((elective) => elective.students.includes(store?.user?._id))
+        : filterElectives.filter((elective) => !elective.students.includes(store?.user?._id));
+
+    return seprateApplied;
   };
 
   const handleApplyFilter = (electives: Elective[]): Elective[] => {
+    console.log('hospitalName,', hospitalName);
+    if (hospitalName) {
+      return electives.filter((elective: Elective) => elective.title === hospitalName);
+    }
     if (applyfilterarray.length === 0) {
       return electives;
     }
@@ -142,6 +161,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     return filterElectives;
   };
   const handleClearAll = (): void => {
+    setHospitalName('');
     setApplyfilterarray([]);
     setSelectedMonths([]);
     setMonths([
@@ -160,10 +180,16 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     ]);
   };
 
-  console.log(
-    'handleApplyFilter(filterDeletedElectives(store?.electives))?.length ',
-    store?.electives && handleApplyFilter(filterDeletedElectives(store?.electives)),
-  );
+  const data = store?.electives
+    ? title === 'Applied Jobs'
+      ? filterDeletedElectives(store?.electives)
+          ?.filter((elective) => elective.students.includes(store?.user?._id))
+          .map((item) => ({ label: item.title, ...item }))
+      : filterDeletedElectives(store?.electives)
+          ?.filter((elective) => !elective.students.includes(store?.user?._id))
+          .map((item) => ({ label: item.title, ...item }))
+    : [];
+  console.log('data', data, store?.user?._id);
 
   return (
     <>
@@ -209,7 +235,24 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                       Clear All
                     </button>
                   </div>
-
+                  <div className="Menumaind2">Hospital Name</div>
+                  <Autocomplete
+                    options={data}
+                    freeSolo
+                    disableClearable
+                    onChange={handlehospitalNameChangeOuter}
+                    className="searchHospital"
+                    renderInput={(params) => (
+                      <TextField
+                        className="establish"
+                        {...params}
+                        placeholder="Enter Hospital name"
+                        variant="outlined"
+                        value={hospitalName}
+                        name="hospitalName"
+                      />
+                    )}
+                  />
                   <div className="Menumaind2">Month</div>
                   {months.map(({ name, checked }) => (
                     <div className="Menumaind3" key={name}>
