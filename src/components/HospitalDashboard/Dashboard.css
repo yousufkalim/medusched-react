@@ -1,10 +1,18 @@
 .PrivateSwitchBase-root-1 {
   padding: 5px !important;
 }
+.MuiAutocomplete-inputRoot {
+  border-radius: 40px !important;
+}
+
+.MuiAutocomplete-clearIndicator {
+  padding: 0px !important;
+}
+
 .Menumaind1 {
   display: flex;
   justify-content: space-between;
-  margin: 10px 15px;
+  margin: 10px 15px 20px 15px;
   font-weight: 600;
   font-family: 'Outfit';
 }
@@ -13,7 +21,7 @@
 }
 .Menumaind2 {
   font-weight: 600;
-  margin: 10px 15px;
+  margin: 10px 15px 10px 15px;
   font-family: 'Outfit';
 }
 .Menumaind3 {
@@ -24,6 +32,7 @@
   text-align: center;
   margin: 0px 40px;
 }
+
 .filterClose {
   color: gray;
   border: 2px solid gray;
@@ -55,7 +64,11 @@
   font-family: 'Outfit';
   min-height: 100vh;
 }
-
+.searchHospital {
+  width: 95%;
+  margin: auto;
+  padding: 0px 8px 10px 8px;
+}
 .electivlistDivMain {
   display: flex;
   width: 92%;
@@ -421,7 +434,8 @@
 
   .filter1dashboard {
     width: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
   }
   .filtercheckbox1 {
     width: 90%;
@@ -429,13 +443,15 @@
     padding: 5px 5px 5px 5px;
   }
   .electivlistDivMain {
-    display: flex;
+    display: block;
     width: 99%;
     margin: auto;
   }
   .electivlistDiv {
     width: 50%;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
   }
 }

@@ -47,6 +47,11 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
 
   // const currentDate = new Date();
   // item && currentDate < new Date(item?.start_date) &&
+  console.log(
+    'item.students.includes(store?.user?._id) ',
+    item,
+    item.students.includes(store?.user?._id),
+  );
 
   return (
     <>
@@ -86,9 +91,6 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
             </div>
           </NavLink>
         </div>
-      )}
-      {!item.students.includes(store?.user?._id) && title === 'Applied Jobs' && (
-        <div className="noElectivefound">Currently not applied electives found.</div>
       )}
       {!item.students.includes(store?.user?._id) && title !== 'Applied Jobs' && (
         <div key={item._id} className={`  electiveCard`}>
