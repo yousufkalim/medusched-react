@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useRef, ChangeEvent } from 'react';
 
 import Noelectives from '../../assets/noElectives.svg';
-import SortArrow1 from '../../assets/sortarrow1.svg';
+// import SortArrow1 from '../../assets/sortarrow1.svg';
 import Menu from '@mui/material/Menu';
 import SortArrow2 from '../../assets/sortarrow2.svg';
 import { Checkbox } from '@material-ui/core';
@@ -212,10 +212,10 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                     />
                   )}
 
-                  <span style={{ color: 'gray', opacity: '0.6' }}>Sort by </span>
-                  <span className="n1"> Newest</span>
-                  <img className="SortArrow1D" src={SortArrow1} alt="SortArrow1" />
-                  <div className="divline1"></div>
+                  <span style={{ color: 'gray', opacity: '0.6' }}>Filter by </span>
+                  {/* <span className="n1"> Newest</span> */}
+                  {/* <img className="SortArrow1D" src={SortArrow1} alt="SortArrow1" /> */}
+                  {/* <div className="divline1"></div> */}
                   <button onClick={handleClick}>
                     <img className="SortArrow2D" src={SortArrow2} alt="SortArrow1" />
                   </button>
@@ -328,7 +328,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                     <img src={Noelectives} alt="Noelectives" />
                   </div>
                   <div className="addelectivediv2">
-                    <div className="createElectivediv"> Currently No Electives Available</div>
+                    <div className="createElectivediv">No Elective to show</div>
                   </div>
                 </>
               )}

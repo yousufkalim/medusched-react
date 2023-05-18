@@ -15,7 +15,7 @@ import Elective from '../../types/elective';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-const durationData = ['2 Weeks', '3 Weeks', '4 Weeks', '5 Weeks', '6 Weeks'];
+const durationData = ['2 Weeks', '3 Weeks', '4 Weeks', '5 Weeks', '6 Weeks', '7 Weeks', '8 Weeks'];
 
 interface IUserObject {
   title?: string;
@@ -129,7 +129,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
       // }}
     >
       <h1 className="addelectivesh1">Edit Elective</h1>
-      <h2 className="addelectivesh2">Add your details about Elective</h2>
+      <h2 className="addelectivesh2">Edit your details about Elective</h2>
       <div className="electiveInputDiv">
         <p className="addelectivep">Title</p>
         <input
@@ -153,10 +153,14 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
         />
       </div>
       <div className="electiveInputDiv">
-        <p className="addelectivep">Start Date</p>
+        <p className="addelectivep" id="editElectiveDate">
+          Start Date
+        </p>
         <DatePicker
+          readOnly={true}
           selected={selectedDate && new Date(selectedDate)}
           onChange={handleDateChange}
+          minDate={new Date()}
           // locale={selectedDateLang}
           // locale={locale}
           locale={'en-gb'}

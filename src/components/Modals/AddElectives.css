@@ -18,6 +18,9 @@
 .addelectivep {
   padding: 5px;
 }
+#editElectiveDate {
+  color: rgba(145, 155, 155, 1);
+}
 .electiveInputDiv {
   padding: 10px 10px 10px 20px;
 }

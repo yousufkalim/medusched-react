@@ -86,7 +86,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
               </p>
             </div>
             <div className="btnDiv">
-              <button className="dateBtn">{moment(item?.start_date).format('DD-MM-YYYY')}</button>
+              <button className="dateBtn">{moment(item?.start_date).format('MM-DD-YYYY')}</button>
               <button className="dateBtn">{item?.duration}</button>
             </div>
           </NavLink>
@@ -165,7 +165,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
               </p>
             </div>
             <div className="btnDiv">
-              <button className="dateBtn">{moment(item?.start_date).format('DD-MM-YYYY')}</button>
+              <button className="dateBtn">{moment(item?.start_date).format('MM-DD-YYYY')}</button>
               <button className="dateBtn">{item?.duration}</button>
             </div>
           </NavLink>
