@@ -65,7 +65,7 @@ const Resgister: FC = () => {
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex for email validation
-    const domain = formData?.domain?.toLowerCase(); // convert domain to uppercase for case-insensitive comparison
+    // const domain = formData?.domain?.toLowerCase(); // convert domain to uppercase for case-insensitive comparison
     const email = formData?.email?.toLowerCase(); // convert email to lowercase for case-insensitive comparison
     if (formData?.name === '') {
       toast.error('Name is Required');
@@ -75,9 +75,11 @@ const Resgister: FC = () => {
       toast.error('Email is Required');
     } else if (!emailRegex.test(email)) {
       toast.error('Invalid Email Format');
-    } else if (!email.endsWith(`@${domain}.com`)) {
-      toast.error(`Email domain must be ${domain}.com`);
-    } else if (formData?.password === '') {
+    }
+    //  else if (!email.endsWith(`@${domain}.com`)|| !email.endsWith(`@${domain}.fr`)) {
+    //   toast.error(`Email domain must be ${domain}.com`);
+    // }
+    else if (formData?.password === '') {
       toast.error('Password is Required');
     } else if (formData?.confirmpassword === '') {
       toast.error('Confirm Password is Required');
@@ -87,7 +89,7 @@ const Resgister: FC = () => {
       setLoading(true);
       void api('post', '/students', formData)
         .then((res) => {
-          toast('Student Created Successfully');
+          toast('Registered Successfully.Check your Email');
           setFormData({
             name: '',
             email: '',

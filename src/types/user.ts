@@ -1,6 +1,8 @@
 export default interface User {
   _id?: string;
+  studentId?: string;
   name?: string;
+  logo?: string;
   email?: string;
   password?: string;
   phone?: string;

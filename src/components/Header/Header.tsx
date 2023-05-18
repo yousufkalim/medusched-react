@@ -1,11 +1,12 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import Logo from '../../assets/logo.svg';
-import Pic1 from '../../assets/P1.png';
+// import Pic1 from '../../assets/P1.png';
 import Person from '../../assets/Person.svg';
 import SortArrow1 from '../../assets/sortarrow1.svg';
 import LogoutPic from '../../assets/logout.svg';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { Store, UpdateStore } from '../../context/store';
+import { mediaUrl } from '../../config';
 
 import './Header.css';
 
@@ -71,7 +72,12 @@ const Header1: FC = () => {
         {isLogin ? (
           <div className="loginNameDiv">
             {store?.user?.role === 'Hospital' ? (
-              <img className="hospitalheaderlogo" src={Pic1} alt="menuicon" />
+              <img
+                className="hospitalheaderlogo"
+                // src={Pic1}
+                src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                alt="menuicon"
+              />
             ) : (
               <div className="line"></div>
             )}

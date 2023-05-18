@@ -9,6 +9,7 @@ import Profile from '../pages/Profile';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import ResetPassword from '../components/Login/ResetPassword';
+import VerifyStudent from '../components/Login/VerifyStudent';
 
 // Types
 interface BaseRoute {
@@ -46,6 +47,14 @@ const routes: Route[] = [
     element: (
       <PublicRoute>
         <ResetPassword />
+      </PublicRoute>
+    ),
+  },
+  {
+    path: '/verify/:token',
+    element: (
+      <PublicRoute>
+        <VerifyStudent />
       </PublicRoute>
     ),
   },

@@ -97,6 +97,15 @@
   background: #d94646;
 }
 @media screen and (max-width: 680px) {
+  .addelectivesh1 {
+    font-size: 23px;
+  }
+  .addelectivesh2 {
+    font-size: 10px;
+  }
+  .checkboxtext {
+    font-size: 14px;
+  }
   .addelectivep {
     padding: 10px;
   }

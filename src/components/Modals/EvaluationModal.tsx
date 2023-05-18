@@ -48,7 +48,7 @@ const EvaluationModal: FC<IBasicModal> = ({ open, setOpen }) => {
     } else {
       // setLoading(true);
       console.log('email', email);
-      void api('post', `/evaluationemail`, { email })
+      void api('post', `/auth/evaluationemail`, { email })
         .then((res) => {
           setOpen(false);
           setLoading(false);
