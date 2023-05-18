@@ -345,7 +345,7 @@
   background: #f9e9e4 5%;
   padding: 15px 20px;
   margin: 25px 5px;
-  width: 46%;
+  width: 50%;
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -355,6 +355,17 @@
 }
 
 @media screen and (max-width: 680px) {
+  .noteDiv {
+    padding: 15px 0px;
+    margin: 25px auto;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+  }
+  .noteMsg {
+    font-size: 13px;
+  }
   .menuMainDiv {
     left: 50%;
     width: 45%;

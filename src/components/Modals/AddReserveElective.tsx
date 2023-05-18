@@ -57,7 +57,7 @@ const AddReserveElective: FC<IBasicModal> = ({
         name: user?.name ? user?.name : '',
         email: user?.email ? user?.email : '',
         phone: user?.phone ? user?.phone : '',
-        stdId: user?._id ? user?._id : '',
+        stdId: user?.studentId ? user?.studentId : '',
       });
     }
   }, [user, open]);
@@ -93,7 +93,7 @@ const AddReserveElective: FC<IBasicModal> = ({
         phone: userData?.phone,
         // acceptCondition: userData?.acceptCondition,
         electiveId,
-        studentId: user?._id,
+        studentId: userData?.stdId,
       })
         .then((res) => {
           if (getSingleElectives) {
@@ -109,7 +109,7 @@ const AddReserveElective: FC<IBasicModal> = ({
     }
   };
   const list = (anchor: Anchor): JSX.Element => (
-    <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600 }} role="presentation">
+    <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 280 }} role="presentation">
       <h1 className="addelectivesh1">Add Your Details</h1>
       <h2 className="addelectivesh2">Fill out the form to apply for this position.</h2>
       <div className="electiveInputDiv">
@@ -155,7 +155,6 @@ const AddReserveElective: FC<IBasicModal> = ({
           name="stdId"
           value={userData?.stdId}
           onChange={handleChange}
-          disabled
         />
       </div>
 
