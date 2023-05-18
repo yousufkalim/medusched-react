@@ -80,7 +80,8 @@ const SingleElective: FC = () => {
             </div>
             <div className="singleElectiveBody">
               <div className="headingdiv1">
-                <h1 className="heding1">{store?.user?.name}</h1>
+                {/* <h1 className="heding1">{store?.user?.name}</h1> */}
+                <h1 className="heding1">{elective?.title}</h1>
                 {store?.user?.role === 'Hospital' ? (
                   <div className="modifiedDiv">
                     <button
@@ -138,7 +139,7 @@ const SingleElective: FC = () => {
               <div className="singlebtnDiv">
                 <button>
                   <span style={{ color: 'gray', margin: '0px 5px' }}>Start Date</span>
-                  {moment(elective?.start_date).format('DD-MM-YYYY')}
+                  {moment(elective?.start_date).format('MM-DD-YYYY')}
                 </button>
                 <div className="btndiv2"></div>
                 <button>

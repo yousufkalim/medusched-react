@@ -123,7 +123,7 @@ const Resgister: FC = () => {
         <div className="loginrow2 ">
           <div className="loginDiv1">
             <h1 className="loginH1">Register Your Account</h1>
-            <p className="loginP1"> Signup to continue</p>
+            <p className="loginP1"> Sign up to continue</p>
           </div>
           <div className="loginInputDiv">
             <p className="loginp">Full Name</p>
