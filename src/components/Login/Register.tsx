@@ -89,7 +89,7 @@ const Resgister: FC = () => {
       setLoading(true);
       void api('post', '/students', formData)
         .then((res) => {
-          toast('Registered Successfully.Check your Email');
+          toast.success('Registered Successfully.Check your Email');
           setFormData({
             name: '',
             email: '',

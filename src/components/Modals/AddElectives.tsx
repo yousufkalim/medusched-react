@@ -21,7 +21,7 @@ const durationData = ['2 Weeks', '3 Weeks', '4 Weeks', '5 Weeks', '6 Weeks', '7 
 interface IUserObject {
   title?: string;
   description?: string;
-  limit?: number;
+  limit?: string;
 }
 interface IElectivesBody extends IUserObject {
   start_date?: Date;
@@ -40,7 +40,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
   const [electiveData, setElectiveData] = useState<IUserObject>({
     title: '',
     description: '',
-    limit: 0,
+    limit: '',
   });
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedDuration, setSelectedDuration] = useState<string>('Duration');
@@ -50,16 +50,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
 
   //   Onchange funtions
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.name === 'limit') {
-      // Check if the value is a positive integer
-      if (/^[0 . . -9]\d*$/.test(e.target.value)) {
-        setElectiveData((prevData) => ({ ...prevData, [e.target.name]: e.target.value }));
-      } else {
-        console.log('');
-      }
-    } else {
-      setElectiveData({ ...electiveData, [e.target.name]: e.target.value });
-    }
+    setElectiveData({ ...electiveData, [e.target.name]: e.target.value });
   };
 
   const handleDateChange = (date: Date | null): void => {
@@ -85,14 +76,19 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
       toast.error('Date is Required');
     } else if (selectedDuration === 'Duration') {
       toast.error('Duration is Required');
-    } else if (checkbox && !electiveData.limit && electiveData.limit === 0) {
-      toast.error('Please Select Limit');
+    } else if (
+      checkbox &&
+      (!electiveData.limit ||
+        Number(electiveData.limit) <= 0 ||
+        !Number.isInteger(Number(electiveData.limit)))
+    ) {
+      toast.error('Please enter a positive integer limit');
     } else {
       setLoading(true);
       void api<IElectivesBody>('post', '/electives/', {
         title: electiveData?.title,
         description: electiveData.description,
-        limit: checkbox ? electiveData.limit : 1000,
+        limit: checkbox ? electiveData.limit : '1000',
         start_date: selectedDate,
         duration: selectedDuration,
         limitenrollment: checkbox,
@@ -108,7 +104,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
           setOpen(false);
           setLoading(false);
           toast.success('Elective Created Successfully');
-          setElectiveData({ title: '', description: '', limit: 0 });
+          setElectiveData({ title: '', description: '', limit: '' });
           setSelectedDate(null);
           setSelectedDuration('Duration');
           setCheckbox(false);
@@ -221,7 +217,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
             type="text"
             placeholder="Add Your Limit of Electives"
             name="limit"
-            value={electiveData?.limit}
+            value={electiveData?.limit ? electiveData?.limit : ''}
             onChange={handleChange}
           />
         </div>
