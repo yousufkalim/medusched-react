@@ -4,25 +4,31 @@ import Pic1 from '../../assets/P1.png';
 // import Loc from '../../assets/loc.svg';
 import Note from '../../assets/Note.svg';
 import api from '../../api/request';
+import D1 from '../../assets/d1.svg';
 import Elective from '../../types/elective';
 import { useNavigate, useParams } from 'react-router-dom';
+import Menu from '@mui/material/Menu';
+import MenuI from '../../assets/Menu.svg';
+import MenuItem from '@mui/material/MenuItem';
 import DeletIcon from '../../assets/delete.svg';
 import EditIcon from '../../assets/edit.svg';
 import DeleteElectives from '../Modals/DeleteElective';
 import EditElectives from '../Modals/EditElectives';
 import LinearProgress from '@mui/material/LinearProgress';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
-
 import AddReserveElective from '../Modals/AddReserveElective';
 import EvaluationModal from '../Modals/EvaluationModal';
+import RemoveStudentElective from '../Modals/RemoveStudentElective';
 import { Store } from '../../context/store';
 import moment from 'moment';
 import './SingleElective.css';
+import { toast } from 'react-toastify';
 
 interface IElectiveResponse {
   elective: Elective;
   success: boolean;
+}
+interface IElectiveID {
+  electiveID?: string;
 }
 const SingleElective: FC = () => {
   const store = Store();
@@ -32,15 +38,30 @@ const SingleElective: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [elective, setElective] = useState<Elective | null>(null);
   const [deleteopen, setDeleteOpen] = useState<boolean>(false);
+  const [deleteopenstd, setDeleteopenstd] = useState<boolean>(false);
   const [editopen, setEditOpen] = useState<boolean>(false);
   const [openAddReserve, setOpenAddReserve] = useState<boolean>(false);
   const [openEvaluation, setOpenEvaluation] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [studentId, setStudentId] = React.useState<string>('');
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, id: string): void => {
+    setAnchorEl(event.currentTarget);
+    setStudentId(id);
+  };
+  const handleClose = (): void => {
+    setAnchorEl(null);
+  };
 
   const getSingleElectives = (): void => {
     setLoading(true);
     api<IElectiveResponse>('get', `/electives/${id}`)
       .then((res) => {
-        setElective(res.elective);
+        setElective({
+          ...res.elective,
+          students: res.elective.students?.map((item) => ({ ...item, flag: false })),
+        });
         setLoading(false);
       })
       .catch(() => {
@@ -61,6 +82,35 @@ const SingleElective: FC = () => {
         setLoading(false);
       });
   };
+
+  // const studentToggle = (id: string): void => {
+  //   const findStudent = elective?.students.find((item) => item._id === id);
+  //   if (findStudent && elective?.students) {
+  //     setElective({
+  //       ...elective,
+  //       students: elective?.students?.map((student) =>
+  //         id === student?._id ? { ...student, flag: !findStudent.flag } : student,
+  //       ),
+  //     });
+  //   }
+  // };
+  const handleDeleteStudentElective = (): void => {
+    console.log('remove student from elective', studentId, elective?.students);
+    api<IElectiveID>('put', `/electives/deletestudent/${studentId}`, {
+      electiveID: elective?._id,
+    })
+      .then((res) => {
+        getSingleElectives();
+        toast.success('Student remove successfully');
+        setLoading(false);
+        setDeleteopenstd(false);
+        setStudentId('');
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
+
   const studentApplied = elective?.students.find((student) => student?._id === store?.user?._id);
 
   const currentDate = new Date();
@@ -177,14 +227,55 @@ const SingleElective: FC = () => {
               <div className="applicantMaindiv">
                 {elective?.students?.length && elective?.students?.length > 0 ? (
                   <>
-                    {elective?.students.map((student) => (
+                    {elective?.students.map((student, i) => (
                       <>
                         <div className="applicantDiv">
+                          {/* <div style={{ textAlign: 'end' }}>
+                            <button
+                              onClick={(): void => {
+                                studentToggle(student._id);
+                              }}
+                            >
+                              ...
+                            </button>
+                          </div> */}
+                          <div style={{ textAlign: 'end' }}>
+                            <button
+                              className="electiveMenuBtn"
+                              onClick={(e): void => {
+                                handleClick(e, student._id);
+                              }}
+                            >
+                              <img src={MenuI} alt="MenuI" />
+                            </button>
+                          </div>
                           <p className="applicantName1">{student?.name}</p>
                           <p className="applicantemail1">{student?.email}</p>
                         </div>
                       </>
                     ))}
+
+                    <Menu
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}
+                      MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                      }}
+                    >
+                      <div className="maind1">
+                        <MenuItem
+                          onClick={() => {
+                            setDeleteopenstd(true);
+                            handleClose();
+                          }}
+                        >
+                          <img className="D1icon" src={D1} alt="Di" />
+                          Delete
+                        </MenuItem>
+                      </div>
+                    </Menu>
                   </>
                 ) : (
                   <div className="NoApplied">
@@ -239,6 +330,12 @@ const SingleElective: FC = () => {
         user={store?.user ? store?.user : undefined}
         getSingleElectives={getSingleElectives}
       />
+      <RemoveStudentElective
+        open={deleteopenstd}
+        setOpen={setDeleteopenstd}
+        handleDelete={handleDeleteStudentElective}
+      />
+
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
       <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
       <EvaluationModal open={openEvaluation} setOpen={setOpenEvaluation} />
