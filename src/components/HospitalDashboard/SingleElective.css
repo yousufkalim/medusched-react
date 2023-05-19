@@ -65,8 +65,32 @@
 .csvbtn1:hover {
   background: #217ec6;
 }
+.customemenu1 {
+  display: flex;
+
+  padding: 9px;
+  background: #ebe8e8;
+  border-radius: 5px;
+}
+.customemenu1:hover {
+  background: #e8e6e6;
+}
 
 @media screen and (max-width: 680px) {
+  .customemenu1 {
+    display: flex;
+    position: absolute;
+    left: 21%;
+    top: 63%;
+    padding: 9px;
+    background: #ebe8e8;
+    border-radius: 5px;
+  }
+  .applicantMaindiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   .singleelectivelimit {
     font-size: 14px;
     padding-right: 3%;
