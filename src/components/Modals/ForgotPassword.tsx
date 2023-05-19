@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent, FormEvent } from 'react';
+import React, { FC, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { CSSObject } from '@emotion/react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -30,6 +30,7 @@ interface IBasicModal {
 const ForgotPassword: FC<IBasicModal> = ({ open, setOpen, role }) => {
   const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+
   const handleClose = (): void => {
     setOpen(false);
     setEmail('');

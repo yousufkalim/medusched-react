@@ -104,7 +104,7 @@ const Header1: FC = () => {
             <NavLink to={'/login'}>
               {' '}
               <button className="loginSignupButton">
-                Login/Signup <span className="spanspace" />
+                Login/Sign up <span className="spanspace" />
                 <img src={Person} alt="a" />
               </button>
             </NavLink>
