@@ -284,10 +284,13 @@
     width: 100%;
   }
   .col1Heading {
-    font-size: 27px;
-    line-height: 30px;
+    font-size: 31px;
+    line-height: 34px;
     margin-bottom: 10px;
     padding-right: 0%;
+    width: 80%;
+    margin: auto !important;
+    padding-bottom: 2%;
   }
   .textdescription {
     font-size: 15px;

@@ -152,7 +152,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
           onChange={handleChange}
         />
       </div>
-      <div className="electiveInputDiv">
+      <div className="electiveInputDiv" id="editElectiveDate">
         <p className="addelectivep" id="editElectiveDate">
           Start Date
         </p>

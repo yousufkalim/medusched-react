@@ -232,7 +232,7 @@
 .filter1dashboard {
   font-weight: 600;
   display: flex;
-  width: 12.5%;
+  width: 24%;
   margin-left: auto;
   align-items: center;
 }
@@ -355,6 +355,10 @@
 }
 
 @media screen and (max-width: 680px) {
+  .addbtnDiv {
+    bottom: 32px;
+    right: 20px;
+  }
   .noteDiv {
     padding: 15px 0px;
     margin: 25px auto;
@@ -407,7 +411,7 @@
   }
   .heding1 {
     margin: 20px 5px 20px 5px;
-    font-size: 15px;
+    font-size: 21px;
   }
   .datediv {
     margin: 12px 0px 0px 0px;

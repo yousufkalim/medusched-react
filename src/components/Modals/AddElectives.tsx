@@ -212,7 +212,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
           value={checkbox}
           onChange={handleCheckboxChange}
         />
-        <span className="checkboxtext">{'Limit Enrolments'}</span>
+        <span className="checkboxtext">{'Limit Enrollments'}</span>
       </div>
       {checkbox && (
         <div className="electiveLimitInputDiv">

@@ -34,6 +34,9 @@
   border-radius: 100px;
   padding-left: 25px;
 }
+#editElectiveDate {
+  color: rgba(145, 155, 155, 1) !important;
+}
 .createelectivebtnDiv {
   text-align: center;
   margin: 20px 0px 10% 0px;

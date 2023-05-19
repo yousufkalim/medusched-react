@@ -67,7 +67,13 @@
 }
 
 @media screen and (max-width: 680px) {
+  .singleelectivelimit {
+    font-size: 14px;
+    padding-right: 3%;
+  }
   .applicant1 {
+    font-size: 24px;
+    padding-left: 6.5%;
     width: 100%;
   }
   .singleReservebtn {
