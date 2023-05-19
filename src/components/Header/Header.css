@@ -1,6 +1,6 @@
 .headerContainer {
   display: flex;
-  width: 82%;
+  width: 90%;
   margin: auto;
   justify-content: space-between;
   align-items: center;
@@ -51,7 +51,7 @@
   display: none;
 }
 .loginNameDiv {
-  width: 24%;
+  width: 15%;
   display: flex;
   align-items: center;
 }
