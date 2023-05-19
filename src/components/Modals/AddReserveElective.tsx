@@ -109,7 +109,15 @@ const AddReserveElective: FC<IBasicModal> = ({
     }
   };
   const list = (anchor: Anchor): JSX.Element => (
-    <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 280 }} role="presentation">
+    <Box
+      sx={{
+        width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 600,
+        '@media (max-width: 680px)': {
+          width: 300,
+        },
+      }}
+      role="presentation"
+    >
       <h1 className="addelectivesh1">Add Your Details</h1>
       <h2 className="addelectivesh2">Fill out the form to apply for this position.</h2>
       <div className="electiveInputDiv">

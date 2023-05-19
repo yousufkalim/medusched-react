@@ -50,7 +50,16 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
 
   //   Onchange funtions
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setElectiveData({ ...electiveData, [e.target.name]: e.target.value });
+    if (e.target.name === 'limit') {
+      // Check if the value is a positive integer
+      if (/^[0 . . -9]\d*$/.test(e.target.value)) {
+        setElectiveData((prevData) => ({ ...prevData, [e.target.name]: e.target.value }));
+      } else {
+        console.log('');
+      }
+    } else {
+      setElectiveData({ ...electiveData, [e.target.name]: e.target.value });
+    }
   };
 
   const handleDateChange = (date: Date | null): void => {
