@@ -11,12 +11,18 @@
   display: flex;
   align-items: center;
 }
+#hideOnMbl {
+  display: block;
+}
 .titlename {
   padding: 0px 5px;
   margin: 0px 5px;
   font-size: 24px;
   font-weight: 600;
   font-family: 'Outfit';
+}
+.spanspace {
+  width: 6px;
 }
 .loginSignupButton {
   background-color: #1d8de2;
@@ -45,13 +51,16 @@
   display: none;
 }
 .loginNameDiv {
+  width: 24%;
   display: flex;
   align-items: center;
 }
 .hospitalheaderlogo {
+  outline: 2px solid rgba(29, 141, 226, 1);
   border-radius: 50%;
-  width: 17%;
-  margin: 5px 5px;
+  width: 32px;
+  height: 32px;
+  margin: 7px 5px;
 }
 .line {
   width: 1px;
@@ -105,6 +114,7 @@
 }
 .logoutbtn {
   display: flex;
+  /* width: 40%; */
 }
 .loginBtnDiv1 {
   display: flex;
@@ -115,6 +125,20 @@
 }
 
 @media screen and (max-width: 680px) {
+  .loginNameDiv {
+    width: 33%;
+    padding-right: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .logoInheaderMbl img {
+    width: 48px !important;
+    margin-left: 18px;
+  }
+  #hideOnMbl {
+    display: none !important;
+  }
   .hideresponsiv {
     display: none;
   }
@@ -122,6 +146,7 @@
   .headerContainer {
     width: 100%;
     margin: 10px auto;
+    padding-right: 3%;
   }
   .titlename {
     font-size: 15px;
@@ -132,15 +157,16 @@
   .loginSignupButton {
     margin: 15px 4px;
     padding: 12px 20px;
+    font-size: 14px;
   }
   .loginSignupButtonH {
-    padding: 10px 10px;
+    padding: 10px 16px;
   }
   .menuIcon {
     display: inline;
   }
   .logoutMainDiv {
-    left: 50%;
-    width: 45%;
+    left: 56%;
+    width: 39%;
   }
 }

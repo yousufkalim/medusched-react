@@ -55,8 +55,10 @@
   padding: 20px;
 }
 .hospitalprofilepic {
+  outline: 5px solid rgba(29, 141, 226, 1);
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  width: 8%;
 }
 .hospitalcol2 {
   width: 95%;
@@ -80,7 +82,9 @@
     margin: 0px 7px 1px 5px;
   }
   .hospitalprofilepic {
-    width: auto;
+    width: 70px;
+    height: 70px;
+    margin-top: 3%;
   }
   .hospitalProfileName {
     font-size: 15px;

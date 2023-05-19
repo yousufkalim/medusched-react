@@ -55,11 +55,11 @@ const Header1: FC = () => {
       <div className="headerContainer" ref={headerRef}>
         {/* <NavLink to="/"> */}
         <div className="logoDivHeader">
-          <div className="">
+          <div className="logoInheaderMbl">
             <img src={Logo} alt="logo" />
           </div>
 
-          <h3 className="titlename logoname">
+          <h3 className="titlename logoname" id="hideOnMbl">
             Med<span style={{ color: '#1D8DE2' }}>U</span>Sched
           </h3>
         </div>
@@ -103,7 +103,8 @@ const Header1: FC = () => {
             <NavLink to={'/login'}>
               {' '}
               <button className="loginSignupButton">
-                Login/Signup <img src={Person} alt="a" />
+                Login/Signup <span className="spanspace" />
+                <img src={Person} alt="a" />
               </button>
             </NavLink>
           </div>
