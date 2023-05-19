@@ -46,7 +46,9 @@ const RemoveStudentElective: FC<IBasicModal> = ({ open, setOpen, handleDelete })
             <img src={Deletelogo} alt="Deletelogo" />
           </div>
           <h1 className="deleteelectivesh1">Are you sure want to delete</h1>
-          <h2 className="deleteelectivesh2">Are you sure you want to delete elective?</h2>
+          <h2 className="deleteelectivesh2">
+            Are you sure you want to delete student from elective?
+          </h2>
 
           <div className="deleteelectivebtnDiv">
             <button
