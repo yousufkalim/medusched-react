@@ -97,7 +97,8 @@ const Header1: FC = () => {
             <NavLink to={'/hospitallogin'}>
               {' '}
               <button className="loginSignupButtonH">
-                <span className="hideresponsiv">Hospital </span>Login
+                <span>Hospital </span>
+                <p className="hideresponsiv">Login</p>
               </button>
             </NavLink>
             <NavLink to={'/login'}>

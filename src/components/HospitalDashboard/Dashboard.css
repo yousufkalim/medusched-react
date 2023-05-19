@@ -355,6 +355,9 @@
 }
 
 @media screen and (max-width: 680px) {
+  .Ebtn {
+    font-size: 12px;
+  }
   .addbtnDiv {
     bottom: 32px;
     right: 20px;
