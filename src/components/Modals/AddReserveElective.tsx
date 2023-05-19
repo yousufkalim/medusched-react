@@ -57,7 +57,7 @@ const AddReserveElective: FC<IBasicModal> = ({
         name: user?.name ? user?.name : '',
         email: user?.email ? user?.email : '',
         phone: user?.phone ? user?.phone : '',
-        stdId: user?.studentId ? user?.studentId : '',
+        stdId: '',
       });
     }
   }, [user, open]);
@@ -71,6 +71,7 @@ const AddReserveElective: FC<IBasicModal> = ({
   };
 
   //   End
+  console.log('user?.studentId', user);
 
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -93,7 +94,7 @@ const AddReserveElective: FC<IBasicModal> = ({
         phone: userData?.phone,
         // acceptCondition: userData?.acceptCondition,
         electiveId,
-        studentId: userData?.stdId,
+        studentId: user?._id,
       })
         .then((res) => {
           if (getSingleElectives) {
