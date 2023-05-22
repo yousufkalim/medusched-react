@@ -157,7 +157,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
           // locale={selectedDateLang}
           // locale={locale}
           locale={'en-gb'}
-          dateFormat="dd/MM/yyyy"
+          dateFormat="MM-dd-yyyy"
           className="addelectiveInput"
           //   value={date_of_birth}
           autoComplete="off"

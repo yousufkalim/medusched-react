@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import Elective from '../types/elective';
+import moment from 'moment';
 
-interface Elective {
-  title: string;
-  description: string;
-  duration: string;
-}
+// interface Elective {
+//   title: string;
+//   description: string;
+//   duration: string;
+// }
 
 interface Props {
   electives: Elective[];
@@ -50,12 +52,15 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
 
   // exporting excel
   const handleSubmitExcel = (electives: Elective[]): void => {
+    console.log('Elective1111', electives);
     setLoading(true);
     if (electives?.length > 0) {
       const updatedelectives = electives.map((elective) => {
         return {
-          Title: elective.title,
-          Description: elective.description,
+          Student_name: elective.students?.map((_) => `${_.name}`).join(', '),
+          Hospital_name: elective?.hospital?.name,
+          Elective_name: elective.title,
+          Start_date: moment(elective.start_date).format('MM-DD-YYYY'),
           Duration: elective.duration,
         };
       });

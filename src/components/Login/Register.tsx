@@ -82,9 +82,10 @@ const Resgister: FC = () => {
     else if (
       !email.endsWith(`@${'gmail'}.com`) &&
       !email.endsWith(`@${domain}.com`) &&
+      !email.endsWith(`@${domain}`) &&
       !email.endsWith(`@${domain}.edu`)
     ) {
-      toast.error(`Email domain must be ${'gmail'}.com`);
+      toast.error(`Email domain must be ${domain} or valid format`);
     } else if (formData?.password === '') {
       toast.error('Password is Required');
     } else if (formData?.confirmpassword === '') {

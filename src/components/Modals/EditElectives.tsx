@@ -157,14 +157,13 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
           Start Date
         </p>
         <DatePicker
-          readOnly={true}
           selected={selectedDate && new Date(selectedDate)}
           onChange={handleDateChange}
           minDate={new Date()}
           // locale={selectedDateLang}
           // locale={locale}
           locale={'en-gb'}
-          dateFormat="dd/MM/yyyy"
+          dateFormat="MM-dd-yyyy"
           className="addelectiveInput"
           //   value={date_of_birth}
           autoComplete="off"

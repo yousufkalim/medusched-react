@@ -1,4 +1,7 @@
 let baseUrl = 'http://localhost:5000/api/v1';
+
+// let baseUrl = 'https://medusched-api-dev.falconweb.app/api/v1';
+
 let mediaUrl = 'http://localhost:5000';
 const appName = 'MedUSched';
 let env = 'dev';
@@ -17,14 +20,20 @@ switch (window.location.host) {
     break;
 
   case 'medusched-staging.falconweb.app':
-    baseUrl = 'https://medusched-api-staging.falconweb.app/api';
+    baseUrl = 'https://medusched-api-staging.falconweb.app/api/v1';
     mediaUrl = 'https://medusched-api-staging.falconweb.app';
     env = 'staging';
     break;
 
-  case 'medusched-prod.falconweb.app':
-    baseUrl = 'https://medusched-api-prod.falconweb.app/api';
-    mediaUrl = 'https://medusched-api-prod.falconweb.app';
+  case 'medusched.com':
+    baseUrl = 'https://api.medusched.com/api/v1';
+    mediaUrl = 'https://api.medusched.com';
+    env = 'prod';
+    break;
+
+  case 'www.medusched.com':
+    baseUrl = 'https://api.medusched.com/api/v1';
+    mediaUrl = 'https://api.medusched.com';
     env = 'prod';
     break;
 }

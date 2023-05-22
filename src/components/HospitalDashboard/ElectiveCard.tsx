@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import D1 from '../../assets/d1.svg';
 import E1 from '../../assets/e1.svg';
-import Pic1 from '../../assets/P1.png';
+// import Pic1 from '../../assets/P1.png';
 import MenuI from '../../assets/Menu.svg';
 import moment from 'moment';
 import Elective from '../../types/elective';
@@ -12,6 +12,7 @@ import DeleteElectives from '../Modals/DeleteElective';
 import EditElectives from '../Modals/EditElectives';
 import api from '../../api/request';
 import { Store } from '../../context/store';
+import { mediaUrl } from '../../config';
 
 interface IElectiveCard {
   title: string;
@@ -47,18 +48,21 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
 
   // const currentDate = new Date();
   // item && currentDate < new Date(item?.start_date) &&
-  console.log(
-    'item.students.includes(store?.user?._id) ',
-    item,
-    item.students.includes(store?.user?._id),
-  );
+  console.log('11instudent', item);
 
   return (
     <>
       {item.students.includes(store?.user?._id) && title === 'Applied Jobs' && (
         <div key={item._id} className={`  electiveCard`}>
           <div className="logoDiv">
-            <img src={Pic1} alt="Pic1" />
+            {/* <img src={Pic1} alt="Pic1" /> */}
+            <div className="electiveImages">
+              <img
+                className="electivePics"
+                src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                alt="pic1"
+              />
+            </div>
             {item.students.includes(store?.user?._id) ? (
               <button className="appliedBtn">Applied</button>
             ) : (
@@ -95,7 +99,15 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
       {!item.students.includes(store?.user?._id) && title !== 'Applied Jobs' && (
         <div key={item._id} className={`  electiveCard`}>
           <div className="logoDiv">
-            <img src={Pic1} alt="Pic1" />
+            {/* <img src={Pic1} alt="Pic1" /> */}
+            <div className="electiveImages">
+              <img
+                className="electivePics"
+                src={`${mediaUrl}/${String(item?.hospital?.logo)}`}
+                alt="pic1"
+              />
+            </div>
+
             {store?.user?.role === 'Hospital' ? (
               <>
                 <button className="electiveMenuBtn" onClick={handleClick}>
@@ -146,7 +158,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
 
           <NavLink to={`/electives/${item._id}`}>
             <div className="headingDiv">
-              <h1 className="heading1">{item?.title}</h1>
+              <h1 className="heading1">{item?.title}11in student</h1>
               {item?.limitenrollment ? (
                 <button
                   className={`${item.students.length === item?.limit ? 'EbtnLimit' : 'Ebtn'}`}

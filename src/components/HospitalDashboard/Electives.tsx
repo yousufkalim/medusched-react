@@ -22,7 +22,7 @@ interface IElectives {
 interface IElectiveProps {
   title: string;
 }
-const myHeader = ['Title', 'Description', 'Duration'];
+const myHeader = ['Student_name', 'Hospital_name', 'Elective_name', 'Start_date', 'Duration'];
 
 interface IMonths {
   name: string;
@@ -145,6 +145,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   };
 
   const handleApplyFilter = (electives: Elective[]): Elective[] => {
+    console.log('applyfilterarray', applyfilterarray);
     // console.log('hospitalName,', hospitalName);
     // if (hospitalName) {
     //   return electives.filter((elective: Elective) => elective.title === hospitalName);
@@ -153,7 +154,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
       return electives;
     }
     const filterElectives = electives.filter((elective: Elective) => {
-      const electiveMonth = new Date(elective.createdAt).toLocaleString('default', {
+      const electiveMonth = new Date(elective.start_date).toLocaleString('default', {
         month: 'long',
       });
       return applyfilterarray.includes(electiveMonth);

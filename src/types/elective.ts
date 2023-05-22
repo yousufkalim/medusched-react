@@ -1,6 +1,7 @@
 export default interface Elective {
   _id: string;
-  hospital: string;
+  logo?: string;
+  hospital: any;
   schools: any[];
   students: any[];
   title: string;

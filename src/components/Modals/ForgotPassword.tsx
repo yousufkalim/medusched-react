@@ -30,6 +30,7 @@ interface IBasicModal {
 const ForgotPassword: FC<IBasicModal> = ({ open, setOpen, role }) => {
   const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+
   const handleClose = (): void => {
     setOpen(false);
     setEmail('');

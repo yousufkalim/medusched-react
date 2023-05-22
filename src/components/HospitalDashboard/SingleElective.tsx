@@ -1,7 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import Header from '../Header/Header';
-import Pic1 from '../../assets/P1.png';
+// import Pic1 from '../../assets/P1.png';
 // import Loc from '../../assets/loc.svg';
+import { mediaUrl } from '../../config';
 import Note from '../../assets/Note.svg';
 import api from '../../api/request';
 import D1 from '../../assets/d1.svg';
@@ -127,7 +128,14 @@ const SingleElective: FC = () => {
           {' '}
           <div className="singleElectiveContainer">
             <div className="singleElectiveHeading">
-              <img src={Pic1} alt="Pic1" />
+              {/* <img src={Pic1} alt="Pic1" /> */}
+              <div className="electivePics">
+                <img
+                  className="electivePics"
+                  src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                  alt="pic1"
+                />
+              </div>
               <p className="electivetitle">{}</p>
             </div>
             <div className="singleElectiveBody">
@@ -338,7 +346,12 @@ const SingleElective: FC = () => {
 
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
       <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
-      <EvaluationModal open={openEvaluation} setOpen={setOpenEvaluation} />
+      <EvaluationModal
+        open={openEvaluation}
+        setOpen={setOpenEvaluation}
+        id={store?.user?._id}
+        electiveId={elective?._id}
+      />
     </>
   );
 };
