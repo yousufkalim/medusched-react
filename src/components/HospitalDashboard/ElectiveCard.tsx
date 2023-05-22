@@ -59,7 +59,8 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
             <div className="electiveImages">
               <img
                 className="electivePics"
-                src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                // src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                src={`${mediaUrl}/${String(item?.hospital?.logo)}`}
                 alt="pic1"
               />
             </div>
