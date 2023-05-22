@@ -65,7 +65,7 @@ const Resgister: FC = () => {
   const handleSubmit = (e: FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex for email validation
-    // const domain = formData?.domain?.toLowerCase(); // convert domain to uppercase for case-insensitive comparison
+    const domain = formData?.domain?.toLowerCase(); // convert domain to uppercase for case-insensitive comparison
     const email = formData?.email?.toLowerCase(); // convert email to lowercase for case-insensitive comparison
     if (formData?.name === '') {
       toast.error('Name is Required');
@@ -79,8 +79,13 @@ const Resgister: FC = () => {
     //  else if (!email.endsWith(`@${domain}.com`)|| !email.endsWith(`@${domain}.fr`)) {
     //   toast.error(`Email domain must be ${domain}.com`);
     // }
-    else if (!email.endsWith(`@${'gmail'}.com`) && !email.endsWith(`@${'gmail'}.fr`)) {
-      toast.error(`Email domain must be ${'gmail'}.com`);
+    else if (
+      !email.endsWith(`@${'gmail'}.com`) &&
+      !email.endsWith(`@${domain}.com`) &&
+      !email.endsWith(`@${domain}`) &&
+      !email.endsWith(`@${domain}.edu`)
+    ) {
+      toast.error(`Email domain must be ${domain} or valid format`);
     } else if (formData?.password === '') {
       toast.error('Password is Required');
     } else if (formData?.confirmpassword === '') {

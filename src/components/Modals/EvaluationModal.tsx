@@ -26,9 +26,11 @@ export interface DialogTitleProps {
 interface IBasicModal {
   open: boolean;
   setOpen: (open: boolean) => void;
+  id?: string;
+  electiveId?: string;
 }
 
-const EvaluationModal: FC<IBasicModal> = ({ open, setOpen }) => {
+const EvaluationModal: FC<IBasicModal> = ({ open, setOpen, id, electiveId }) => {
   const [email, setEmail] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const handleClose = (): void => {
@@ -48,7 +50,7 @@ const EvaluationModal: FC<IBasicModal> = ({ open, setOpen }) => {
     } else {
       // setLoading(true);
       console.log('email', email);
-      void api('post', `/auth/evaluationemail`, { email })
+      void api('post', `/auth/evaluationemail`, { email, id, electiveId })
         .then((res) => {
           setOpen(false);
           setLoading(false);

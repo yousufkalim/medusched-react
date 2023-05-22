@@ -346,7 +346,12 @@ const SingleElective: FC = () => {
 
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
       <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
-      <EvaluationModal open={openEvaluation} setOpen={setOpenEvaluation} />
+      <EvaluationModal
+        open={openEvaluation}
+        setOpen={setOpenEvaluation}
+        id={store?.user?._id}
+        electiveId={elective?._id}
+      />
     </>
   );
 };

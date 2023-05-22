@@ -1,4 +1,7 @@
 let baseUrl = 'http://localhost:5000/api/v1';
+
+// let baseUrl = 'https://medusched-api-dev.falconweb.app/api/v1';
+
 let mediaUrl = 'http://localhost:5000';
 const appName = 'MedUSched';
 let env = 'dev';

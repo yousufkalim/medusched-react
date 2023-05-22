@@ -48,11 +48,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
 
   // const currentDate = new Date();
   // item && currentDate < new Date(item?.start_date) &&
-  console.log(
-    'item.students.includes(store?.user?._id) ',
-    item,
-    item.students.includes(store?.user?._id),
-  );
+  console.log('11instudent', item);
 
   return (
     <>
@@ -107,10 +103,11 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
             <div className="electiveImages">
               <img
                 className="electivePics"
-                src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                src={`${mediaUrl}/${String(item?.hospital?.logo)}`}
                 alt="pic1"
               />
             </div>
+
             {store?.user?.role === 'Hospital' ? (
               <>
                 <button className="electiveMenuBtn" onClick={handleClick}>
@@ -161,7 +158,7 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
 
           <NavLink to={`/electives/${item._id}`}>
             <div className="headingDiv">
-              <h1 className="heading1">{item?.title}</h1>
+              <h1 className="heading1">{item?.title}11in student</h1>
               {item?.limitenrollment ? (
                 <button
                   className={`${item.students.length === item?.limit ? 'EbtnLimit' : 'Ebtn'}`}
