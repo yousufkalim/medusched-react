@@ -50,6 +50,7 @@ const Header1: FC = () => {
   }, [loginFlag]);
 
   const headerName = routesArray.find((route) => route.path === path);
+  console.log('store user for hospital', store?.user);
   return (
     <>
       <div className="headerContainer" ref={headerRef}>

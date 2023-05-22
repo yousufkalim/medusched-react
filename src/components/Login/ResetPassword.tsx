@@ -82,10 +82,7 @@ const ResetPassword: FC = () => {
       </div>
       <div className="resetFormDiv">
         <div className="resetTitle">Reset Password</div>
-        <div className="restdescription">
-          Password must be between 8 and 32 characters, with one each of: a capital letter, a
-          lowercase letter, a number, a special character
-        </div>
+        <div className="restdescription">Password must be between 8 and 32 characters.</div>
         <div className="resetInputDiv">
           <p className="loginp"> New Password</p>
           <input
