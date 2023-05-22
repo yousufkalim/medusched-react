@@ -49,7 +49,6 @@ const EvaluationModal: FC<IBasicModal> = ({ open, setOpen, id, electiveId }) => 
       toast.error('Invalid email address');
     } else {
       // setLoading(true);
-      console.log('email', email);
       void api('post', `/auth/evaluationemail`, { email, id, electiveId })
         .then((res) => {
           setOpen(false);

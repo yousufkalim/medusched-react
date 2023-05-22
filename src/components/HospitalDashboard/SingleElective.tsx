@@ -96,7 +96,6 @@ const SingleElective: FC = () => {
   //   }
   // };
   const handleDeleteStudentElective = (): void => {
-    console.log('remove student from elective', studentId, elective?.students);
     api<IElectiveID>('put', `/electives/deletestudent/${studentId}`, {
       electiveID: elective?._id,
     })

@@ -145,7 +145,6 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   };
 
   const handleApplyFilter = (electives: Elective[]): Elective[] => {
-    console.log('applyfilterarray', applyfilterarray);
     // console.log('hospitalName,', hospitalName);
     // if (hospitalName) {
     //   return electives.filter((elective: Elective) => elective.title === hospitalName);

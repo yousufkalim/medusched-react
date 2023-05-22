@@ -52,7 +52,6 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
 
   // exporting excel
   const handleSubmitExcel = (electives: Elective[]): void => {
-    console.log('Elective1111', electives);
     setLoading(true);
     if (electives?.length > 0) {
       const updatedelectives = electives.map((elective) => {
