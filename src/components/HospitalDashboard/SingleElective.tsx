@@ -114,7 +114,7 @@ const SingleElective: FC = () => {
   const studentApplied = elective?.students.find((student) => student?._id === store?.user?._id);
 
   const currentDate = new Date();
-
+  console.log('elective88', elective);
   return (
     <>
       <Header />
@@ -131,7 +131,8 @@ const SingleElective: FC = () => {
               <div className="electivePics">
                 <img
                   className="electivePics"
-                  src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                  // src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                  src={`${mediaUrl}/${String(elective?.hospital?.logo)}`}
                   alt="pic1"
                 />
               </div>
