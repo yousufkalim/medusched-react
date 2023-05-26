@@ -70,11 +70,18 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
         // for student side filter electives that will be availble for apply within date
         const currentDate = new Date();
 
+        // const filteredElectiveswithDate = res.electives.filter(
+        //   (elective) =>
+        //     new Date(elective.start_date) > currentDate ||
+        //     elective.students.includes(store?.user?._id),
+        // );
+        console.log('res.electives.', res.electives);
         const filteredElectiveswithDate = res.electives.filter(
           (elective) =>
             new Date(elective.start_date) > currentDate ||
-            elective.students.includes(store?.user?._id),
+            elective.students.some((student) => student.studentId === store?.user?._id),
         );
+        console.log('filteredElectiveswithDate', filteredElectiveswithDate, store?.user?._id);
 
         if (updateStore) updateStore({ electives: filteredElectiveswithDate });
         setLoading(false);
@@ -134,12 +141,30 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
       );
     }
   };
+  // const filterDeletedElectives = (electives: Elective[]): Elective[] => {
+  //   const filterElectives = electives.filter((elective: Elective) => elective.active);
+  //   const seprateApplied =
+  //     title === 'Applied Jobs'
+  //       ? filterElectives.filter((elective) => elective.students.includes(store?.user?._id))
+  //       : filterElectives.filter((elective) => !elective.students.includes(store?.user?._id));
+
+  //   return seprateApplied;
+  // };
   const filterDeletedElectives = (electives: Elective[]): Elective[] => {
     const filterElectives = electives.filter((elective: Elective) => elective.active);
     const seprateApplied =
       title === 'Applied Jobs'
-        ? filterElectives.filter((elective) => elective.students.includes(store?.user?._id))
-        : filterElectives.filter((elective) => !elective.students.includes(store?.user?._id));
+        ? filterElectives.filter((elective) =>
+            elective.students.some(
+              (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+            ),
+          )
+        : filterElectives.filter(
+            (elective) =>
+              !elective.students.some(
+                (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+              ),
+          );
 
     return seprateApplied;
   };
@@ -180,15 +205,34 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     ]);
   };
 
+  // const data = store?.electives
+  //   ? title === 'Applied Jobs'
+  //     ? filterDeletedElectives(store?.electives)
+  //         ?.filter((elective) => elective.students.includes(store?.user?._id))
+  //         .map((item) => ({ label: item.title, ...item }))
+  //     : filterDeletedElectives(store?.electives)
+  //         ?.filter((elective) => !elective.students.includes(store?.user?._id))
+  //         .map((item) => ({ label: item.title, ...item }))
+  //   : [];
   const data = store?.electives
     ? title === 'Applied Jobs'
       ? filterDeletedElectives(store?.electives)
-          ?.filter((elective) => elective.students.includes(store?.user?._id))
+          ?.filter((elective) =>
+            elective.students.some(
+              (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+            ),
+          )
           .map((item) => ({ label: item.title, ...item }))
       : filterDeletedElectives(store?.electives)
-          ?.filter((elective) => !elective.students.includes(store?.user?._id))
+          ?.filter(
+            (elective) =>
+              !elective.students.some(
+                (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+              ),
+          )
           .map((item) => ({ label: item.title, ...item }))
     : [];
+
   console.log('data', data, store?.user?._id);
 
   return (
@@ -328,7 +372,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                     <img src={Noelectives} alt="Noelectives" />
                   </div>
                   <div className="addelectivediv2">
-                    <div className="createElectivediv">No Elective to show</div>
+                    <div className="createElectivediv">No Elective to show P</div>
                   </div>
                 </>
               )}

@@ -6,6 +6,7 @@ import { mediaUrl } from '../../config';
 import Note from '../../assets/Note.svg';
 import api from '../../api/request';
 import D1 from '../../assets/d1.svg';
+import E1 from '../../assets/extendIcon.svg';
 import Elective from '../../types/elective';
 import { useNavigate, useParams } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
@@ -19,6 +20,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import AddReserveElective from '../Modals/AddReserveElective';
 import EvaluationModal from '../Modals/EvaluationModal';
 import RemoveStudentElective from '../Modals/RemoveStudentElective';
+import ExtendElective from '../Modals/ExtendElective';
 import { Store } from '../../context/store';
 import moment from 'moment';
 import './SingleElective.css';
@@ -28,6 +30,7 @@ interface IElectiveResponse {
   elective: Elective;
   success: boolean;
 }
+
 interface IElectiveID {
   electiveID?: string;
 }
@@ -40,16 +43,26 @@ const SingleElective: FC = () => {
   const [elective, setElective] = useState<Elective | null>(null);
   const [deleteopen, setDeleteOpen] = useState<boolean>(false);
   const [deleteopenstd, setDeleteopenstd] = useState<boolean>(false);
+  const [extendopen, setExtendOpen] = useState<boolean>(false);
   const [editopen, setEditOpen] = useState<boolean>(false);
   const [openAddReserve, setOpenAddReserve] = useState<boolean>(false);
   const [openEvaluation, setOpenEvaluation] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [studentId, setStudentId] = React.useState<string>('');
+  const [studentName, setStudentName] = React.useState<string>('');
+  const [studentDuration, setStudentDuration] = React.useState<string>('');
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, id: string): void => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    id: string,
+    stdname: string,
+    duration: string,
+  ): void => {
     setAnchorEl(event.currentTarget);
     setStudentId(id);
+    setStudentName(stdname);
+    setStudentDuration(duration);
   };
   const handleClose = (): void => {
     setAnchorEl(null);
@@ -105,16 +118,40 @@ const SingleElective: FC = () => {
         setLoading(false);
         setDeleteopenstd(false);
         setStudentId('');
+        setStudentName('');
+        setStudentDuration('');
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
+  const studentApplied = elective?.students.find(
+    (student) => student?.studentId?._id === store?.user?._id,
+  );
+  const handleExtendElective = (): void => {
+    console.log('handleExtend studentId', studentId);
+    console.log('elective?._id', elective?._id);
+    console.log('updated studentDuration', studentDuration);
+
+    api('put', `/electives/extendElective/${studentId}`, {
+      electiveID: elective?._id,
+      studentDuration,
+    })
+      .then((res) => {
+        getSingleElectives();
+        toast.success('Student Elective updated successfully');
+        setExtendOpen(false);
+        setStudentId('');
+        setStudentName('');
+        setStudentDuration('');
       })
       .catch(() => {
         setLoading(false);
       });
   };
 
-  const studentApplied = elective?.students.find((student) => student?._id === store?.user?._id);
-
   const currentDate = new Date();
-  console.log('elective88', elective);
+
   return (
     <>
       <Header />
@@ -251,14 +288,22 @@ const SingleElective: FC = () => {
                             <button
                               className="electiveMenuBtn"
                               onClick={(e): void => {
-                                handleClick(e, student._id);
+                                handleClick(
+                                  e,
+                                  student?.studentId?._id,
+                                  student?.studentId?.name,
+                                  student?.duration,
+                                );
                               }}
                             >
                               <img src={MenuI} alt="MenuI" />
                             </button>
                           </div>
-                          <p className="applicantName1">{student?.name}</p>
-                          <p className="applicantemail1">{student?.email}</p>
+                          <p className="applicantName1">{student?.studentId?.name}</p>
+                          <p className="applicantemail1">{student?.studentId?.email}</p>
+                          <p className="applicantemail1">
+                            Duration: <button> {student?.duration}</button>
+                          </p>
                         </div>
                       </>
                     ))}
@@ -281,6 +326,17 @@ const SingleElective: FC = () => {
                         >
                           <img className="D1icon" src={D1} alt="Di" />
                           Delete
+                        </MenuItem>
+                      </div>
+                      <div className="maind1">
+                        <MenuItem
+                          onClick={() => {
+                            setExtendOpen(true);
+                            handleClose();
+                          }}
+                        >
+                          <img className="D1icon" src={E1} alt="Di" />
+                          Change Duration
                         </MenuItem>
                       </div>
                     </Menu>
@@ -342,6 +398,14 @@ const SingleElective: FC = () => {
         open={deleteopenstd}
         setOpen={setDeleteopenstd}
         handleDelete={handleDeleteStudentElective}
+      />
+      <ExtendElective
+        open={extendopen}
+        setOpen={setExtendOpen}
+        handleExtendElective={handleExtendElective}
+        studentName={studentName}
+        studentDuration={studentDuration}
+        setStudentDuration={setStudentDuration}
       />
 
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />

@@ -96,6 +96,48 @@
 .deleteelectivebtn:hover {
   background: #d94646;
 }
+.durationMain1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 35px;
+  width: 80%;
+  margin: auto;
+  background: #fafafa;
+  border-radius: 100px;
+}
+.duration1 {
+  text-align: end;
+  color: #919b9b;
+  font-weight: 600;
+  width: 40%;
+  font-size: 18px;
+}
+.duration2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+}
+.Dline {
+  width: 1px;
+  height: 30px;
+  background: gray;
+}
+.minusbtn {
+  color: gray;
+  font-weight: 900;
+  font-size: 26px;
+}
+.plusbtn {
+  color: #1d8de2;
+  font-weight: 900;
+  font-size: 26px;
+}
+.weeksDiv {
+  font-weight: 900;
+  font-size: 18px;
+}
 @media screen and (max-width: 680px) {
   .addelectivesh1 {
     font-size: 23px;
