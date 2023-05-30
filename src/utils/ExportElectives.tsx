@@ -9,9 +9,16 @@ import moment from 'moment';
 //   description: string;
 //   duration: string;
 // }
+// interface UpdatedElective {
+//   Student_name: string;
+//   Hospital_name: string | undefined;
+//   Elective_name: string;
+//   Start_date: string;
+//   Duration: string;
+// }
 
 interface Props {
-  electives: Elective[] | any;
+  electives: Elective[];
   myHeader: string[];
 }
 
@@ -58,7 +65,7 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
       const updatedelectives = electives.map((elective) => {
         return {
           // eslint-disable-next-line
-          Student_name: elective?.students?.map((_) => `${_.name}`).join(', '),
+          Student_name: elective?.students?.map((_) => `${_?.studentId.name}`).join(', '),
           Hospital_name: elective?.hospital?.name,
           Elective_name: elective.title,
           Start_date: moment(elective.start_date).format('MM-DD-YYYY'),

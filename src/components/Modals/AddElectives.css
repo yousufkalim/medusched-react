@@ -105,6 +105,24 @@
 .deleteelectivebtn:hover {
   background: #d94646;
 }
+.extendelectivebtn {
+  background: #1d8de2;
+  margin: 5px 5px 10px 5px;
+  color: white;
+  border-radius: 100px;
+  padding: 16px 40px;
+  font-weight: 600;
+}
+.extendelectivebtn:hover {
+  background: #2284cf;
+}
+.Ename {
+  text-align: center;
+  color: #1d8de2;
+  padding: 10px 0px;
+  font-size: 22px;
+  font-weight: 600;
+}
 @media screen and (max-width: 680px) {
   .addelectivep {
     padding: 10px;

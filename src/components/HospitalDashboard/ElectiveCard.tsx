@@ -49,141 +49,151 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
   // const currentDate = new Date();
   // item && currentDate < new Date(item?.start_date) &&
   console.log('11instudent', item);
+  const duration = item.students.some((student) => student.studentId === store?.user?._id)
+    ? item.students.find((student) => student.studentId === store?.user?._id)?.duration ?? ''
+    : '';
 
+  console.log(
+    'item.students.some((student) => student.studentId === store?.user?._id)',
+    item.students.some((student) => student.studentId === store?.user?._id),
+  );
+  console.log("title === 'Applied Jobs'", title);
   return (
     <>
-      {item.students.includes(store?.user?._id) && title === 'Applied Jobs' && (
-        <div key={item._id} className={`  electiveCard`}>
-          <div className="logoDiv">
-            {/* <img src={Pic1} alt="Pic1" /> */}
-            <div className="electiveImages">
-              <img
-                className="electivePics"
-                // src={`${mediaUrl}/${String(store?.user?.logo)}`}
-                src={`${mediaUrl}/${String(item?.hospital?.logo)}`}
-                alt="pic1"
-              />
-            </div>
-            {item.students.includes(store?.user?._id) ? (
-              <button className="appliedBtn">Applied</button>
-            ) : (
-              ''
-            )}
-          </div>
-          <NavLink to={`/electives/${item._id}`}>
-            <div className="headingDiv">
-              <h1 className="heading1">{item?.title}</h1>
-              {item?.limitenrollment ? (
-                <button
-                  className={`${item.students.length === item?.limit ? 'EbtnLimit' : 'Ebtn'}`}
-                >
-                  {item.students.length}/{item?.limit} reserved
-                </button>
+      {item.students.some((student) => student.studentId === store?.user?._id) &&
+        title === 'Applied Jobs' && (
+          <div key={item._id} className={`  electiveCard`}>
+            <div className="logoDiv">
+              {/* <img src={Pic1} alt="Pic1" /> */}
+              <div className="electiveImages">
+                <img
+                  className="electivePics"
+                  // src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                  src={`${mediaUrl}/${String(item?.hospital?.logo)}`}
+                  alt="pic1"
+                />
+              </div>
+              {item.students.some((student) => student.studentId === store?.user?._id) ? (
+                <button className="appliedBtn">Applied</button>
               ) : (
-                <></>
+                ''
               )}
             </div>
-            <div className="electivedesDiv">
-              <p className="cardP1">
-                {item?.description.length > 300
-                  ? item?.description.slice(0, 300) + '...'
-                  : item?.description}
-              </p>
-            </div>
-            <div className="btnDiv">
-              <button className="dateBtn">{moment(item?.start_date).format('MM-DD-YYYY')}</button>
-              <button className="dateBtn">{item?.duration}</button>
-            </div>
-          </NavLink>
-        </div>
-      )}
-      {!item.students.includes(store?.user?._id) && title !== 'Applied Jobs' && (
-        <div key={item._id} className={`  electiveCard`}>
-          <div className="logoDiv">
-            {/* <img src={Pic1} alt="Pic1" /> */}
-            <div className="electiveImages">
-              <img
-                className="electivePics"
-                src={`${mediaUrl}/${String(item?.hospital?.logo)}`}
-                alt="pic1"
-              />
-            </div>
+            <NavLink to={`/electives/${item._id}`}>
+              <div className="headingDiv">
+                <h1 className="heading1">{item?.title}</h1>
+                {item?.limitenrollment ? (
+                  <button
+                    className={`${item.students.length === item?.limit ? 'EbtnLimit' : 'Ebtn'}`}
+                  >
+                    {item.students.length}/{item?.limit} reserved
+                  </button>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="electivedesDiv">
+                <p className="cardP1">
+                  {item?.description.length > 300
+                    ? item?.description.slice(0, 300) + '...'
+                    : item?.description}
+                </p>
+              </div>
+              <div className="btnDiv">
+                <button className="dateBtn">{moment(item?.start_date).format('MM-DD-YYYY')}</button>
+                <button className="dateBtn">{duration || item?.duration}</button>
+              </div>
+            </NavLink>
+          </div>
+        )}
+      {!item.students.some((student) => student.studentId === store?.user?._id) &&
+        title !== 'Applied Jobs' && (
+          <div key={item._id} className={`  electiveCard`}>
+            <div className="logoDiv">
+              {/* <img src={Pic1} alt="Pic1" /> */}
+              <div className="electiveImages">
+                <img
+                  className="electivePics"
+                  src={`${mediaUrl}/${String(item?.hospital?.logo)}`}
+                  alt="pic1"
+                />
+              </div>
 
-            {store?.user?.role === 'Hospital' ? (
-              <>
-                <button className="electiveMenuBtn" onClick={handleClick}>
-                  <img src={MenuI} alt="MenuI" />
-                </button>
-              </>
-            ) : (
-              <>
-                {/* {item.students.includes(store?.user?._id) ? (
+              {store?.user?.role === 'Hospital' ? (
+                <>
+                  <button className="electiveMenuBtn" onClick={handleClick}>
+                    <img src={MenuI} alt="MenuI" />
+                  </button>
+                </>
+              ) : (
+                <>
+                  {/* {item.students.includes(store?.user?._id) ? (
                   <button className="appliedBtn">Applied</button>
                 ) : (
                   ''
                 )} */}
-              </>
-            )}
-          </div>
-
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-            <div className="maind1">
-              <MenuItem
-                onClick={() => {
-                  setEditOpen(true);
-                }}
-              >
-                <img className="D1icon" src={E1} alt="Di" />
-                Edit
-              </MenuItem>
-            </div>
-            <div className="maind1">
-              <MenuItem
-                onClick={() => {
-                  setDeleteOpen(true);
-                }}
-              >
-                <img className="D1icon" src={D1} alt="Di" />
-                Delete
-              </MenuItem>
-            </div>
-          </Menu>
-
-          <NavLink to={`/electives/${item._id}`}>
-            <div className="headingDiv">
-              <h1 className="heading1">{item?.title}</h1>
-              {item?.limitenrollment ? (
-                <button
-                  className={`${item.students.length === item?.limit ? 'EbtnLimit' : 'Ebtn'}`}
-                >
-                  {item.students.length}/{item?.limit} reserved
-                </button>
-              ) : (
-                <></>
+                </>
               )}
             </div>
-            <div className="electivedesDiv">
-              <p className="cardP1">
-                {item?.description.length > 300
-                  ? item?.description.slice(0, 300) + '...'
-                  : item?.description}
-              </p>
-            </div>
-            <div className="btnDiv">
-              <button className="dateBtn">{moment(item?.start_date).format('MM-DD-YYYY')}</button>
-              <button className="dateBtn">{item?.duration}</button>
-            </div>
-          </NavLink>
-        </div>
-      )}
+
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <div className="maind1">
+                <MenuItem
+                  onClick={() => {
+                    setEditOpen(true);
+                  }}
+                >
+                  <img className="D1icon" src={E1} alt="Di" />
+                  Edit
+                </MenuItem>
+              </div>
+              <div className="maind1">
+                <MenuItem
+                  onClick={() => {
+                    setDeleteOpen(true);
+                  }}
+                >
+                  <img className="D1icon" src={D1} alt="Di" />
+                  Delete
+                </MenuItem>
+              </div>
+            </Menu>
+
+            <NavLink to={`/electives/${item._id}`}>
+              <div className="headingDiv">
+                <h1 className="heading1">{item?.title}</h1>
+                {item?.limitenrollment ? (
+                  <button
+                    className={`${item.students.length === item?.limit ? 'EbtnLimit' : 'Ebtn'}`}
+                  >
+                    {item.students.length}/{item?.limit} reserved
+                  </button>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="electivedesDiv">
+                <p className="cardP1">
+                  {item?.description.length > 300
+                    ? item?.description.slice(0, 300) + '...'
+                    : item?.description}
+                </p>
+              </div>
+              <div className="btnDiv">
+                <button className="dateBtn">{moment(item?.start_date).format('MM-DD-YYYY')}</button>
+                <button className="dateBtn">{item?.duration}</button>
+              </div>
+            </NavLink>
+          </div>
+        )}
 
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
       <EditElectives
