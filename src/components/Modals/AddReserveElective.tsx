@@ -95,6 +95,7 @@ const AddReserveElective: FC<IBasicModal> = ({
         // acceptCondition: userData?.acceptCondition,
         electiveId,
         studentId: user?._id,
+        stdId: userData.stdId,
       })
         .then((res) => {
           if (getSingleElectives) {
