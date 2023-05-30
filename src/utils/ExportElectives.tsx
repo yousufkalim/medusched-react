@@ -9,13 +9,15 @@ import moment from 'moment';
 //   description: string;
 //   duration: string;
 // }
-// interface UpdatedElective {
-//   Student_name: string;
-//   Hospital_name: string | undefined;
-//   Elective_name: string;
-//   Start_date: string;
-//   Duration: string;
-// }
+interface UpdatedElective {
+  "Student's Name": string;
+  'Student’s ID': string | undefined;
+  'Hospital Name': string;
+  'Elective Name': string;
+  'Start Date': string;
+  // 'End Date': string;
+  Weeks: string;
+}
 
 interface Props {
   electives: Elective[];
@@ -32,7 +34,7 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
   const fileExtension = '.xlsx';
   const exportToCSV = (csvData: object[], fileName: string): void => {
     // Setting cols width
-    const wscols = [{ wch: 40 }, { wch: 40 }, { wch: 40 }];
+    const wscols = [{ wch: 30 }, { wch: 30 }, { wch: 30 }, { wch: 30 }, { wch: 30 }, { wch: 30 }];
     // Sorting
 
     const ws = XLSX.utils.json_to_sheet(
@@ -57,20 +59,26 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
     FileSaver.saveAs(eData, fileName + fileExtension);
   };
 
-  // exporting excel
   const handleSubmitExcel = (electives: Elective[]): void => {
-    console.log('Elective1111', electives);
     setLoading(true);
     if (electives?.length > 0) {
-      const updatedelectives = electives.map((elective) => {
-        return {
-          // eslint-disable-next-line
-          Student_name: elective?.students?.map((_) => `${_?.studentId.name}`).join(', '),
-          Hospital_name: elective?.hospital?.name,
-          Elective_name: elective.title,
-          Start_date: moment(elective.start_date).format('MM-DD-YYYY'),
-          Duration: elective.duration,
-        };
+      const updatedelectives: UpdatedElective[] = [];
+      electives.forEach((elective) => {
+        const durationNumber = parseInt(elective?.duration);
+        const startDate = moment(elective?.start_date);
+        const endDate = startDate.add(durationNumber, 'weeks');
+        elective.students.forEach((student) => {
+          const updatedElective = {
+            "Student's Name": student.studentId?.name ?? '',
+            'Student’s ID': student?.studentId?.stdId,
+            'Hospital Name': elective?.hospital?.name,
+            'Elective Name': elective.title,
+            'Start Date': moment(elective.start_date).format('MM-DD-YYYY'),
+            'End Date': moment(endDate.toISOString()).format('MM-DD-YYYY'),
+            Weeks: elective.duration.charAt(0),
+          };
+          updatedelectives.push(updatedElective);
+        });
       });
       setLoading(false);
       exportToCSV(updatedelectives, 'Electives CSV');

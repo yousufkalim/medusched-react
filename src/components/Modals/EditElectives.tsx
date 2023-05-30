@@ -135,7 +135,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
         <input
           className="addelectiveInput"
           type="text"
-          placeholder="HIV Clinic"
+          placeholder="Add Your Title"
           name="title"
           value={electiveData?.title}
           onChange={handleChange}
