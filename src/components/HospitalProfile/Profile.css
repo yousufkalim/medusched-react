@@ -54,18 +54,106 @@
   min-height: 100vh;
   padding: 20px;
 }
+
+.hospitalcol2 {
+  width: 95%;
+  margin: auto;
+}
+.profileMaindiv {
+  width: 35%;
+  margin: 4% auto;
+  background: #f9f9f9;
+  border-radius: 25px;
+  padding: 25px 25px;
+}
 .hospitalprofilepic {
   outline: 5px solid rgba(29, 141, 226, 1);
   width: 120px;
   height: 120px;
   border-radius: 50%;
-}
-.hospitalcol2 {
-  width: 95%;
   margin: auto;
+}
+.hospitalProfileloginInputDiv {
+  padding: 10px 10px 10px 20px;
+  width: 85%;
+  margin: auto;
+}
+.HPimgprofiile {
+  padding: 10px 10px 10px 20px;
+  width: 35%;
+  margin: auto;
+  text-align: end;
+}
+.Hprofileloginp {
+  padding: 5px;
+  font-weight: 600;
+}
+.HProfileloginInput {
+  width: 100%;
+  height: 55px;
+  border: 2px solid black;
+  border-radius: 100px;
+  padding-left: 25px;
+}
+.HprofilecreateelectivebtnDiv {
+  text-align: center;
+  margin: 20px 0px 10% 0px;
+}
+.changePasswordbtn {
+  background: #eaf2f8;
+  width: 75%;
+  margin: 10px auto;
+  color: rgba(29, 141, 226, 1);
+  border-radius: 100px;
+  padding: 14px 26px;
+  font-weight: 500;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.changePasswordbtn:hover {
+  background: #dce9f4;
+}
+.HProfilecreateelectivebtn {
+  background: rgba(29, 141, 226, 1);
+  width: 75%;
+  margin: 10px auto;
+  color: white;
+  border-radius: 100px;
+  padding: 14px 26px;
+  font-weight: 600;
+  text-align: center;
+}
+.HProfilecreateelectivebtn:hover {
+  background: rgb(25, 108, 171);
+}
+.changepasswordh1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  padding: 10px 0px;
+}
+.changepasswordP1 {
+  text-align: center;
+  color: gray;
+  font-weight: 600;
+  padding: 0 8%;
+  font-size: 16px;
+}
+.noimg {
+  width: 100%;
 }
 
 @media screen and (max-width: 680px) {
+  .profileMaindiv {
+    width: 95%;
+    margin: 2% auto;
+    padding: 25px 0px;
+  }
+  .changepasswordP1 {
+    font-size: 11px;
+  }
   .applied1 {
     font-size: 15px;
   }
@@ -88,5 +176,11 @@
   }
   .hospitalProfileName {
     font-size: 15px;
+  }
+  .hospitalProfileloginInputDiv {
+    padding: 4px 0;
+  }
+  .HProfileloginInput {
+    width: 100%;
   }
 }
