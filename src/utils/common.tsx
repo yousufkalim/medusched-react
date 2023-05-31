@@ -21,6 +21,7 @@ const authApi = (): void => {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       .then((res) => {
         if (res?.data) {
+          console.log('res.data', res?.data);
           if (updateStore) {
             updateStore({ user: res?.data.user as User });
           }
