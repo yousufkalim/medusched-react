@@ -75,12 +75,7 @@ const Resgister: FC = () => {
       toast.error('Email is Required');
     } else if (!emailRegex.test(email)) {
       toast.error('Invalid Email Format');
-    }
-    //  else if (!email.endsWith(`@${domain}.com`)|| !email.endsWith(`@${domain}.fr`)) {
-    //   toast.error(`Email domain must be ${domain}.com`);
-    // }
-    else if (
-      !email.endsWith(`@${'gmail'}.com`) &&
+    } else if (
       !email.endsWith(`@${domain}.com`) &&
       !email.endsWith(`@${domain}`) &&
       !email.endsWith(`@${domain}.edu`)
