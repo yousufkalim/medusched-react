@@ -4,6 +4,7 @@ import Arrow from '../../assets/arrow2.svg';
 // import D1 from '../../assets/d1.jpeg';
 // import Electives from '../HospitalDashboard/Electives';
 import { Store } from '../../context/store';
+import HidePassword from '../../assets/hidepass.svg';
 import { mediaUrl } from '../../config';
 import api from '../../api/request';
 import { toast } from 'react-toastify';
@@ -39,6 +40,9 @@ const Profile: FC = () => {
   const [previewImage, setPreviewImage] = useState(
     store?.user?.logo ? `${mediaUrl}/${String(store?.user?.logo)}` : null,
   );
+  const [showoldPassword, setShowoldPassword] = useState<boolean>(false);
+  const [shownewPassword, setShownewPassword] = useState<boolean>(false);
+  const [showconfirmPassword, setShowconfirmPassword] = useState<boolean>(false);
 
   useEffect(() => {
     setHospitalProfile({
@@ -110,6 +114,7 @@ const Profile: FC = () => {
       api('put', `/hospitals/resetPassword/${store?.user?._id ?? ''}`, resetPassword)
         .then((res) => {
           toast.success('Password Updated successfully');
+          setResetPassword({ oldPassword: '', newPassword: '', confirmPassword: '' });
           window.location.reload();
         })
         .catch(() => {
@@ -194,35 +199,60 @@ const Profile: FC = () => {
             <p className="Hprofileloginp">Old Password</p>
             <input
               className="HProfileloginInput"
-              type="password"
+              type={showoldPassword ? 'text' : 'password'}
               placeholder="******"
               name="oldPassword"
               value={resetPassword?.oldPassword}
               onChange={handleChangePassword}
             />
+            <button
+              onClick={() => {
+                setShowoldPassword(!showoldPassword);
+              }}
+              className="hospitalpasswordicon"
+            >
+              {' '}
+              <img src={HidePassword} alt="hidepass" />
+            </button>
           </div>
 
           <div className="hospitalProfileloginInputDiv">
             <p className="Hprofileloginp">New Password</p>
             <input
               className="HProfileloginInput"
-              type="password"
+              type={shownewPassword ? 'text' : 'password'}
               placeholder="******"
               name="newPassword"
               value={resetPassword?.newPassword}
               onChange={handleChangePassword}
             />
+            <button
+              onClick={() => {
+                setShownewPassword(!shownewPassword);
+              }}
+            >
+              {' '}
+              <img className="hospitalpasswordicon" src={HidePassword} alt="hidepass" />
+            </button>
           </div>
           <div className="hospitalProfileloginInputDiv">
             <p className="Hprofileloginp">Confimr Password</p>
             <input
               className="HProfileloginInput"
-              type="password"
+              type={showconfirmPassword ? 'text' : 'password'}
               placeholder="******"
               name="confirmPassword"
               value={resetPassword?.confirmPassword}
               onChange={handleChangePassword}
             />
+            <button
+              onClick={() => {
+                setShowconfirmPassword(!showconfirmPassword);
+              }}
+            >
+              {' '}
+              <img className="hospitalpasswordicon" src={HidePassword} alt="hidepass" />
+            </button>
           </div>
 
           <div className="HprofilecreateelectivebtnDiv">

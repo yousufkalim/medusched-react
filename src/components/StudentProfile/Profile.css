@@ -52,8 +52,19 @@
   padding: 20px;
 }
 .profileHeaderRow1 {
-  width: 75%;
+  width: 71%;
   margin: auto;
+}
+.editProfileBtn {
+  color: #1d8de2;
+  background: white;
+  border-radius: 50px;
+  padding: 15px 20px;
+  font-weight: 600;
+  position: relative;
+  bottom: 120px;
+  left: 0%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 680px) {
@@ -80,5 +91,15 @@
   }
   .profileHeaderRow1 {
     margin: auto 13px;
+  }
+  .editProfileBtn {
+    color: #1d8de2;
+    background: white;
+    border-radius: 50px;
+    padding: 15px 20px;
+    font-weight: 600;
+    position: relative;
+    bottom: 74px;
+    left: 20%;
   }
 }

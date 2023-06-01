@@ -74,7 +74,7 @@
   margin: auto;
 }
 .hospitalProfileloginInputDiv {
-  padding: 10px 10px 10px 20px;
+  padding: 4px 10px 0px 20px;
   width: 85%;
   margin: auto;
 }
@@ -144,6 +144,11 @@
 .noimg {
   width: 100%;
 }
+.hospitalpasswordicon {
+  position: relative;
+  left: 380px;
+  bottom: 35px;
+}
 
 @media screen and (max-width: 680px) {
   .profileMaindiv {
@@ -152,7 +157,7 @@
     padding: 25px 0px;
   }
   .changepasswordP1 {
-    font-size: 11px;
+    font-size: 10px;
   }
   .applied1 {
     font-size: 15px;
@@ -182,5 +187,16 @@
   }
   .HProfileloginInput {
     width: 100%;
+  }
+  .changepasswordh1 {
+    font-size: 22px;
+  }
+  .changePasswordbtn {
+    margin: 15px auto 10px auto;
+  }
+  .hospitalpasswordicon {
+    position: relative;
+    left: 250px;
+    bottom: 35px;
   }
 }
