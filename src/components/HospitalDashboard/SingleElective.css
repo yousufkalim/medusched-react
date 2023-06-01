@@ -24,6 +24,9 @@
   width: 18%;
   margin: 10px;
   text-align: center;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
 }
 .applicantName1 {
   font-weight: 600;

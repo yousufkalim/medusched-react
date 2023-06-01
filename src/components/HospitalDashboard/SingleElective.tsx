@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import Header from '../Header/Header';
 // import Pic1 from '../../assets/P1.png';
-// import Loc from '../../assets/loc.svg';
+import Loc from '../../assets/loc.svg';
 import { mediaUrl } from '../../config';
 import Note from '../../assets/Note.svg';
 import api from '../../api/request';
@@ -129,10 +129,6 @@ const SingleElective: FC = () => {
     (student) => student?.studentId?._id === store?.user?._id,
   );
   const handleExtendElective = (): void => {
-    console.log('handleExtend studentId', studentId);
-    console.log('elective?._id', elective?._id);
-    console.log('updated studentDuration', studentDuration);
-
     api('put', `/electives/extendElective/${studentId}`, {
       electiveID: elective?._id,
       studentDuration,
@@ -149,6 +145,8 @@ const SingleElective: FC = () => {
         setLoading(false);
       });
   };
+
+  console.log('elective detail page ', elective);
 
   const currentDate = new Date();
 
@@ -173,8 +171,12 @@ const SingleElective: FC = () => {
                   alt="pic1"
                 />
               </div>
-              <p className="electivetitle">{}</p>
+              <div>
+                {/* <p className="electivetitle">{elective?.hospital?.name}</p>
+                <p className="electivetitleHmail">{elective?.hospital?.email}</p> */}
+              </div>
             </div>
+
             <div className="singleElectiveBody">
               <div className="headingdiv1">
                 {/* <h1 className="heding1">{store?.user?.name}</h1> */}
@@ -202,12 +204,17 @@ const SingleElective: FC = () => {
                 )}
               </div>
               <div className="singleloc">
-                <div className="loc1">
-                  {' '}
-                  {/* <img src={Loc} alt="Pic1" />
-                  <span style={{ color: '#1d8de2', margin: '0px 3px' }}>Patreon </span>
-                  <span style={{ color: 'gray' }}> London town, MD </span> */}
-                </div>
+                {elective?.hospital?.address && (
+                  <div className="loc1">
+                    {' '}
+                    <img src={Loc} alt="Pic1" />
+                    <span style={{ color: '#1d8de2', margin: '0px 3px' }}>
+                      {elective?.hospital?.address}{' '}
+                    </span>
+                    {/* <span style={{ color: 'gray' }}> London town, MD </span> */}
+                  </div>
+                )}
+
                 <div className="datediv">
                   <span style={{ color: 'gray' }}>
                     Posted {elective?.createdAt && moment(new Date(elective?.createdAt)).fromNow()}{' '}
@@ -227,7 +234,7 @@ const SingleElective: FC = () => {
                 </div>
               </div>
               <p className="singleP1">
-                <span style={{ color: '#1d8de2', margin: '0px 2px' }}>
+                <span className="desSpan">
                   {' '}
                   Description <br className="singlebr"></br>-{' '}
                 </span>
@@ -284,7 +291,7 @@ const SingleElective: FC = () => {
                               ...
                             </button>
                           </div> */}
-                          <div style={{ textAlign: 'end' }}>
+                          <div className="appliedMainDiv">
                             <button
                               className="electiveMenuBtn"
                               onClick={(e): void => {
@@ -299,15 +306,16 @@ const SingleElective: FC = () => {
                               <img src={MenuI} alt="MenuI" />
                             </button>
                           </div>
-                          <p className="applicantName1">{student?.studentId?.name}</p>
-                          <p className="applicantemail1">{student?.studentId?.email}</p>
-                          <p className="applicantemail1">
-                            Duration: <button> {student?.duration}</button>
-                          </p>
+                          <div className="appliedDiv">
+                            <p className="applicantName1">{student?.studentId?.name}</p>
+                            <p className="applicantemail1">{student?.studentId?.email}</p>
+                            <p className="applicantemail1">
+                              Duration: <button> {student?.duration}</button>
+                            </p>
+                          </div>
                         </div>
                       </>
                     ))}
-
                     <Menu
                       id="basic-menu"
                       anchorEl={anchorEl}
