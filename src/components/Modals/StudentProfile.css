@@ -1,0 +1,40 @@
+.studentprofileMaindiv {
+  width: 100%;
+  padding: 25px 0px;
+}
+.studentprofilepic {
+  width: 500px;
+  height: 140px;
+  border-radius: 50%;
+  margin: auto;
+}
+.studentprofileschool {
+  width: 100%;
+  height: 55px;
+  border: 2px solid black;
+  border-radius: 100px;
+  padding-left: 25px;
+}
+.studentpasswordicon {
+  position: relative;
+  left: 430px;
+  bottom: 35px;
+}
+
+@media screen and (max-width: 680px) {
+  .studentprofileMaindiv {
+    width: 95%;
+    margin: 2% auto;
+    padding: 25px 0px;
+  }
+  .studentprofilepic {
+    width: 500px;
+    height: 70px;
+    margin-top: 3%;
+  }
+  .studentpasswordicon {
+    position: relative;
+    left: 207px;
+    bottom: 35px;
+  }
+}

@@ -1,3 +1,4 @@
+import School from './school';
 export default interface User {
   _id?: string;
   studentId?: string;
@@ -8,6 +9,7 @@ export default interface User {
   phone?: string;
   gender?: string;
   electives?: any[];
+  school: School | string;
   role?: string;
   address?: string;
   city?: string;
