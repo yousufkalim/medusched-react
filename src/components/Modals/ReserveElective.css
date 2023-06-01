@@ -47,6 +47,9 @@
 .checkboxtext {
   margin-top: 5px;
 }
+.checkboxtext:hover {
+  text-decoration: underline;
+}
 .deleteelectivesh1 {
   font-size: 25px;
   font-weight: 700;
