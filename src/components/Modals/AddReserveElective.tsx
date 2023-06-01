@@ -176,12 +176,26 @@ const AddReserveElective: FC<IBasicModal> = ({
           value={checkbox}
           onChange={handleCheckboxChange}
         />
-        <span className="checkboxtext">{'I accept the cancellation policy'}</span>
+        <a
+          href={
+            'https://docs.google.com/document/d/1EGT_A63OHrOlPX0bTI_w9xeCNDUgP29g/edit?usp=sharing&ouid=101503611183470219964&rtpof=true&sd=true'
+          }
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="checkboxtext">
+            {'I accept elective guidelines and cancellation policy'}
+          </span>
+        </a>
       </div>
       <div className="createelectivebtnDiv">
-        <button className="createelectivebtn" onClick={handleSubmit}>
-          Reserve
-        </button>
+        {loading ? (
+          <button className="createelectivebtn">Loading</button>
+        ) : (
+          <button className="createelectivebtn" onClick={handleSubmit}>
+            Reserve
+          </button>
+        )}
       </div>
     </Box>
   );
