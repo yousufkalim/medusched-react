@@ -51,6 +51,7 @@ const SingleElective: FC = () => {
   const [studentId, setStudentId] = React.useState<string>('');
   const [studentName, setStudentName] = React.useState<string>('');
   const [studentDuration, setStudentDuration] = React.useState<string>('');
+
   const open = Boolean(anchorEl);
 
   const handleClick = (
@@ -146,7 +147,12 @@ const SingleElective: FC = () => {
       });
   };
 
-  console.log('elective detail page ', elective);
+  const duration = elective?.students.some((student) => student.studentId._id === store?.user?._id)
+    ? elective?.students.find((student) => student.studentId._id === store?.user?._id)?.duration ??
+      ''
+    : '';
+
+  console.log('studnetddd', duration);
 
   const currentDate = new Date();
 
@@ -248,7 +254,7 @@ const SingleElective: FC = () => {
                 <div className="btndiv2"></div>
                 <button>
                   <span style={{ color: 'gray', margin: '0px 5px' }}>Duration</span>
-                  {elective?.duration}
+                  {duration || elective?.duration}
                 </button>
               </div>
             </div>
