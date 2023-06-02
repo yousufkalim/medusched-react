@@ -70,65 +70,66 @@ const Header1: FC = () => {
             <span style={{ color: '#1D8DE2' }}>{headerName?.name ? headerName?.name : ''}</span>
           </h3>
         </div>
-        {isLogin ? (
-          <div className="loginNameDiv">
-            {store?.user?.role === 'Hospital' ? (
-              <img
-                className="hospitalheaderlogo"
-                // src={Pic1}
-                src={`${mediaUrl}/${String(store?.user?.logo)}`}
-                alt="menuicon"
-              />
-            ) : (
-              <div className="line"></div>
-            )}
+        <div className="parent_loginOutDiv">
+          {isLogin ? (
+            <div className="loginNameDiv">
+              {store?.user?.role === 'Hospital' ? (
+                <img
+                  className="hospitalheaderlogo"
+                  // src={Pic1}
+                  src={`${mediaUrl}/${String(store?.user?.logo)}`}
+                  alt="menuicon"
+                />
+              ) : (
+                <div className="line"></div>
+              )}
 
-            <button
-              onClick={() => {
-                setloginFlag(!loginFlag);
-              }}
-              className="nbtn"
-            >
-              <div className="loginame">{store?.user?.name}</div>{' '}
-              <img className="loginarrow" src={SortArrow1} alt="menuicon" />
-            </button>
-          </div>
-        ) : (
-          <div className="loginBtnDiv1">
-            <NavLink to={'/hospitallogin'}>
-              {' '}
-              <button className="loginSignupButtonH">
-                <span>Hospital </span>
-                <p className="hideresponsiv">Login</p>
-              </button>
-            </NavLink>
-            <NavLink to={'/login'}>
-              {' '}
-              <button className="loginSignupButton">
-                Login/Sign up <span className="spanspace" />
-                <img src={Person} alt="a" />
-              </button>
-            </NavLink>
-          </div>
-        )}
-      </div>
-      {loginFlag && (
-        <>
-          <div className="logoutMainDiv">
-            <NavLink to="/profile">
-              <div className="logoutElectives">Profile</div>
-            </NavLink>
-            <NavLink to="/electives">
-              <div className="logoutElectives">Electives</div>
-            </NavLink>
-            <div className="logoutElectives">
-              <button className="logoutbtn" onClick={handleLogout} style={{ fontWeight: '600' }}>
-                <img className="loginarrow" src={LogoutPic} alt="menuicon" /> Logout
+              <button
+                onClick={() => {
+                  setloginFlag(!loginFlag);
+                }}
+                className="nbtn"
+              >
+                <div className="loginame">{store?.user?.name}</div>{' '}
+                <img className="loginarrow" src={SortArrow1} alt="menuicon" />
               </button>
             </div>
-          </div>
-        </>
-      )}
+          ) : (
+            <div className="loginBtnDiv1">
+              <NavLink to={'/hospitallogin'}>
+                {' '}
+                <button className="loginSignupButtonH">
+                  <span>Hospital </span>
+                  <p className="hideresponsiv">Login</p>
+                </button>
+              </NavLink>
+              <NavLink to={'/login'}>
+                {' '}
+                <button className="loginSignupButton">
+                  Login/Sign up <span className="spanspace" />
+                  <img src={Person} alt="a" />
+                </button>
+              </NavLink>
+            </div>
+          )}
+
+          {loginFlag && (
+            <div className="logoutMainDiv">
+              <NavLink to="/profile">
+                <div className="logoutElectives">Profile</div>
+              </NavLink>
+              <NavLink to="/electives">
+                <div className="logoutElectives">Electives</div>
+              </NavLink>
+              <div className="logoutElectives">
+                <button className="logoutbtn" onClick={handleLogout} style={{ fontWeight: '600' }}>
+                  <img className="loginarrow" src={LogoutPic} alt="menuicon" /> Logout
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 };
