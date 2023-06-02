@@ -382,7 +382,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                     <img src={Noelectives} alt="Noelectives" />
                   </div>
                   <div className="addelectivediv2">
-                    <div className="createElectivediv">No Elective to show P</div>
+                    <div className="createElectivediv">No Elective to show</div>
                   </div>
                 </>
               )}
