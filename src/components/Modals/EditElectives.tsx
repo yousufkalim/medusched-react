@@ -176,6 +176,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
           // scrollableYearDropdown
           showMonthDropdown
           adjustDateOnChange
+          disabled
         />
       </div>
       <div className="electiveInputDiv">
