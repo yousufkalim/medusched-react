@@ -116,8 +116,6 @@ const StudentProfile: FC<IBasicModal> = ({ open, setOpen, student }) => {
 
     if (studentProfile?.name === '') {
       toast.error('Name is Required');
-    } else if (studentProfile?.logo === '') {
-      toast.error('Logo is Required');
     } else if (studentProfile?.school === '') {
       toast.error('School is Required');
     } else {
