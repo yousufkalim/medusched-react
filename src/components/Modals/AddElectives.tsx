@@ -205,6 +205,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
           inputProps={{ 'aria-label': 'secondary checkbox' }}
           style={{ color: '#1D8DE2' }}
           name="checkbox"
+          defaultChecked={false}
           value={checkbox}
           onChange={handleCheckboxChange}
         />

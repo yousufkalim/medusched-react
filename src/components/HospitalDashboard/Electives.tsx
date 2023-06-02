@@ -22,16 +22,17 @@ interface IElectives {
 interface IElectiveProps {
   title: string;
 }
-// const myHeader = ["Student's Name", 'Hospital_name', 'Elective_name', 'Start_date', 'Duration'];
-const myHeader = [
-  "Student's Name",
-  'Student’s ID',
-  'Hospital Name',
-  'Elective Name',
-  'Start Date',
-  'End Date',
-  'Weeks',
-];
+
+// const myHeader = [
+//   "Student's Name",
+//   'Student’s ID',
+//   'Hospital Name',
+//   'Elective Name',
+//   'Start Date',
+//   'End Date',
+//   'Weeks',
+// ];
+const myHeader = ["Student's Name", 'Student’s ID', 'Start Date', 'End Date', 'Weeks'];
 
 interface IMonths {
   name: string;
