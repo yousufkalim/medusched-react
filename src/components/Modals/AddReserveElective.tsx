@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import api from '../../api/request';
 import { toast } from 'react-toastify';
 import './ReserveElective.css';
+
 // import { Store, UpdateStore } from '../../context/store';
 // import Elective from '../../types/elective';
 import User from '../../types/user';
@@ -110,6 +111,15 @@ const AddReserveElective: FC<IBasicModal> = ({
         });
     }
   };
+
+  // const handleDownloadPdf = ():void => {
+  //   const link = document.createElement('a');
+  //   link.href = '/pc.pdf';
+  //   link.download = 'filename.pdf';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
   const list = (anchor: Anchor): JSX.Element => (
     <Box
       sx={{
@@ -176,13 +186,7 @@ const AddReserveElective: FC<IBasicModal> = ({
           value={checkbox}
           onChange={handleCheckboxChange}
         />
-        <a
-          href={
-            'https://docs.google.com/document/d/1EGT_A63OHrOlPX0bTI_w9xeCNDUgP29g/edit?usp=sharing&ouid=101503611183470219964&rtpof=true&sd=true'
-          }
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href={'/pc.pdf'} target="_blank" rel="noreferrer">
           <span className="checkboxtext">
             {'I accept elective guidelines and cancellation policy'}
           </span>
