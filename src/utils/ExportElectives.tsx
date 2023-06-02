@@ -12,8 +12,8 @@ import moment from 'moment';
 interface UpdatedElective {
   "Student's Name": string;
   'Student’s ID': string | undefined;
-  'Hospital Name': string;
-  'Elective Name': string;
+  // 'Hospital Name': string;
+  // 'Elective Name': string;
   'Start Date': string;
   // 'End Date': string;
   Weeks: string;
@@ -71,8 +71,8 @@ const ExportElectives: React.FC<Props> = ({ electives, myHeader }) => {
           const updatedElective = {
             "Student's Name": student.studentId?.name ?? '',
             'Student’s ID': student?.studentId?.stdId,
-            'Hospital Name': elective?.hospital?.name,
-            'Elective Name': elective.title,
+            // 'Hospital Name': elective?.hospital?.name,
+            // 'Elective Name': elective.title,
             'Start Date': moment(elective.start_date).format('MM-DD-YYYY'),
             'End Date': moment(endDate.toISOString()).format('MM-DD-YYYY'),
             Weeks: elective.duration.charAt(0),
