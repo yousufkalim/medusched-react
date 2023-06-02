@@ -382,7 +382,14 @@ const SingleElective: FC = () => {
                     <button
                       className="singleReservebtn"
                       onClick={() => {
-                        setOpenAddReserve(true);
+                        if (
+                          elective?.limitenrollment &&
+                          elective?.students.length === elective?.limit
+                        ) {
+                          toast.error('Application limit reached');
+                        } else {
+                          setOpenAddReserve(true);
+                        }
                       }}
                     >
                       Reserve
