@@ -3,6 +3,7 @@ import Loginlogo from '../../assets/LoginLogo.svg';
 import LoginImg from '../../assets/login.png';
 import LoginImgMobile from '../../assets/login.svg';
 import HidePassword from '../../assets/hidepass.svg';
+import ShowPassword from '../../assets/showPassword.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import api from '../../api/request';
@@ -167,44 +168,47 @@ const Resgister: FC = () => {
               onChange={handleChange}
             />
           </div>
-
           <div className="loginInputDiv">
             <p className="loginp">Password</p>
-            <input
-              className="loginInput"
-              type={password1 ? 'text' : 'password'}
-              placeholder="*********"
-              name="password"
-              value={formData?.password}
-              onChange={handleChange}
-            />
-            <button
-              onClick={() => {
-                setPassword1(!password1);
-              }}
-            >
-              {' '}
-              <img className="hidePassword1" src={HidePassword} alt="hidepass" />
-            </button>
+            <div style={{ position: 'relative' }}>
+              <input
+                className="loginInput"
+                type={password1 ? 'text' : 'password'}
+                placeholder="*********"
+                name="password"
+                value={formData?.password}
+                onChange={handleChange}
+              />
+              <img
+                className="hidePassword"
+                onClick={() => {
+                  setPassword1(!password1);
+                }}
+                src={password1 ? ShowPassword : HidePassword}
+                alt="hidepass"
+              />
+            </div>
           </div>
           <div className="loginInputDiv">
             <p className="loginp">Confirm Password</p>
-            <input
-              className="loginInput"
-              type={password2 ? 'text' : 'password'}
-              placeholder="*********"
-              name="confirmpassword"
-              value={formData?.confirmpassword}
-              onChange={handleChange}
-            />
-            <button
-              onClick={() => {
-                setPassword2(!password2);
-              }}
-            >
-              {' '}
-              <img className="hidePassword2" src={HidePassword} alt="hidepass" />
-            </button>
+            <div style={{ position: 'relative' }}>
+              <input
+                className="loginInput"
+                type={password2 ? 'text' : 'password'}
+                placeholder="*********"
+                name="confirmpassword"
+                value={formData?.confirmpassword}
+                onChange={handleChange}
+              />
+              <img
+                onClick={() => {
+                  setPassword2(!password2);
+                }}
+                className="hidePassword"
+                src={password2 ? ShowPassword : HidePassword}
+                alt="hidepass"
+              />
+            </div>
           </div>
           <div className="loginbtnDiv">
             {loading ? (

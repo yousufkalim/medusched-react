@@ -3,6 +3,7 @@ import Loginlogo from '../../assets/LoginLogo.svg';
 import LoginImg from '../../assets/login.png';
 import LoginImgMobile from '../../assets/login.svg';
 import HidePassword from '../../assets/hidepass.svg';
+import ShowPassword from '../../assets/showPassword.svg';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './Login.css';
@@ -81,22 +82,24 @@ const Login: FC = () => {
           </div>
           <div className="loginInputDiv">
             <p className="loginp">Password</p>
-            <input
-              className="loginInput"
-              type={flag ? 'text' : 'password'}
-              placeholder="*********"
-              name="password"
-              value={user?.password}
-              onChange={handleChange}
-            />
-            <button
-              onClick={() => {
-                setFlag(!flag);
-              }}
-            >
-              {' '}
-              <img className="hidePassword" src={HidePassword} alt="hidepass" />
-            </button>
+            <div style={{ position: 'relative' }}>
+              <input
+                className="loginInput"
+                type={flag ? 'text' : 'password'}
+                placeholder="*********"
+                name="password"
+                value={user?.password}
+                onChange={handleChange}
+              />
+              <img
+                className="hidePassword"
+                src={flag ? ShowPassword : HidePassword}
+                alt="hidepass"
+                onClick={() => {
+                  setFlag(!flag);
+                }}
+              />
+            </div>
             <div className="forgotdiv">
               {' '}
               <button
