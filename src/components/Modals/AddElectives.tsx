@@ -33,8 +33,9 @@ interface IElectivesBody extends IUserObject {
 interface IBasicModal {
   open: boolean;
   setOpen: (open: boolean) => void;
+  getElectives: () => void;
 }
-const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
+const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, getElectives }) => {
   const updateStore = UpdateStore();
   const store = Store();
   const [electiveData, setElectiveData] = useState<IUserObject>({
@@ -94,6 +95,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen }) => {
         limitenrollment: checkbox,
       })
         .then((res) => {
+          getElectives();
           if (updateStore && store && res.elective) {
             updateStore({
               electives: store.electives?.length

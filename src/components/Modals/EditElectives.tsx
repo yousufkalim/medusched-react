@@ -34,8 +34,15 @@ interface IBasicModal {
   setOpen: (open: boolean) => void;
   elective: Elective | null;
   getElectives?: () => void;
+  getSingleElectives?: () => void;
 }
-const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElectives }) => {
+const AddelectivesDrawer: FC<IBasicModal> = ({
+  open,
+  setOpen,
+  elective,
+  getElectives,
+  getSingleElectives,
+}) => {
   const [electiveData, setElectiveData] = useState<IUserObject>({
     title: '',
     description: '',
@@ -100,6 +107,7 @@ const AddelectivesDrawer: FC<IBasicModal> = ({ open, setOpen, elective, getElect
         limitenrollment: checkbox,
       })
         .then((res) => {
+          if (getSingleElectives) getSingleElectives();
           if (getElectives) {
             getElectives();
           }

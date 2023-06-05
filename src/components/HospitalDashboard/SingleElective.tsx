@@ -85,7 +85,7 @@ const SingleElective: FC = () => {
   };
   useEffect((): void => {
     getSingleElectives();
-  }, [editopen]);
+  }, []);
 
   const handleDelete = (): void => {
     api<IElectiveResponse>('put', `/electives/delete/${id}`)
@@ -110,6 +110,8 @@ const SingleElective: FC = () => {
   //   }
   // };
   const handleDeleteStudentElective = (): void => {
+    setLoading(true);
+    setDeleteopenstd(false);
     api<IElectiveID>('put', `/electives/deletestudent/${studentId}`, {
       electiveID: elective?._id,
     })
@@ -117,7 +119,6 @@ const SingleElective: FC = () => {
         getSingleElectives();
         toast.success('Student remove successfully');
         setLoading(false);
-        setDeleteopenstd(false);
         setStudentId('');
         setStudentName('');
         setStudentDuration('');
@@ -430,7 +431,12 @@ const SingleElective: FC = () => {
       />
 
       <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
-      <EditElectives open={editopen} setOpen={setEditOpen} elective={elective} />
+      <EditElectives
+        open={editopen}
+        setOpen={setEditOpen}
+        elective={elective}
+        getSingleElectives={getSingleElectives}
+      />
       <EvaluationModal
         open={openEvaluation}
         setOpen={setOpenEvaluation}
