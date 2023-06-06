@@ -118,7 +118,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   }, [menuFlag]);
   useEffect((): void => {
     store?.user?.role === 'student' ? getAllAffiliatedElectives() : getElectives();
-  }, [open]);
+  }, []);
   const handleAddBtn = (): void => {
     setOpen(true);
   };
@@ -391,7 +391,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
         </>
       )}
 
-      <AddElectives open={open} setOpen={setOpen} />
+      <AddElectives getElectives={getElectives} open={open} setOpen={setOpen} />
     </>
   );
 };
