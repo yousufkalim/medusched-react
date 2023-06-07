@@ -1,0 +1,151 @@
+.schoolDashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fbfbfb;
+  padding: 1% 0%;
+}
+.schoolDashboard_data {
+  width: 88%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 1% 0% 3% 0%;
+  border-radius: 20px;
+}
+
+.schoolDashboard_table {
+  width: 95%;
+  text-align: start;
+}
+.schoolDashboard_table_heading {
+  background: #fbfbfb;
+  border-radius: 100px;
+  width: 100%;
+}
+
+.schoolDashboard_table_heading_txt {
+  padding: 1%;
+  text-align: start;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: 'Outfit';
+  color: #363535;
+}
+.schoolDashboard_table_heading_txt_at {
+  padding: 1% 6% 1% 1%;
+  text-align: end;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: 'Outfit';
+  color: #363535;
+  border-top-right-radius: 100px !important;
+  border-bottom-right-radius: 100px !important;
+}
+.schoolDashboard_table_body {
+  width: 100%;
+}
+
+.schoolDashboard_table_body_name {
+  width: 20%;
+  padding: 2% 0% 2% 1%;
+  text-align: start;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: 'Outfit';
+  color: #363535;
+}
+.schoolDashboard_table_body_txt {
+  padding: 1% 1% 1% 1%;
+  text-align: start;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #363535;
+  font-family: 'Outfit';
+}
+.schoolDashboard_table_body_btns {
+  padding-top: 10%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.schoolDashboard_table_body_btns button {
+  color: #919b9b;
+  background: rgba(255, 93, 57, 0.1);
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 2% 10%;
+}
+.schoolDashboard_table_body_btns .button_active {
+  color: #47b45f;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 2% 10%;
+  background: rgba(71, 180, 95, 0.1);
+}
+
+.schoolDashboard_table_body_btns .button_unactive {
+  color: #919b9b;
+  background: transparent;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 2% 10%;
+}
+.schoolDashboard_table_body_btns .button_inactive {
+  color: #ff5d39;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 2% 10%;
+  background: rgba(255, 93, 57, 0.1);
+}
+.schoolDashboard_table_body tr {
+  width: 100%;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+  padding: 2% 0%;
+}
+.pagination_data {
+  width: 87%;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2% 0%;
+}
+.pagination_txt {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: 'Poppins';
+  color: #919b9b;
+}
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: #ffffff !important;
+  border: 1px solid #1d8de2 !important;
+}
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+  background-color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+.schoolDashboard_borderleft {
+  border-top-left-radius: 100px !important;
+  border-bottom-left-radius: 100px !important;
+}

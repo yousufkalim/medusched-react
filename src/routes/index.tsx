@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import ResetPassword from '../components/Login/ResetPassword';
 import VerifyStudent from '../components/Login/VerifyStudent';
+import SchoolDashboard from '../components/SchoolDashboard/SchoolDashboard';
 
 // Types
 interface BaseRoute {
@@ -113,6 +114,10 @@ const routes: Route[] = [
         <Profile />
       </PrivateRoute>
     ),
+  },
+  {
+    path: '/classdashboard',
+    element: <SchoolDashboard />,
   },
 
   {
