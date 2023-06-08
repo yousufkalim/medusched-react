@@ -30,7 +30,10 @@
   width: 100%;
 }
 
-.schoolDashboard_table_heading_txt {
+.schoolDashboard_table_heading_txt,
+.schoolDashboard_table_heading_txt_name,
+.schoolDashboard_table_heading_txt_contact,
+.schoolDashboard_table_heading_txt_created {
   padding: 1%;
   text-align: start;
   font-weight: 500;
@@ -67,7 +70,9 @@
   color: #363535;
 }
 
-.schoolDashboard_table_body_txt {
+.schoolDashboard_table_body_txt,
+.schoolDashboard_table_body_txt_contact,
+.schoolDashboard_table_body_txt_created {
   padding: 1% 1% 1% 1%;
   text-align: start;
   font-weight: 400;
@@ -163,4 +168,59 @@
 .schoolDashboard_borderleft {
   border-top-left-radius: 100px !important;
   border-bottom-left-radius: 100px !important;
+}
+
+@media screen and (max-width: 680px) {
+  .schoolDashboard {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .schoolDashboard_data {
+    width: 90%;
+    overflow-x: auto;
+    display: inline-block;
+  }
+
+  .schoolDashboard_table_heading_txt,
+  .schoolDashboard_table_heading_txt_at,
+  .schoolDashboard_table_body_btns .button_active,
+  .schoolDashboard_table_body_btns .button_unactive,
+  .schoolDashboard_table_body_txt,
+  .schoolDashboard_table_body_name,
+  .schoolDashboard_table_heading_txt_contact,
+  .schoolDashboard_table_body_txt_contact,
+  .schoolDashboard_table_body_txt_created,
+  .schoolDashboard_table_heading_txt_created {
+    font-size: 12px;
+    white-space: pre;
+  }
+
+  .schoolDashboard_table_body_txt_contact,
+  .schoolDashboard_table_heading_txt_contact {
+    padding-left: 8%;
+  }
+
+  .schoolDashboard_table_body_txt_created,
+  .schoolDashboard_table_heading_txt_created {
+    padding-left: 10%;
+  }
+
+  .schoolDashboard_table_heading_txt,
+  .schoolDashboard_table_body_txt {
+    padding-left: 5%;
+  }
+
+  .schoolDashboard_table_heading_txt_at {
+    padding: 0;
+    padding-left: 30%;
+  }
+
+  .schoolDashboard_table_body_btns {
+    padding-left: 100%;
+  }
+
+  .schoolDashboard_table_body_btns {
+    width: fit-content;
+  }
 }
