@@ -54,12 +54,12 @@ const SchoolDashboard: FC = () => {
           <table className="schoolDashboard_table">
             <thead className="schoolDashboard_table_heading">
               <tr>
-                <th className="schoolDashboard_table_heading_txt schoolDashboard_borderleft">
+                <th className="schoolDashboard_table_heading_txt_name schoolDashboard_borderleft">
                   Name
                 </th>
                 <th className="schoolDashboard_table_heading_txt">Email</th>
-                <th className="schoolDashboard_table_heading_txt">Contact No</th>
-                <th className="schoolDashboard_table_heading_txt">Created Date</th>
+                <th className="schoolDashboard_table_heading_txt_contact">Contact No</th>
+                <th className="schoolDashboard_table_heading_txt_created">Created Date</th>
                 <th className="schoolDashboard_table_heading_txt_at">Status</th>
               </tr>
             </thead>
@@ -69,8 +69,8 @@ const SchoolDashboard: FC = () => {
                 <tr className="schoolDashboard_table_body_data" key={item._id}>
                   <td className="schoolDashboard_table_body_name">{item.name}</td>
                   <td className="schoolDashboard_table_body_txt">{item.email}</td>
-                  <td className="schoolDashboard_table_body_txt">{item.phone}</td>
-                  <td className="schoolDashboard_table_body_txt">
+                  <td className="schoolDashboard_table_body_txt_contact">{item.phone}</td>
+                  <td className="schoolDashboard_table_body_txt_created">
                     {moment(item?.createdAt).format('ddd MMMM DD YYYY')}
                   </td>
                   <td className="schoolDashboard_table_body_btns">
