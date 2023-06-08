@@ -102,7 +102,7 @@ const Login: FC = () => {
                 alt="hidepass"
               />
             </div>
-            <div className="forgotdiv">
+            {/* <div className="forgotdiv">
               {' '}
               <button
                 className="forget"
@@ -112,7 +112,7 @@ const Login: FC = () => {
               >
                 Forgot Password?
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="loginbtnDiv">
             {loading ? (
