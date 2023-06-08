@@ -113,21 +113,38 @@ const Header1: FC = () => {
             </div>
           )}
 
-          {loginFlag && (
-            <div className="logoutMainDiv">
-              <NavLink to="/profile">
-                <div className="logoutElectives">Profile</div>
-              </NavLink>
-              <NavLink to="/electives">
-                <div className="logoutElectives">Electives</div>
-              </NavLink>
-              <div className="logoutElectives">
-                <button className="logoutbtn" onClick={handleLogout} style={{ fontWeight: '600' }}>
-                  <img className="loginarrow" src={LogoutPic} alt="menuicon" /> Logout
-                </button>
+          {loginFlag &&
+            (store?.user?.role === 'school' ? (
+              <div className="logoutMainDiv">
+                <div className="logoutElectives">
+                  <button
+                    className="logoutbtn"
+                    onClick={handleLogout}
+                    style={{ fontWeight: '600' }}
+                  >
+                    <img className="loginarrow" src={LogoutPic} alt="menuicon" /> Logout
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
+            ) : (
+              <div className="logoutMainDiv">
+                <NavLink to="/profile">
+                  <div className="logoutElectives">Profile</div>
+                </NavLink>
+                <NavLink to="/electives">
+                  <div className="logoutElectives">Electives</div>
+                </NavLink>
+                <div className="logoutElectives">
+                  <button
+                    className="logoutbtn"
+                    onClick={handleLogout}
+                    style={{ fontWeight: '600' }}
+                  >
+                    <img className="loginarrow" src={LogoutPic} alt="menuicon" /> Logout
+                  </button>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </>
