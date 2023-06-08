@@ -7,6 +7,7 @@
   background: #fbfbfb;
   padding: 1% 0%;
 }
+
 .schoolDashboard_data {
   width: 88%;
   display: flex;
@@ -22,6 +23,7 @@
   width: 95%;
   text-align: start;
 }
+
 .schoolDashboard_table_heading {
   background: #fbfbfb;
   border-radius: 100px;
@@ -37,6 +39,7 @@
   font-family: 'Outfit';
   color: #363535;
 }
+
 .schoolDashboard_table_heading_txt_at {
   padding: 1% 6% 1% 1%;
   text-align: end;
@@ -48,6 +51,7 @@
   border-top-right-radius: 100px !important;
   border-bottom-right-radius: 100px !important;
 }
+
 .schoolDashboard_table_body {
   width: 100%;
 }
@@ -62,15 +66,17 @@
   font-family: 'Outfit';
   color: #363535;
 }
+
 .schoolDashboard_table_body_txt {
   padding: 1% 1% 1% 1%;
   text-align: start;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #363535;
   font-family: 'Outfit';
 }
+
 .schoolDashboard_table_body_btns {
   padding-top: 10%;
   width: 90%;
@@ -78,6 +84,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .schoolDashboard_table_body_btns button {
   color: #919b9b;
   background: rgba(255, 93, 57, 0.1);
@@ -87,6 +94,7 @@
   line-height: 24px;
   padding: 2% 10%;
 }
+
 .schoolDashboard_table_body_btns .button_active {
   color: #47b45f;
   border-radius: 100px;
@@ -106,6 +114,7 @@
   line-height: 24px;
   padding: 2% 10%;
 }
+
 .schoolDashboard_table_body_btns .button_inactive {
   color: #ff5d39;
   border-radius: 100px;
@@ -115,11 +124,13 @@
   padding: 2% 10%;
   background: rgba(255, 93, 57, 0.1);
 }
+
 .schoolDashboard_table_body tr {
   width: 100%;
   border-bottom: 1px solid rgba(200, 200, 200, 0.5);
   padding: 2% 0%;
 }
+
 .pagination_data {
   width: 87%;
   display: flex !important;
@@ -128,6 +139,7 @@
   justify-content: space-between;
   padding: 2% 0%;
 }
+
 .pagination_txt {
   font-style: italic;
   font-weight: 400;
@@ -136,15 +148,18 @@
   font-family: 'Poppins';
   color: #919b9b;
 }
+
 .css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background-color: #ffffff !important;
   border: 1px solid #1d8de2 !important;
 }
+
 .css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
   background-color: #ffffff !important;
   border: none !important;
   border-radius: 8px !important;
 }
+
 .schoolDashboard_borderleft {
   border-top-left-radius: 100px !important;
   border-bottom-left-radius: 100px !important;
