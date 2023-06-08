@@ -7,6 +7,11 @@
   background: #fbfbfb;
   padding: 1% 0%;
 }
+.CsvDiv {
+  width: 95%;
+  text-align: end;
+  padding: 10px 20px 20px 10px;
+}
 
 .schoolDashboard_data {
   width: 88%;

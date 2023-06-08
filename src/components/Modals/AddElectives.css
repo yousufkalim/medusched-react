@@ -105,6 +105,17 @@
 .deleteelectivebtn:hover {
   background: #d94646;
 }
+.activatebtn {
+  background: #1d8de2;
+  margin: 5px 5px 10px 5px;
+  color: white;
+  border-radius: 100px;
+  padding: 16px 40px;
+  font-weight: 600;
+}
+.activatebtn:hover {
+  background: #197fcd;
+}
 .extendelectivebtn {
   background: #1d8de2;
   margin: 5px 5px 10px 5px;
