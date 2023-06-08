@@ -6,10 +6,16 @@ import './SchoolDashboard.css';
 import moment from 'moment';
 import api from '../../api/request';
 import { IStudent, IResponse } from '../../types/user';
+import ActivateUser from '../Modals/ActivateUser';
+import InActivateUser from '../Modals/InActivateUser';
+import ExportStudents from '../../utils/ExportStudents';
 import { toast } from 'react-toastify';
 
 const SchoolDashboard: FC = () => {
   const [students, setStudents] = useState<IStudent[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+  const [openInActive, setOpenInActive] = useState<boolean>(false);
+  const [selectedStudent, setSelectedStudent] = useState<IStudent | null>(null);
   const getStudents = (): void => {
     api<IResponse>('get', 'students/schoolStudents')
       .then((res) => {
@@ -24,33 +30,39 @@ const SchoolDashboard: FC = () => {
     getStudents();
   }, []);
 
-  const handleActivate = (student: { _id: string }): void => {
-    api('put', `students/activate/${student?._id}`, { active: true })
+  const handleActivate = (): void => {
+    api('put', `students/activate/${selectedStudent?._id as string}`, { active: true })
       .then(() => {
         toast.success('Status Updated successfully');
         getStudents();
+        setOpen(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const handleInActivate = (student: { _id: string }): void => {
-    api('put', `students/activate/${student?._id}`, { active: false })
+  const handleInActivate = (): void => {
+    api('put', `students/activate/${selectedStudent?._id as string}`, { active: false })
       .then(() => {
         toast.success('Status Updated successfully');
         getStudents();
+        setOpenInActive(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log(students);
+  console.log('selectedStudent', selectedStudent);
+  const myHeader = ["Student's Name", 'Email', 'Contact No', 'Created At', 'Status'];
   return (
     <>
       <Header />
       <div className="schoolDashboard">
         <div className="schoolDashboard_data">
+          <div className="CsvDiv">
+            <ExportStudents students={students} myHeader={myHeader} />
+          </div>
           <table className="schoolDashboard_table">
             <thead className="schoolDashboard_table_heading">
               <tr>
@@ -78,7 +90,8 @@ const SchoolDashboard: FC = () => {
                       type="button"
                       className={item.active ? 'button_active' : 'button_unactive'}
                       onClick={() => {
-                        handleActivate(item);
+                        setSelectedStudent(item);
+                        setOpen(true);
                       }}
                     >
                       Active
@@ -87,7 +100,8 @@ const SchoolDashboard: FC = () => {
                       type="button"
                       className={!item.active ? 'button_inactive' : 'button_unactive'}
                       onClick={() => {
-                        handleInActivate(item);
+                        setSelectedStudent(item);
+                        setOpenInActive(true);
                       }}
                     >
                       Inactive
@@ -109,6 +123,18 @@ const SchoolDashboard: FC = () => {
           />
         </Stack> */}
       </div>
+      <ActivateUser
+        open={open}
+        setOpen={setOpen}
+        setSelectedStudent={setSelectedStudent}
+        handleActivateStudent={handleActivate}
+      />
+      <InActivateUser
+        open={openInActive}
+        setOpen={setOpenInActive}
+        setSelectedStudent={setSelectedStudent}
+        handleInActivateStudent={handleInActivate}
+      />
     </>
   );
 };

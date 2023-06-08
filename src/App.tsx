@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import Router from 'react-easy-router';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Flip } from 'react-toastify';
 
 // Routes
 import routes from './routes';
@@ -21,7 +21,7 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <ToastContainer position="bottom-right" autoClose={3000} />
+      <ToastContainer position="bottom-right" autoClose={3000} transition={Flip} />
 
       <Router routes={routes} isAuthenticated={checkAuth} />
     </div>

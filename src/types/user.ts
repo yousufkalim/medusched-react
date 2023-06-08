@@ -4,6 +4,9 @@ export interface IStudent {
   _id: string;
   email: string;
   name: string;
+  phone?: string;
+  active?: boolean;
+  createdAt: Date;
 }
 export default interface User {
   _id?: string;
