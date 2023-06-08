@@ -8,7 +8,7 @@ interface IPublicRoute {
 const PublicRoute: FC<IPublicRoute> = ({ children }) => {
   const isLogin = localStorage.getItem('token');
   if (isLogin) {
-    return <Navigate to="/electives" replace />;
+    return <Navigate to="/dashboards" replace />;
   }
   return <>{children}</>;
 };
