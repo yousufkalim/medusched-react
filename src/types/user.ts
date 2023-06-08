@@ -1,4 +1,10 @@
 import School from './school';
+
+export interface IStudent {
+  _id: string;
+  email: string;
+  name: string;
+}
 export default interface User {
   _id?: string;
   studentId?: string;
@@ -18,4 +24,8 @@ export default interface User {
   acceptcondition?: boolean;
   createdAt: Date;
   updatedAt: Date;
+}
+export interface IResponse {
+  students: IStudent[];
+  success: boolean;
 }

@@ -1,87 +1,51 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import Header from '../Header/Header';
-// import DownloadLogo from '../../assets/Download.svg';
 import './SchoolDashboard.css';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+// import Pagination from '@mui/material/Pagination';
+// import Stack from '@mui/material/Stack';
+import moment from 'moment';
+import api from '../../api/request';
+import { IStudent, IResponse } from '../../types/user';
+import { toast } from 'react-toastify';
 
-const data = [
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: true,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: true,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: true,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: false,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: false,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: true,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: true,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: true,
-  },
-  {
-    name: 'Luca',
-    email: 'abcd@umt.com',
-    phone: '+1 (223) 123-4463',
-    date: 'Wed May 17 2023',
-    isActive: false,
-  },
-];
 const SchoolDashboard: FC = () => {
-  const [isActive, setIsActive] = useState(false);
-  const [inActive, setInactive] = useState(false);
-
-  const ActiveClick = (): void => {
-    setIsActive(!isActive);
+  const [students, setStudents] = useState<IStudent[]>([]);
+  const getStudents = (): void => {
+    api<IResponse>('get', 'students/schoolStudents')
+      .then((res) => {
+        setStudents(res?.students);
+      })
+      .catch(() => {
+        // setLoading(false);
+      });
   };
 
-  const InActiveClick = (): void => {
-    setInactive(!inActive);
+  useEffect(() => {
+    getStudents();
+  }, []);
+
+  const handleActivate = (student: { _id: string }): void => {
+    api('put', `students/activate/${student?._id}`, { active: true })
+      .then(() => {
+        toast.success('Status Updated successfully');
+        getStudents();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
+  const handleInActivate = (student: { _id: string }): void => {
+    api('put', `students/activate/${student?._id}`, { active: false })
+      .then(() => {
+        toast.success('Status Updated successfully');
+        getStudents();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  console.log(students);
   return (
     <>
       <Header />
@@ -101,24 +65,30 @@ const SchoolDashboard: FC = () => {
             </thead>
 
             <tbody className="schoolDashboard_table_body">
-              {data.map((item, index) => (
-                <tr className="schoolDashboard_table_body_data" key={index}>
+              {students?.map((item: any) => (
+                <tr className="schoolDashboard_table_body_data" key={item._id}>
                   <td className="schoolDashboard_table_body_name">{item.name}</td>
                   <td className="schoolDashboard_table_body_txt">{item.email}</td>
                   <td className="schoolDashboard_table_body_txt">{item.phone}</td>
-                  <td className="schoolDashboard_table_body_txt">{item.date}</td>
+                  <td className="schoolDashboard_table_body_txt">
+                    {moment(item?.createdAt).format('ddd MMMM DD YYYY')}
+                  </td>
                   <td className="schoolDashboard_table_body_btns">
                     <button
                       type="button"
-                      className={item.isActive ? 'button_active' : 'button_unactive'}
-                      onClick={ActiveClick}
+                      className={item.active ? 'button_active' : 'button_unactive'}
+                      onClick={() => {
+                        handleActivate(item);
+                      }}
                     >
                       Active
                     </button>
                     <button
                       type="button"
-                      className={!item.isActive ? 'button_inactive' : 'button_unactive'}
-                      onClick={InActiveClick}
+                      className={!item.active ? 'button_inactive' : 'button_unactive'}
+                      onClick={() => {
+                        handleInActivate(item);
+                      }}
                     >
                       Inactive
                     </button>
@@ -128,8 +98,8 @@ const SchoolDashboard: FC = () => {
             </tbody>
           </table>
         </div>
-        <Stack className="pagination_data">
-          <p className="pagination_txt">Showing item(s) 1-09 of 170</p>
+        {/* <Stack className="pagination_data">
+          <p className="pagination_txt">Showing item(s) 1-09 of {students.length}</p>
           <Pagination
             count={10}
             variant="outlined"
@@ -137,7 +107,7 @@ const SchoolDashboard: FC = () => {
             siblingCount={0}
             boundaryCount={1}
           />
-        </Stack>
+        </Stack> */}
       </div>
     </>
   );
