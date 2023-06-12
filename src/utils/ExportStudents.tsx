@@ -69,7 +69,7 @@ const ExportStudents: React.FC<Props> = ({ students, myHeader }) => {
           Email: student.email ?? '',
           'Contact No': student.phone ?? '',
           'Created At': moment(student.createdAt).format('MM-DD-YYYY'),
-          Status: student.active ?? '',
+          Status: student.active ? 'Activated' : 'Inactivate',
 
           // 'Start Date': moment(elective.start_date).format('MM-DD-YYYY'),
         };
