@@ -65,7 +65,7 @@ const ExportStudents: React.FC<Props> = ({ students, myHeader }) => {
       const updatedstudents: UpdatedStudents[] = [];
       students.forEach((student) => {
         const updatedStudents = {
-          "Student's Name": student.name ?? '',
+          "Student's Name": student.name ? student.name : '',
           Email: student.email ?? '',
           'Contact No': student.phone ?? '',
           'Created At': moment(student.createdAt).format('MM-DD-YYYY'),

@@ -4,6 +4,7 @@ export interface IStudent {
   _id: string;
   email: string;
   name: string;
+  lastName: string;
   phone?: string;
   active?: boolean;
   createdAt: Date;
@@ -12,6 +13,7 @@ export default interface User {
   _id?: string;
   studentId?: string;
   name?: string;
+  lastName?: string;
   logo?: string;
   email?: string;
   password?: string;

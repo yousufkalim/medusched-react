@@ -179,8 +179,8 @@ const SingleElective: FC = () => {
                 />
               </div>
               <div>
-                {/* <p className="electivetitle">{elective?.hospital?.name}</p>
-                <p className="electivetitleHmail">{elective?.hospital?.email}</p> */}
+                <p className="electivetitle">{elective?.hospital?.name}</p>
+                <p className="electivetitleHmail">{elective?.hospital?.email}</p>
               </div>
             </div>
 
@@ -314,7 +314,9 @@ const SingleElective: FC = () => {
                             </button>
                           </div>
                           <div className="appliedDiv">
-                            <p className="applicantName1">{student?.studentId?.name}</p>
+                            <p className="applicantName1">
+                              {student?.studentId?.name}&nbsp;{student?.studentId?.lastName}
+                            </p>
                             <p className="applicantemail1">{student?.studentId?.email}</p>
                             <p className="applicantemail1">
                               Duration: <button> {student?.duration}</button>
