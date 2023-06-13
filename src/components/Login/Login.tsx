@@ -16,6 +16,7 @@ const Login: FC = () => {
     email: string;
     password: string;
     token?: string;
+    userRole?: string;
   }
 
   const [user, setUSer] = useState<IUserObject>({ email: '', password: '' });
@@ -39,11 +40,16 @@ const Login: FC = () => {
       setLoading(true);
       void api('post', '/students/login', user)
         .then((res) => {
-          console.log(res);
+          console.log(res?.userRole);
+
           if (res?.token) {
             localStorage.setItem('token', res.token);
-            navigate('/dashboard');
             setLoading(false);
+            if (res?.userRole === 'student') {
+              navigate('/profile');
+            } else {
+              navigate('/dashboard');
+            }
           }
         })
         .catch(() => {

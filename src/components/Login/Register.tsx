@@ -14,6 +14,7 @@ const Resgister: FC = () => {
   const navigate = useNavigate();
   interface IUserObject {
     name: string;
+    lastName: string;
     email: string;
     school: string;
     domain: string;
@@ -27,6 +28,7 @@ const Resgister: FC = () => {
 
   const [formData, setFormData] = useState<IUserObject>({
     name: '',
+    lastName: '',
     email: '',
     school: '',
     domain: '',
@@ -69,7 +71,9 @@ const Resgister: FC = () => {
     const domain = formData?.domain?.toLowerCase(); // convert domain to uppercase for case-insensitive comparison
     const email = formData?.email?.toLowerCase(); // convert email to lowercase for case-insensitive comparison
     if (formData?.name === '') {
-      toast.error('Name is Required');
+      toast.error('First Name is Required');
+    } else if (formData?.lastName === '') {
+      toast.error('Last Name is Required');
     } else if (formData?.school === '') {
       toast.error('Please Select School');
     } else if (formData?.email === '') {
@@ -95,6 +99,7 @@ const Resgister: FC = () => {
           toast.success('Registered Successfully.');
           setFormData({
             name: '',
+            lastName: '',
             email: '',
             school: '',
             domain: '',
@@ -131,13 +136,24 @@ const Resgister: FC = () => {
             <p className="loginP1"> Sign up to continue</p>
           </div>
           <div className="loginInputDiv">
-            <p className="loginp">Full Name</p>
+            <p className="loginp">First Name</p>
             <input
               className="loginInput"
               type="text"
-              placeholder="e.g John Doe"
+              placeholder="Enter first name "
               name="name"
               value={formData?.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="loginInputDiv">
+            <p className="loginp">Last Name</p>
+            <input
+              className="loginInput"
+              type="text"
+              placeholder="Enter last name"
+              name="lastName"
+              value={formData?.lastName}
               onChange={handleChange}
             />
           </div>

@@ -90,7 +90,9 @@ const Header1: FC = () => {
                 }}
                 className="nbtn"
               >
-                <div className="loginame">{store?.user?.name}</div>{' '}
+                <div className="loginame">
+                  {store?.user?.name} {store?.user?.lastName}
+                </div>{' '}
                 <img className="loginarrow" src={SortArrow1} alt="menuicon" />
               </button>
             </div>

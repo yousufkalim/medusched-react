@@ -39,7 +39,7 @@ const Login: FC = () => {
           console.log(res);
           if (res?.token) {
             localStorage.setItem('token', res.token);
-            navigate('/dashboard');
+            navigate('/profile');
             setLoading(false);
           }
         })
