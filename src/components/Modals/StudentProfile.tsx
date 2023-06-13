@@ -29,6 +29,7 @@ interface IBasicModal {
 
 interface IStudentProfileObject {
   name: string;
+  lastName: string;
   email?: string;
   logo?: string | null;
   school: string | School;
@@ -47,6 +48,7 @@ const StudentProfile: FC<IBasicModal> = ({ open, setOpen, student }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [studentProfile, setStudentProfile] = useState<IStudentProfileObject>({
     name: '',
+    lastName: '',
     email: '',
     logo: null,
     school: '',
@@ -68,6 +70,7 @@ const StudentProfile: FC<IBasicModal> = ({ open, setOpen, student }) => {
   useEffect(() => {
     setStudentProfile({
       name: student?.name ? student.name : '',
+      lastName: student?.lastName ? student.lastName : '',
       email: student?.email ? student.email : '',
       logo: student?.logo ? student.logo : '',
       school: student?.school ? student.school : '',
@@ -115,7 +118,9 @@ const StudentProfile: FC<IBasicModal> = ({ open, setOpen, student }) => {
     e.preventDefault();
 
     if (studentProfile?.name === '') {
-      toast.error('Name is Required');
+      toast.error('First Name is Required');
+    } else if (studentProfile?.lastName === '') {
+      toast.error('Last Name is Required');
     } else if (studentProfile?.school === '') {
       toast.error('School is Required');
     } else {
@@ -202,13 +207,24 @@ const StudentProfile: FC<IBasicModal> = ({ open, setOpen, student }) => {
               </div>
 
               <div className="hospitalProfileloginInputDiv">
-                <p className="Hprofileloginp">Name</p>
+                <p className="Hprofileloginp">First Name</p>
                 <input
                   className="HProfileloginInput"
                   type="text"
                   placeholder="e.g John Doe"
                   name="name"
                   value={studentProfile?.name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="hospitalProfileloginInputDiv">
+                <p className="Hprofileloginp">Last Name</p>
+                <input
+                  className="HProfileloginInput"
+                  type="text"
+                  placeholder="e.g John Doe"
+                  name="lastName"
+                  value={studentProfile?.lastName}
                   onChange={handleChange}
                 />
               </div>

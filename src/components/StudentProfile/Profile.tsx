@@ -13,7 +13,9 @@ const Profile: FC = () => {
       <Header />
       <div className="profileHeader">
         <div className="profileHeaderRow1">
-          <p className="Stdname1">{store?.user?.name}</p>
+          <p className="Stdname1">
+            {store?.user?.name} {store?.user?.lastName}
+          </p>
           <p className="email1">{store?.user?.email}</p>{' '}
         </div>
         <div className="profileHeaderRow2">

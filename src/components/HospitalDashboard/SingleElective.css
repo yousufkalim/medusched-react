@@ -13,7 +13,7 @@
 .applicantMaindiv {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
   width: 85%;
   margin: auto;
 }
@@ -78,8 +78,24 @@
 .customemenu1:hover {
   background: #e8e6e6;
 }
+.searchInputDiv {
+  padding: 10px 10px 10px 20px;
+}
+.searchInput {
+  width: 100%;
+  height: 55px;
+  border: 1px solid rgb(167, 164, 164);
+  border-radius: 100px;
+  padding: 2px 12px;
+}
 
 @media screen and (max-width: 680px) {
+  .searchInputDiv {
+    padding: 4px 0;
+  }
+  .searchInput {
+    width: 100%;
+  }
   .customemenu1 {
     display: flex;
     position: absolute;

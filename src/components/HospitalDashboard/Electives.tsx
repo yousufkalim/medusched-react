@@ -1,7 +1,6 @@
-import React, { FC, useState, useEffect, useRef, ChangeEvent } from 'react';
+import React, { FC, useState, useEffect, ChangeEvent } from 'react';
 
 import Noelectives from '../../assets/noElectives.svg';
-// import SortArrow1 from '../../assets/sortarrow1.svg';
 import Menu from '@mui/material/Menu';
 import SortArrow2 from '../../assets/sortarrow2.svg';
 import { Checkbox } from '@material-ui/core';
@@ -22,51 +21,43 @@ interface IElectives {
 interface IElectiveProps {
   title: string;
 }
-
-// const myHeader = [
-//   "Student's Name",
-//   'Student’s ID',
-//   'Hospital Name',
-//   'Elective Name',
-//   'Start Date',
-//   'End Date',
-//   'Weeks',
-// ];
-const myHeader = ["Student's Name", 'Student’s ID', 'Start Date', 'End Date', 'Weeks'];
-
 interface IMonths {
   name: string;
   checked: boolean;
 }
+const myHeader = ["Student's Name", 'Student’s ID', 'Start Date', 'End Date', 'Weeks'];
+
+const monthArray = [
+  { name: 'January', checked: false },
+  { name: 'February', checked: false },
+  { name: 'March', checked: false },
+  { name: 'April', checked: false },
+  { name: 'May', checked: false },
+  { name: 'June', checked: false },
+  { name: 'July', checked: false },
+  { name: 'August', checked: false },
+  { name: 'September', checked: false },
+  { name: 'October', checked: false },
+  { name: 'November', checked: false },
+  { name: 'December', checked: false },
+];
 const Electives: FC<IElectiveProps> = ({ title }) => {
   const store = Store();
   const updateStore = UpdateStore();
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [menuFlag, setMenuFlag] = useState<boolean>(false);
-  const [months, setMonths] = useState<IMonths[]>([
-    { name: 'January', checked: false },
-    { name: 'February', checked: false },
-    { name: 'March', checked: false },
-    { name: 'April', checked: false },
-    { name: 'May', checked: false },
-    { name: 'June', checked: false },
-    { name: 'July', checked: false },
-    { name: 'August', checked: false },
-    { name: 'September', checked: false },
-    { name: 'October', checked: false },
-    { name: 'November', checked: false },
-    { name: 'December', checked: false },
-  ]);
+  const [months, setMonths] = useState<IMonths[]>(monthArray);
   const [selectedMonths, setSelectedMonths] = useState<string[]>([]);
   const [applyfilterarray, setApplyfilterarray] = useState<string[]>([]);
+  const [searchByHospital, setsearchByHospital] = useState<string>('');
   // const [hospitalName, setHospitalName] = useState<string>('');
 
   const getElectives = (): void => {
     setLoading(true);
     api<IElectives>('get', `/electives/`)
       .then((res) => {
-        if (updateStore) updateStore({ electives: res.electives });
+        const activeElectives = res.electives.filter((elective: Elective) => elective.active);
+        if (updateStore) updateStore({ electives: activeElectives });
         setLoading(false);
       })
       .catch(() => {
@@ -79,20 +70,12 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
       .then((res) => {
         // for student side filter electives that will be availble for apply within date
         const currentDate = new Date();
-
-        // const filteredElectiveswithDate = res.electives.filter(
-        //   (elective) =>
-        //     new Date(elective.start_date) > currentDate ||
-        //     elective.students.includes(store?.user?._id),
-        // );
-        console.log('res.electives.', res.electives);
-        const filteredElectiveswithDate = res.electives.filter(
+        const activeElectives = res.electives.filter((elective: Elective) => elective.active);
+        const filteredElectiveswithDate = activeElectives.filter(
           (elective) =>
             new Date(elective.start_date) > currentDate ||
             elective.students.some((student) => student.studentId === store?.user?._id),
         );
-        console.log('filteredElectiveswithDate', filteredElectiveswithDate, store?.user?._id);
-
         if (updateStore) updateStore({ electives: filteredElectiveswithDate });
         setLoading(false);
       })
@@ -100,22 +83,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
         setLoading(false);
       });
   };
-  const headerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent): void => {
-      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setMenuFlag(false);
-      }
-    };
 
-    if (menuFlag) {
-      document.addEventListener('click', handleOutsideClick);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, [menuFlag]);
   useEffect((): void => {
     store?.user?.role === 'student' ? getAllAffiliatedElectives() : getElectives();
   }, []);
@@ -160,40 +128,54 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
 
   //   return seprateApplied;
   // };
-  const filterDeletedElectives = (electives: Elective[]): Elective[] => {
-    const filterElectives = electives.filter((elective: Elective) => elective.active);
-    const seprateApplied =
-      title === 'Applied Jobs'
-        ? filterElectives.filter((elective) =>
-            elective.students.some(
-              (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
-            ),
-          )
-        : filterElectives.filter(
-            (elective) =>
-              !elective.students.some(
-                (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
-              ),
-          );
-
-    return seprateApplied;
-  };
 
   const handleApplyFilter = (electives: Elective[]): Elective[] => {
     // console.log('hospitalName,', hospitalName);
     // if (hospitalName) {
     //   return electives.filter((elective: Elective) => elective.title === hospitalName);
     // }
-    if (applyfilterarray.length === 0) {
+
+    if (applyfilterarray.length === 0 && !searchByHospital) {
       return electives;
     }
-    const filterElectives = electives.filter((elective: Elective) => {
-      const electiveMonth = new Date(elective.start_date).toLocaleString('default', {
-        month: 'long',
+
+    let results = electives;
+
+    if (searchByHospital) {
+      const regex = new RegExp(searchByHospital, 'i'); // 'i' flag for case-insensitive matching
+      console.log('regex', regex);
+      const filteredValues = electives.filter((value) => regex.test(value.title));
+      results = filteredValues;
+    }
+
+    if (applyfilterarray.length > 0) {
+      const filterElectives = results.filter((elective: Elective) => {
+        const electiveMonth = new Date(elective.start_date).toLocaleString('default', {
+          month: 'long',
+        });
+        return applyfilterarray.includes(electiveMonth);
       });
-      return applyfilterarray.includes(electiveMonth);
-    });
-    return filterElectives;
+
+      return filterElectives;
+    }
+
+    return results;
+  };
+  const filterDeletedElectives = (electives: Elective[]): Elective[] => {
+    const filterwithroute =
+      title === 'Applied Jobs'
+        ? electives.filter((elective) =>
+            elective.students.some(
+              (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+            ),
+          )
+        : electives.filter(
+            (elective) =>
+              !elective.students.some(
+                (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+              ),
+          );
+    return filterwithroute;
   };
   const handleClearAll = (): void => {
     // setHospitalName('');
@@ -218,32 +200,23 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
   // const data = store?.electives
   //   ? title === 'Applied Jobs'
   //     ? filterDeletedElectives(store?.electives)
-  //         ?.filter((elective) => elective.students.includes(store?.user?._id))
-  //         .map((item) => ({ label: item.title, ...item }))
+  //         ?.filter((elective) =>
+  //           elective.students.some(
+  //             (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+  //           ),
+  //         )
+  //         .map((item) => ({ label: item.hospital.name, ...item }))
   //     : filterDeletedElectives(store?.electives)
-  //         ?.filter((elective) => !elective.students.includes(store?.user?._id))
-  //         .map((item) => ({ label: item.title, ...item }))
+  //         ?.filter(
+  //           (elective) =>
+  //             !elective.students.some(
+  //               (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
+  //             ),
+  //         )
+  //         .map((item) => ({ label: item.hospital.name, ...item }))
   //   : [];
-  const data = store?.electives
-    ? title === 'Applied Jobs'
-      ? filterDeletedElectives(store?.electives)
-          ?.filter((elective) =>
-            elective.students.some(
-              (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
-            ),
-          )
-          .map((item) => ({ label: item.title, ...item }))
-      : filterDeletedElectives(store?.electives)
-          ?.filter(
-            (elective) =>
-              !elective.students.some(
-                (student) => student.studentId?.toString() === (store?.user?._id ?? '').toString(),
-              ),
-          )
-          .map((item) => ({ label: item.title, ...item }))
-    : [];
 
-  console.log('data', data, store?.user?._id);
+  console.log('serchbyhospital ', searchByHospital);
 
   return (
     <>
@@ -255,7 +228,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
         <>
           {' '}
           {store?.electives && filterDeletedElectives(store?.electives).length > 0 ? (
-            <div className={` ${menuFlag ? ' filterSection' : 'filterSection'}`}>
+            <div className={`  'filterSection'}`}>
               <div className="electivlistDivMain">
                 <div className="electivlistDiv">{title}</div>
                 <div className="filter1dashboard">
@@ -273,6 +246,20 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                   <button onClick={handleClick}>
                     <img className="SortArrow2D" src={SortArrow2} alt="SortArrow1" />
                   </button>
+                  {store?.user?.role === 'student' && (
+                    <div className="searchInputDiv">
+                      <input
+                        className="searchInput"
+                        type="text"
+                        placeholder="Search by hospital"
+                        name="searchByHospital"
+                        value={searchByHospital}
+                        onChange={(e): void => {
+                          setsearchByHospital(e.target.value);
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
                 <Menu
                   id="basic-menu"
@@ -289,8 +276,8 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                       Clear All
                     </button>
                   </div>
-                  {/* <div className="Menumaind2">Hospital Name</div>
-                  <Autocomplete
+                  {/* <div className="Menumaind2">Hospital Name</div> */}
+                  {/* <Autocomplete
                     options={data}
                     freeSolo
                     disableClearable
@@ -338,7 +325,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
                   </div>
                 </Menu>
               </div>
-              <div className="electiveSection" ref={headerRef}>
+              <div className="electiveSection">
                 {handleApplyFilter(filterDeletedElectives(store?.electives))?.length > 0 ? (
                   handleApplyFilter(filterDeletedElectives(store?.electives)).map((item, i) => (
                     <ElectiveCard getElectives={getElectives} item={item} title={title} key={i} />
