@@ -52,7 +52,7 @@
 }
 .deleteelectivesh1 {
   font-size: 25px;
-  font-weight: 700;
+  font-weight: 500;
   padding: 7% 30px 0px 30px;
   text-align: center;
 }
@@ -74,6 +74,12 @@
   justify-content: center;
   align-items: center;
   padding: 2% 0%;
+}
+.logodivExtend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12% 0% 0% 0%;
 }
 .deletecencelbtn {
   background: white;
@@ -129,16 +135,14 @@
 }
 .minusbtn {
   color: gray;
-  font-weight: 900;
   font-size: 26px;
 }
 .plusbtn {
   color: #1d8de2;
-  font-weight: 900;
   font-size: 26px;
 }
 .weeksDiv {
-  font-weight: 900;
+  font-weight: 500;
   font-size: 18px;
 }
 @media screen and (max-width: 680px) {
