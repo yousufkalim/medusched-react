@@ -115,7 +115,7 @@ const routes: Route[] = [
     ),
   },
   {
-    path: '/classdashboard',
+    path: '/students',
     element: (
       <PrivateRoute>
         <SchoolDashboard />

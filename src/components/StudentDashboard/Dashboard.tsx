@@ -7,7 +7,7 @@ const Dashboard: FC = () => {
   return (
     <div>
       <Header />
-      <Electives title="List of Electives" />
+      <Electives title="Electives" />
     </div>
   );
 };
