@@ -6,6 +6,7 @@ import { Checkbox } from '@material-ui/core';
 import 'react-datepicker/dist/react-datepicker.css';
 import api from '../../api/request';
 import { toast } from 'react-toastify';
+import { CircularProgress } from '@mui/material';
 import './ReserveElective.css';
 
 // import { Store, UpdateStore } from '../../context/store';
@@ -194,7 +195,10 @@ const AddReserveElective: FC<IBasicModal> = ({
       </div>
       <div className="createelectivebtnDiv">
         {loading ? (
-          <button className="createelectivebtn">Loading</button>
+          <button className="createelectivebtn">
+            {' '}
+            <CircularProgress color="inherit" />{' '}
+          </button>
         ) : (
           <button className="createelectivebtn" onClick={handleSubmit}>
             Reserve
