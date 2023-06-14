@@ -29,6 +29,7 @@ const Header1: FC = () => {
     { name: 'Profile', path: '/profile' },
     { name: 'Electives', path: '/electives' },
     { name: 'Dashboard', path: '/dashboard' },
+    { name: 'Students', path: '/students' },
     { name: 'Electives Details', path: `/electives/${params?.id ?? ''}` },
   ];
 

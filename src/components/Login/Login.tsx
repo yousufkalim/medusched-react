@@ -48,7 +48,7 @@ const Login: FC = () => {
             if (res?.userRole === 'student') {
               navigate('/profile');
             } else {
-              navigate('/dashboard');
+              navigate('/students');
             }
           }
         })

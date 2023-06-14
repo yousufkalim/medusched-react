@@ -71,10 +71,13 @@
 }
 .electivlistDivMain {
   display: flex;
+  align-items: center;
+  padding: 10px 0px;
   width: 92%;
   margin: auto;
 }
 .electivlistDiv {
+  color: #1d8de2;
   width: 30%;
   font-weight: 600;
   font-size: 33px;
@@ -243,7 +246,7 @@
 .filter1dashboard {
   font-weight: 600;
   display: flex;
-  width: 24%;
+  width: 29%;
   margin-left: auto;
   align-items: center;
 }

@@ -37,8 +37,16 @@
 
 .schoolDashboard_table_heading_txt,
 .schoolDashboard_table_heading_txt_name,
-.schoolDashboard_table_heading_txt_contact,
 .schoolDashboard_table_heading_txt_created {
+  padding: 23px 20px;
+  text-align: start;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  font-family: 'Outfit';
+  color: #363535;
+}
+.schoolDashboard_table_heading_txt_contact {
   padding: 1%;
   text-align: start;
   font-weight: 500;
@@ -78,6 +86,7 @@
 .schoolDashboard_table_body_txt,
 .schoolDashboard_table_body_txt_contact,
 .schoolDashboard_table_body_txt_created {
+  width: 20%;
   padding: 1% 1% 1% 1%;
   text-align: start;
   font-weight: 400;
@@ -89,7 +98,7 @@
 
 .schoolDashboard_table_body_btns {
   padding-top: 10%;
-  width: 90%;
+  /* width: 90%; */
   display: flex;
   align-items: center;
   justify-content: center;
