@@ -78,7 +78,7 @@ const ExtendElectiveModal: FC<IBasicModal> = ({
           </div>
           <h1 className="deleteelectivesh1">Change Duration of</h1>
           <h2 className="Ename">{studentName}</h2>
-          <h2 className="deleteelectivesh2">Adjust the duration of your validity with ease.</h2>
+          <h2 className="deleteelectivesh2">Adjust the duration of your elective with ease.</h2>
           <div className="durationMain1">
             <div className="duration1">Duration</div>
             <div className="Dline"></div>
