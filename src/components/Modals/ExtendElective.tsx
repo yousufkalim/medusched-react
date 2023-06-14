@@ -73,7 +73,7 @@ const ExtendElectiveModal: FC<IBasicModal> = ({
         // style={{ backdropFilter: 'blur(1px)' }}
       >
         <Box sx={style}>
-          <div className="logodiv">
+          <div className="logodivExtend">
             <img src={extendElectiveLogo} alt="Deletelogo" />
           </div>
           <h1 className="deleteelectivesh1">Change Duration of</h1>
