@@ -144,7 +144,7 @@ const Electives: FC<IElectiveProps> = ({ title }) => {
     if (searchByHospital) {
       const regex = new RegExp(searchByHospital, 'i'); // 'i' flag for case-insensitive matching
       console.log('regex', regex);
-      const filteredValues = electives.filter((value) => regex.test(value.title));
+      const filteredValues = electives.filter((value) => regex.test(value.hospital.name));
       results = filteredValues;
     }
 
