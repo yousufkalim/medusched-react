@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import api from '../../api/request';
 import { toast } from 'react-toastify';
+import { CircularProgress } from '@mui/material';
+
 import './ForgotPassword.css';
 
 const style: CSSObject = {
@@ -86,8 +88,8 @@ const ForgotPassword: FC<IBasicModal> = ({ open, setOpen, role }) => {
             />
           </div>
           <div style={{ textAlign: 'center' }}>
-            <button className="forgotbtn" onClick={handleSubmit}>
-              Send Reset Instructions
+            <button className="forgotbtn" onClick={handleSubmit} disabled={loading}>
+              {loading ? <CircularProgress color="inherit" /> : 'Send Reset Instructions'}
             </button>
           </div>
         </Box>
