@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { toast } from 'react-toastify';
 
 import { IStudent } from '../types/user';
 import moment from 'moment';
@@ -79,6 +80,9 @@ const ExportStudents: React.FC<Props> = ({ students, myHeader }) => {
       setLoading(false);
       console.log('updatedstudents', updatedstudents);
       exportToCSV(updatedstudents, 'Students CSV');
+    } else {
+      setLoading(false);
+      toast.error('No student found ');
     }
   };
 

@@ -3,6 +3,7 @@ import { CSSObject } from '@emotion/react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Deletelogo from '../../assets/deletelogo.svg';
+import { CircularProgress } from '@mui/material';
 import './AddElectives.css';
 
 const style: CSSObject = {
@@ -23,10 +24,11 @@ const style: CSSObject = {
 
 interface IBasicModal {
   open: boolean;
+  loading: boolean;
   setOpen: (open: boolean) => void;
   handleDelete: () => void;
 }
-const DeleteElectiveModal: FC<IBasicModal> = ({ open, setOpen, handleDelete }) => {
+const DeleteElectiveModal: FC<IBasicModal> = ({ open, setOpen, handleDelete, loading }) => {
   const handleClose = (): void => {
     setOpen(false);
   };
@@ -53,8 +55,9 @@ const DeleteElectiveModal: FC<IBasicModal> = ({ open, setOpen, handleDelete }) =
               onClick={() => {
                 handleDelete();
               }}
+              disabled={loading}
             >
-              Delete
+              {loading ? <CircularProgress color="inherit" size={20} /> : 'Delete'}
             </button>
             <button
               className="deletecencelbtn"

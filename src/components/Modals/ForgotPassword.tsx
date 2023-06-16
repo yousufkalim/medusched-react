@@ -89,7 +89,7 @@ const ForgotPassword: FC<IBasicModal> = ({ open, setOpen, role }) => {
           </div>
           <div style={{ textAlign: 'center' }}>
             <button className="forgotbtn" onClick={handleSubmit} disabled={loading}>
-              {loading ? <CircularProgress color="inherit" /> : 'Send Reset Instructions'}
+              {loading ? <CircularProgress color="inherit" size={20} /> : 'Send Reset Instructions'}
             </button>
           </div>
         </Box>
