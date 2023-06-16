@@ -21,7 +21,7 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <ToastContainer position="bottom-right" autoClose={3000} transition={Flip} />
+      <ToastContainer position="bottom-right" autoClose={3000} transition={Flip} limit={2} />
 
       <Router routes={routes} isAuthenticated={checkAuth} />
     </div>

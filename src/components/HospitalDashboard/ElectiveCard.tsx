@@ -27,6 +27,7 @@ interface IElectiveResponse {
 const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
   const store = Store();
   const [deleteopen, setDeleteOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [editopen, setEditOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -37,12 +38,14 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
     setAnchorEl(null);
   };
   const handleDelete = (): void => {
+    setLoading(true);
     api<IElectiveResponse>('put', `/electives/delete/${item?._id}`)
       .then((res) => {
+        setLoading(true);
         if (getElectives) getElectives();
       })
       .catch(() => {
-        // setLoading(false);
+        setLoading(false);
       });
   };
 
@@ -195,7 +198,12 @@ const ElectiveCard: FC<IElectiveCard> = ({ title, item, getElectives }) => {
           </div>
         )}
 
-      <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
+      <DeleteElectives
+        open={deleteopen}
+        setOpen={setDeleteOpen}
+        handleDelete={handleDelete}
+        loading={loading}
+      />
       <EditElectives
         getElectives={getElectives}
         open={editopen}

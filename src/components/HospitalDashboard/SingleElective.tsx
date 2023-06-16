@@ -88,6 +88,7 @@ const SingleElective: FC = () => {
   }, []);
 
   const handleDelete = (): void => {
+    setLoading(true);
     api<IElectiveResponse>('put', `/electives/delete/${id}`)
       .then((res) => {
         setLoading(false);
@@ -148,12 +149,13 @@ const SingleElective: FC = () => {
       });
   };
 
-  const duration = elective?.students.some((student) => student.studentId._id === store?.user?._id)
+  const duration = elective?.students.some((student) => student.studentId?._id === store?.user?._id)
     ? elective?.students.find((student) => student.studentId._id === store?.user?._id)?.duration ??
       ''
     : '';
 
   console.log('studnetddd', duration);
+  console.log('studnetddd22', elective);
 
   const currentDate = new Date();
 
@@ -432,7 +434,12 @@ const SingleElective: FC = () => {
         setStudentDuration={setStudentDuration}
       />
 
-      <DeleteElectives open={deleteopen} setOpen={setDeleteOpen} handleDelete={handleDelete} />
+      <DeleteElectives
+        open={deleteopen}
+        setOpen={setDeleteOpen}
+        handleDelete={handleDelete}
+        loading={loading}
+      />
       <EditElectives
         open={editopen}
         setOpen={setEditOpen}

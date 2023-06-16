@@ -197,7 +197,7 @@ const AddReserveElective: FC<IBasicModal> = ({
         {loading ? (
           <button className="createelectivebtn">
             {' '}
-            <CircularProgress color="inherit" />{' '}
+            <CircularProgress color="inherit" size={20} />{' '}
           </button>
         ) : (
           <button className="createelectivebtn" onClick={handleSubmit}>
