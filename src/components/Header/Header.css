@@ -154,7 +154,7 @@
 
 @media screen and (max-width: 680px) {
   .parent_loginOutDiv {
-    width: 33%;
+    width: auto;
   }
 
   .loginNameDiv {
@@ -194,11 +194,12 @@
   .loginSignupButton {
     margin: 15px 4px;
     padding: 12px 20px;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .loginSignupButtonH {
     padding: 10px 16px;
+    font-size: 14px;
   }
 
   .menuIcon {
